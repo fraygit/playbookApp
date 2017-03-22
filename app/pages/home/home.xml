@@ -1,0 +1,71 @@
+<page
+  xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  xmlns:widgets="shared/widgets"
+  xmlns:statusbar="nativescript-statusbar"
+  loaded="pageLoaded">
+
+  <statusbar:StatusBar ios:barStyle="light" />
+
+  <page.actionBar>
+    <action-bar title="Playbook">
+      <navigation-button icon="res://ic_menu" tap="toggleDrawer" ios:visibility="collapsed" />
+      <action-bar.actionItems>
+        <ios>
+          <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
+        </ios>
+      </action-bar.actionItems>
+    </action-bar>
+  </page.actionBar>
+
+  <drawer:rad-side-drawer id="drawer">
+    <drawer:rad-side-drawer.mainContent>
+
+      <!-- Home page contents -->
+      <!--<stack-layout loaded="contentLoaded">
+        <image src="https://i.imgur.com/LY3cb3A.png" id="logo" tap="fun" height="100" margin="20 0 0 0" />
+        <label text="Welcome to the NativeScript drawer template! This is the home page. Try tapping the logo." margin="20" horizontalAlignment="center" textWrap="true" />
+      </stack-layout>-->
+      <stack-layout loaded="contentLoaded">
+        <stack-layout>
+          <grid-layout columns="*, *, *" rows="auto, auto, auto" style.backgroundColor="white" class="home">
+            <Label text="Write a story" col="0" row="0" colspan="3" style="margin-top:15;margin-bottom:20;padding-bottom:15;margin-left:10;margin-right:10; border-color: #C3C3E5; border-width: 0 0 1 0;" tap="WriteStory"/>
+            <Label text="&#xf03d;" col="0" row="1" style="margin-top:0;" class="fa-video lbl"/>
+            <Label text="&#xf030;" class="fa-camera lbl" col="1" row="1" style="margin-top:0;" tap="OpenCamera"/>
+            <Label text="&#xf03e;" col="2" row="1" style="margin-top:0;" class="lbl fa-photo" tap="OpenVideoRecorder"/>
+          </grid-layout>
+        </stack-layout>
+
+        <ListView items="{{ Feed }}" height="100%"> 
+          <ListView.itemTemplate>
+            <stack-layout>
+              <grid-layout columns="*, *" rows="auto, auto, auto, auto, auto" style.backgroundColor="white" class="feedItem">
+                <Label text="{{ Author }}" col="0" row="0" colspan="2" class="feedAuthor"/>
+                <Label text="{{ Title }}" col="0" row="1" colspan="2"/>
+                <Image src="{{ Image }}" col="0" row="2" colspan="2"/>
+                <Label text="" col="0" row="3" colspan="3" class="feedLB"/>
+                <Label text="Like" col="0" row="4" class="feedComment"/>
+                <Label text="Comment" col="1" row="4" class="feedComment"/>
+              </grid-layout>
+            </stack-layout>
+          </ListView.itemTemplate>          
+        </ListView>
+        
+      </stack-layout>
+      <!--<stack-layout loaded="contentLoaded">
+        <grid-layout columns="3*, *" rows="100, *">
+          <Label text="Write a story"></Label>
+        </grid-layout>
+        <grid-layout columns="3*, *" rows="100, *">
+          <Label text="ff Write a story"></Label>
+        </grid-layout>
+      </stack-layout>-->
+
+    </drawer:rad-side-drawer.mainContent>
+    <drawer:rad-side-drawer.drawerContent>
+      <widgets:drawer-content />
+    </drawer:rad-side-drawer.drawerContent>
+  </drawer:rad-side-drawer>
+
+</page>
+

@@ -1,0 +1,9 @@
+{
+    "nativescript-camera": true,
+    "nativescript-statusbar": true,
+    "nativescript-telerik-ui": true,
+    "nativescript-videorecorder": true,
+    "nativescript-permissions": true,
+    "tns-core-modules": true,
+    "tns-core-modules-widgets": true
+}

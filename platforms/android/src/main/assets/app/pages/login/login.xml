@@ -1,0 +1,15 @@
+﻿<Page loaded="pageLoaded">
+  <ActionBar title="Playbook" class="action-bar"></ActionBar>
+  <!-- Your UI components go here -->
+
+  <stack-layout style="background-image:url('~/images/clouds.jpg')">
+    <Label text="" style="height:100px;"></Label>
+    <stack-layout style="background-color:white;width:90%;border-radius: 8px">
+      <TextView text="" hint="Emaill address" style="padding:10;margin:10;"/>
+      <TextView text="" hint="Password" style="padding:10;margin:10;"/>
+
+      <Button tap="Login" text="Login"/>
+    </stack-layout>
+  </stack-layout>
+  
+</Page>
