@@ -42,6 +42,11 @@ page {
     text-align: center;
 }
 
+.imagecaptured {
+    margin-right : 5px;
+    margin-left : 5px;
+}
+
 .fa-video {
     font-family: 'fontawesome-webfont';
     color: red;
@@ -78,3 +83,4 @@ page {
     text-align: center;
     font-weight:bold;
 }
+

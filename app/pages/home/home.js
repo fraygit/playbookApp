@@ -60,6 +60,18 @@ HomePage.prototype.OpenCamera = function () {
     camera.requestPermissions();
     camera.takePicture()
         .then(function (imageAsset) {
+
+            topmost().navigate({
+                            moduleName: "pages/post/post",
+                            animated: true,
+                            transition: {
+                                name: "slide",
+                                duration: 380,
+                                curve: "easeIn"
+                            },
+                            context: {image: imageAsset}
+                        });
+
             console.log("Result is an image asset instance");
         }).catch(function (err) {
             console.log("Error -> " + err.message);

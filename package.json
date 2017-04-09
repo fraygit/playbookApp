@@ -10,6 +10,7 @@
     }
   },
   "dependencies": {
+    "nativescript-background-http": "^2.5.1",
     "nativescript-camera": "0.0.8",
     "nativescript-statusbar": "^1.0.0",
     "nativescript-telerik-ui": "1.4.1",
