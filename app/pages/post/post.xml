@@ -45,9 +45,9 @@
 
                     <wrap-layout col="0" row="1" colspan="3" height="0" id="pnlMedia">
                     </wrap-layout>
-                    <Label text="&#xf03d;" col="0" row="2" style="margin-top:0;" class="fa-video lbl"/>
+                    <Label text="&#xf03d;" col="0" row="2" style="margin-top:0;" class="fa-video lbl" tap="OpenGallery"/>
                     <Label text="&#xf030;" class="fa-camera lbl" col="1" row="2" style="margin-top:0;" tap="OpenCamera"/>
-                    <Label text="&#xf03e;" col="2" row="2" style="margin-top:0;" class="lbl fa-photo" tap="OpenVideoRecorder"/>
+                    <Label text="&#xf03e;" col="2" row="2" style="margin-top:0;" class="lbl fa-photo" tap="OpenGallery"/>
                   </grid-layout>
                 </stack-layout>
 
