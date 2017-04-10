@@ -10,6 +10,9 @@ var http = require("http");
 var dialogs = require("ui/dialogs");
 var fs = require("file-system");
 var imageSource = require("image-source")
+var bghttp = require("nativescript-background-http");
+
+var session = bghttp.session("image-upload");
 
 var PostPage = function (args) {
     //var page = args.object;
@@ -107,7 +110,7 @@ PostPage.prototype.OpenCamera = function () {
                 console.log("from asset");
                 res.saveToFile(filepath, "jpg");
 
-                var newImageCaptured = { Id: generateGuid(), Image: imageAsset, ImagePath: filepath };
+                var newImageCaptured = { Id: generateGuid(), Image: imageAsset, ImagePath: filepath, Filename: filename };
                 capturedImages.push(newImageCaptured);
                 console.log("image captured:" + filepath);
                 console.log(imageAsset)
@@ -147,8 +150,31 @@ PostPage.prototype.OpenGallery = function () {
         });
 }
 
-var UploadMedia = function () {
+var UploadMedia = function (storyId) {
+    console.log("Start Upload");
+    for (var i = 0; i < capturedImages.length; i++) {
+        var request = {
+            url: global.ApiUrl + '/PostMedia',
+            method: "POST",
+            headers: {
+                "Content-Type": "application/octet-stream",
+                "File-Name": capturedImages[i].Filename
+            },
+            description: "{ 'storyid': '" + storyId + "' }"
+        };
+        var task = session.uploadFile(capturedImages[i].ImagePath, request);
+        console.log("uploading: " + capturedImages[i].ImagePath);
 
+        task.on("progress", function () {
+            console.log("progress");
+        });
+        task.on("error", function () {
+            console.log("error");
+        });
+        task.on("complete", function () {
+            console.log("complete");
+        });
+    }
 }
 
 PostPage.prototype.Post = function () {
@@ -165,6 +191,11 @@ PostPage.prototype.Post = function () {
         headers: { "Content-Type": "application/json" },
         content: JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy' })
     }).then(function (response) {
+
+        console.log("story id:" + response.content);
+
+        UploadMedia(response.content);
+
         topmost().navigate({
             moduleName: "pages/home/home",
             animated: true,
