@@ -18,7 +18,7 @@
       <ActionItem tap="onShare"
           ios.systemIcon="9" ios.position="left"
           android.systemIcon="ic_menu_save" android.position="actionBar"/>
-      <ActionItem tap="onShare"
+      <ActionItem tap="Post"
           ios.systemIcon="9" ios.position="left"
           android.systemIcon="ic_menu_send" android.position="actionBar"/>
     </action-bar>

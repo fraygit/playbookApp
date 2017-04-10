@@ -6,6 +6,8 @@ var image = require("ui/image");
 var Observable = require('data/observable');
 var ObservableArray = require('data/observable-array');
 var imagepickerModule = require("nativescript-imagepicker");
+var http = require("http");
+var dialogs = require("ui/dialogs");
 
 var PostPage = function (args) {
     //var page = args.object;
@@ -88,6 +90,38 @@ var ReloadImages = function () {
     
 };
 
+PostPage.prototype.Post = function () {
+    txtStory = page.getViewById("txtStory");
+    if (global.IsBlank(txtStory.text)) {
+        dialogs.alert("Can not post story. Story is blank!").then(function () {
+            return;
+        })
+    }
+
+    http.request({
+        url: global.ApiUrl + '/PostStory',
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        content: JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy' })
+    }).then(function (response) {
+        topmost().navigate({
+            moduleName: "pages/home/home",
+            animated: true,
+            transition: {
+                name: "slide",
+                duration: 380,
+                curve: "easeIn"
+            }
+        });
+    }, function (e) {
+        console.log("Error occurred " + e);
+        console.log("url:" + global.ApiUrl + '/PostStory');
+        dialogs.alert("Error posting story.").then(function () {
+            return;
+        })
+    });
+
+};
 
 PostPage.prototype.OpenCamera = function () {
     camera.requestPermissions();
