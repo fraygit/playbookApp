@@ -38,18 +38,16 @@
           <TabViewItem title="Tag">
             <TabViewItem.view>
               <stack-layout style.backgroundColor="white">
-                <wrap-layout class="list-item">
-                  <stack-layout >
-                    <Image src="https://assets.babycenter.com/ims/2016/10/iStock_43693432_4x3.jpg" class="circle-wrapper"></Image>
-                  </stack-layout>
-                  <Label text="Sam" class="item-name"/>
-                </wrap-layout>
-                <wrap-layout class="list-item">
-                  <stack-layout >
-                    <Image src="https://pbs.twimg.com/profile_images/450103729383956480/Tiys3m4x.jpeg" class="circle-wrapper"></Image>
-                  </stack-layout>
-                  <Label text="Andy" class="item-name"/>
-                </wrap-layout>
+                <ListView items="{{ childrenList }}" height="100%">
+                  <ListView.itemTemplate>
+                    <wrap-layout class="{{ Class }}" tap="SelectChild">
+                      <stack-layout >
+                        <Image src="{{ ProfileImage }}" class="circle-wrapper"></Image>
+                      </stack-layout>
+                      <Label text="{{ Name }}" class="item-name"/>
+                    </wrap-layout>                    
+                  </ListView.itemTemplate>
+                </ListView>
               </stack-layout>
             </TabViewItem.view>
           </TabViewItem>

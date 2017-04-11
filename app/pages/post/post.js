@@ -29,10 +29,40 @@ var txtStory;
 var pnlMedia;
 var page;
 
+var children = new ObservableArray.ObservableArray([]);
+var childrenList = new Observable.Observable();
+
 PostPage.prototype.contentLoaded = function (args) {
     page = args.object;
+    page.bindingContext = childrenList;
+    children = [];
+    children.push(new Observable.Observable({
+        Name: 'Andy',
+        Id: '123',
+        ProfileImage: 'https://assets.babycenter.com/ims/2016/10/iStock_43693432_4x3.jpg',
+        Class: 'list-item'
+    }));
+    children.push(new Observable.Observable({
+        Name: 'Sam',
+        Id: '456',
+        ProfileImage: 'https://pbs.twimg.com/profile_images/450103729383956480/Tiys3m4x.jpeg',
+        Class: 'list-item'
+    }));
+
+    childrenList.set("childrenList", children);
 };
 
+PostPage.prototype.SelectChild = function (args) {
+    var item = args.object;
+    var itemData = item.bindingContext;
+    if (itemData.Class == 'list-item') {
+        itemData.Class = 'list-item-selected';
+    }
+    else {
+        itemData.Class = 'list-item';
+    }
+    console.log('item:' + JSON.stringify(itemData));
+}
 
 PostPage.prototype.GoBack = function () {
     topmost().navigate({

@@ -67,11 +67,18 @@ page {
     border-color: #C3C3E5; border-width: 0 0 1 0;
 }
 
+.list-item-selected{
+    padding : 10px;
+    background-color : #99ccff;
+    border-color: #C3C3E5; border-width: 0 0 1 0;
+}
+
 .circle-wrapper{
   background-color: #666666;
   border-radius: 100;
-  height: 70px;
+  width: 70px;
 }
+
 
 .fa-video {
     font-family: 'fontawesome-webfont';
