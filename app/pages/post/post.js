@@ -28,6 +28,8 @@ PostPage.prototype.constructor = PostPage;
 var txtStory;
 var pnlMedia;
 var page;
+var selectedImages = [];
+var capturedImages = [];
 
 var children = new ObservableArray.ObservableArray([]);
 var childrenList = new Observable.Observable();
@@ -65,6 +67,8 @@ PostPage.prototype.SelectChild = function (args) {
 }
 
 PostPage.prototype.GoBack = function () {
+    selectedImages = [];
+    capturedImages = [];
     topmost().navigate({
         moduleName: "pages/home/home",
         animated: true,
@@ -86,8 +90,7 @@ function generateGuid() {
       s4() + '-' + s4() + s4() + s4();
 }
 
-var selectedImages = [];
-var capturedImages = [];
+
 
 var ReloadImages = function () {
 
@@ -241,40 +244,44 @@ var UploadMedia = function (storyId) {
 }
 
 PostPage.prototype.Post = function () {
+    var isContinuePost = true;
     txtStory = page.getViewById("txtStory");
     if (global.IsBlank(txtStory.text)) {
+        isContinuePost = false;
         dialogs.alert("Can not post story. Story is blank!").then(function () {
-            return;
+            
         })
     }
 
-    http.request({
-        url: global.ApiUrl + '/PostStory',
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        content: JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy' })
-    }).then(function (response) {
+    if (isContinuePost) {
+        http.request({
+            url: global.ApiUrl + '/PostStory',
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            content: JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy' })
+        }).then(function (response) {
 
-        console.log("story id:" + response.content);
+            console.log("story id:" + response.content);
 
-        UploadMedia(response.content);
+            UploadMedia(response.content);
 
-        topmost().navigate({
-            moduleName: "pages/home/home",
-            animated: true,
-            transition: {
-                name: "slide",
-                duration: 380,
-                curve: "easeIn"
-            }
+            topmost().navigate({
+                moduleName: "pages/home/home",
+                animated: true,
+                transition: {
+                    name: "slide",
+                    duration: 380,
+                    curve: "easeIn"
+                }
+            });
+        }, function (e) {
+            console.log("Error occurred " + e);
+            console.log("url:" + global.ApiUrl + '/PostStory');
+            dialogs.alert("Error posting story.").then(function () {
+                return;
+            })
         });
-    }, function (e) {
-        console.log("Error occurred " + e);
-        console.log("url:" + global.ApiUrl + '/PostStory');
-        dialogs.alert("Error posting story.").then(function () {
-            return;
-        })
-    });
+    }
 
 };
 

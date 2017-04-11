@@ -73,6 +73,17 @@ page {
     border-color: #C3C3E5; border-width: 0 0 1 0;
 }
 
+.form {
+    color: black;
+    padding : 10px;
+    font-size: 18pt;
+}
+.form-item{
+    border-color: #C3C3E5; 
+    border-width: 0 0 1 0;
+    padding: 15px!important;
+}
+
 .circle-wrapper{
   background-color: #666666;
   border-radius: 100;
