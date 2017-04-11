@@ -210,8 +210,8 @@ var UploadMedia = function (storyId) {
             console.log("complete");
         });
 
-        capturedImages = [];
     }
+    capturedImages = [];
 
     for (var i = 0; i < selectedImages.length; i++) {
         var request = {
@@ -238,9 +238,9 @@ var UploadMedia = function (storyId) {
             console.log("complete");
         });
 
-        selectedImages = [];
     }
-    
+    selectedImages = [];
+
 }
 
 PostPage.prototype.Post = function () {
