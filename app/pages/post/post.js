@@ -162,7 +162,9 @@ var UploadMedia = function (storyId) {
             },
             description: "{ 'storyid': '" + storyId + "' }"
         };
-        var task = session.uploadFile(capturedImages[i].ImagePath, request);
+        var params = [{ name: "StoryId", value: storyId.toString() }, { name: "fileToUpload", filename: capturedImages[i].ImagePath, mimeType: 'image/jpeg' }];
+        //var task = session.uploadFile(capturedImages[i].ImagePath, request);
+        var task = session.multipartUpload(params, request);
         console.log("uploading: " + capturedImages[i].ImagePath);
 
         task.on("progress", function () {
@@ -174,7 +176,38 @@ var UploadMedia = function (storyId) {
         task.on("complete", function () {
             console.log("complete");
         });
+
+        capturedImages = [];
     }
+
+    for (var i = 0; i < selectedImages.length; i++) {
+        var request = {
+            url: global.ApiUrl + '/PostMedia',
+            method: "POST",
+            headers: {
+                "Content-Type": "application/octet-stream",
+                "File-Name": selectedImages[i].Filename
+            },
+            description: "{ 'storyid': '" + storyId + "' }"
+        };
+        var params = [{ name: "StoryId", value: storyId.toString() }, { name: "fileToUpload", filename: selectedImages[i].ImagePath, mimeType: 'image/jpeg' }];
+        //var task = session.uploadFile(capturedImages[i].ImagePath, request);
+        var task = session.multipartUpload(params, request);
+        console.log("uploading: " + selectedImages[i].ImagePath);
+
+        task.on("progress", function () {
+            console.log("progress");
+        });
+        task.on("error", function () {
+            console.log("error");
+        });
+        task.on("complete", function () {
+            console.log("complete");
+        });
+
+        selectedImages = [];
+    }
+    
 }
 
 PostPage.prototype.Post = function () {
