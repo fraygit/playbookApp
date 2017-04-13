@@ -53,6 +53,7 @@ HomePage.prototype.contentLoaded = function (args) {
 
 
 HomePage.prototype.WriteStory = function () {
+    console.log("go to post");
     topmost().navigate(navigationEntry);
 };
 

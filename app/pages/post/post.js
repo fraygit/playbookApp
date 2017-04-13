@@ -15,6 +15,7 @@ var bghttp = require("nativescript-background-http");
 var session = bghttp.session("image-upload");
 
 var PostPage = function (args) {
+    console.log("ok post1.1");
     //var page = args.object;
     //var params = page.navigationContext;
     //console.log("image:" + params.image);
@@ -34,7 +35,10 @@ var capturedImages = [];
 var children = new ObservableArray.ObservableArray([]);
 var childrenList = new Observable.Observable();
 
+console.log("ok post");
+
 PostPage.prototype.contentLoaded = function (args) {
+    console.log("ok post2");
     page = args.object;
     page.bindingContext = childrenList;
     children = [];
@@ -52,6 +56,7 @@ PostPage.prototype.contentLoaded = function (args) {
     }));
 
     childrenList.set("childrenList", children);
+    console.log("ok post 3");
 };
 
 PostPage.prototype.SelectChild = function (args) {

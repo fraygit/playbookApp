@@ -18,12 +18,9 @@ var navigationEntry = {
 exports.pageLoaded = function (args) {
     page = args.object;
     console.log('app started - login page');
-    var token = appSettings.getString("token", "");
+    
 
-    // Add token validation
-    if (!global.IsBlank(token)) {
-        frameModule.topmost().navigate(navigationEntry);
-    }
+
 };
 
 
