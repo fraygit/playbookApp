@@ -11,6 +11,7 @@ var dialogs = require("ui/dialogs");
 var fs = require("file-system");
 var imageSource = require("image-source")
 var bghttp = require("nativescript-background-http");
+var appSettings = require("application-settings");
 
 var session = bghttp.session("image-upload");
 
@@ -190,9 +191,10 @@ PostPage.prototype.OpenGallery = function () {
 
 var UploadMedia = function (storyId) {
     console.log("Start Upload");
+    var token = appSettings.getString("token", "");
     for (var i = 0; i < capturedImages.length; i++) {
         var request = {
-            url: global.ApiUrl + '/PostMedia',
+            url: global.ApiUrl + '/PostMedia?api_key=' + token,
             method: "POST",
             headers: {
                 "Content-Type": "application/octet-stream",
@@ -217,10 +219,10 @@ var UploadMedia = function (storyId) {
 
     }
     capturedImages = [];
-
+    console.log("upload " + global.ApiUrl + '/PostMedia?api_key=' + token);
     for (var i = 0; i < selectedImages.length; i++) {
         var request = {
-            url: global.ApiUrl + '/PostMedia',
+            url: global.ApiUrl + '/PostMedia?api_key=' + token,
             method: "POST",
             headers: {
                 "Content-Type": "application/octet-stream",
@@ -259,33 +261,65 @@ PostPage.prototype.Post = function () {
     }
 
     if (isContinuePost) {
-        http.request({
-            url: global.ApiUrl + '/PostStory',
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            content: JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy' })
-        }).then(function (response) {
 
-            console.log("story id:" + response.content);
 
-            UploadMedia(response.content);
 
-            topmost().navigate({
-                moduleName: "pages/home/home",
-                animated: true,
-                transition: {
-                    name: "slide",
-                    duration: 380,
-                    curve: "easeIn"
-                }
-            });
-        }, function (e) {
-            console.log("Error occurred " + e);
-            console.log("url:" + global.ApiUrl + '/PostStory');
-            dialogs.alert("Error posting story.").then(function () {
-                return;
-            })
+        //UploadMedia(response.content);
+
+        global.CallSecuredApi("/PostStory", "POST", JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy' }),
+            function (result) {
+                console.log("story id: " + result);
+                UploadMedia(result);
+                topmost().navigate({
+                    moduleName: "pages/home/home",
+                    animated: true,
+                    transition: {
+                        name: "slide",
+                        duration: 380,
+                        curve: "easeIn"
+                    }
+                });
+            },
+            function (error) {
+            },
+            function (apiErrorMessage) {
         });
+
+
+        //http.request({
+        //    url: global.ApiUrl + '/PostStory',
+        //    method: "POST",
+        //    headers: { "Content-Type": "application/json" },
+        //    content: JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy' })
+        //}).then(function (response) {
+
+        //    console.log("story id:" + response.content);
+        //    if (response.statusCode == 200) {
+
+        //        UploadMedia(response.content);
+
+        //        topmost().navigate({
+        //            moduleName: "pages/home/home",
+        //            animated: true,
+        //            transition: {
+        //                name: "slide",
+        //                duration: 380,
+        //                curve: "easeIn"
+        //            }
+        //        });
+        //    }
+        //    else {
+        //        dialogs.alert("Error posting story.").then(function () {
+        //            return;
+        //        })
+        //    }
+        //}, function (e) {
+        //    console.log("Error occurred " + e);
+        //    console.log("url:" + global.ApiUrl + '/PostStory');
+        //    dialogs.alert("Error posting story.").then(function () {
+        //        return;
+        //    })
+        //});
     }
 
 };

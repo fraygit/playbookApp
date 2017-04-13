@@ -18,9 +18,6 @@ var navigationEntry = {
 exports.pageLoaded = function (args) {
     page = args.object;
     console.log('app started - login page');
-    
-
-
 };
 
 
