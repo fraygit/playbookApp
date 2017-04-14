@@ -40,13 +40,30 @@
           <ListView.itemTemplate>
             <stack-layout>
               <grid-layout columns="*, *" rows="auto, auto, auto, auto, auto" style.backgroundColor="white" class="feedItem">
-                <Label text="{{ Author }}" col="0" row="0" colspan="2" class="feedAuthor"/>
-                <Label text="{{ Title }}" col="0" row="1" colspan="2"/>
-                <Image src="{{ Image }}" col="0" row="2" colspan="2"/>
+                <Label text="{{ Content }}" col="0" row="0" colspan="2"/>
+                <WrapLayout col="0" row="1" colspan="2">
+                  <Label text="{{ Author }}"  class="feedAuthor"/>
+                  <Label text=" "  class="feedAuthor"/>
+                  <Label text="{{ Date }}"  class="feedAuthor"/>
+                </WrapLayout>
+                
+
+                <WrapLayout col="0" row="2" colspan="3" style="text-align:center;">
+                  <Repeater items="{{ Images }}">
+                    <Repeater.itemsLayout>
+                      <WrapLayout />
+                    </Repeater.itemsLayout>
+                    <Repeater.itemTemplate>
+                      <Image src="{{ Path }}" width="45%" class="feed-images"></Image>
+                    </Repeater.itemTemplate>
+                  </Repeater>
+                </WrapLayout>
+                
                 <Label text="" col="0" row="3" colspan="3" class="feedLB"/>
                 <Label text="Like" col="0" row="4" class="feedComment"/>
                 <Label text="Comment" col="1" row="4" class="feedComment"/>
-              </grid-layout>
+              
+            </grid-layout>
             </stack-layout>
           </ListView.itemTemplate>          
         </ListView>

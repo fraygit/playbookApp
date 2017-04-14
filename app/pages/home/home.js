@@ -31,23 +31,49 @@ var navigationEntry = {
 
 var feed = new observableArray.ObservableArray([]);;
 
-feed.push({
+feed.push(new observableModule.Observable({
     Author: 'fray',
-    Image: "http://www.playcentre.org.nz/Image?Action=View&Image_id=163",
+    Images: new observableArray.ObservableArray([{ Path: "http://www.playcentre.org.nz/Image?Action=View&Image_id=163" }, { Path: "http://www.playcentre.org.nz/Image?Action=View&Image_id=163" }]),
     Date: new Date(),
-    Title: 'Test feed'
-});
+    Content: 'Test feed'
+}));
 
-feed.push({
+feed.push(new observableModule.Observable({
     Author: 'Anna',
     Date: new Date(),
-    Image: "https://www.nzgeo.com/wp-content/uploads/1970/01/Playcentre_mowing-1600x1068.jpg",
-    Title: 'Another post'
-});
+    Images: new observableArray.ObservableArray([{ Path: "https://www.nzgeo.com/wp-content/uploads/1970/01/Playcentre_mowing-1600x1068.jpg" }]),
+    Content: 'Another post'
+}));
 
 HomePage.prototype.contentLoaded = function (args) {
     var page = args.object;
     pageData.set("Feed", feed);
+
+
+    global.CallSecuredApi("/PostStory", "GET", null,
+        function (result) {
+            console.log("stories");
+            console.log(result);
+            var list = JSON.parse(result);
+            console.log(list);
+            console.log(list[0].Content);
+
+            for (var i = 0; i < list.length; i++) {
+                feed.push(new observableModule.Observable({
+                    Author: list[i].WrittenBy,
+                    Date: global.FormatDate(new Date()),
+                    Images: new observableArray.ObservableArray([{ Path: "https://www.nzgeo.com/wp-content/uploads/1970/01/Playcentre_mowing-1600x1068.jpg" }]),
+                    Content: list[0].Content
+                }));
+            }
+
+        },
+        function (error) {
+        },
+        function (apiErrorMessage) {
+        });
+
+
     page.bindingContext = pageData;
 };
 
