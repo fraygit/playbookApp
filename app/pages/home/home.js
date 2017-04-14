@@ -3,6 +3,7 @@ var BasePage = require("../../shared/BasePage");
 var topmost = require("ui/frame").topmost;
 var camera = require("nativescript-camera");
 var vr = require("nativescript-videorecorder");
+var appSettings = require("application-settings");
 
 var videorecorder = new vr.VideoRecorder();
 
@@ -50,7 +51,7 @@ HomePage.prototype.contentLoaded = function (args) {
     pageData.set("Feed", feed);
 
 
-    global.CallSecuredApi("/PostStory", "GET", null,
+    global.CallSecuredApi("/PostStory", "GET", null, "",
         function (result) {
             console.log("stories");
             console.log(result);
@@ -59,11 +60,26 @@ HomePage.prototype.contentLoaded = function (args) {
             console.log(list[0].Content);
 
             for (var i = 0; i < list.length; i++) {
+
+                var storyImages = new observableArray.ObservableArray([]);
+                console.log("media num:" + list[i].Media.length);
+                if (list[i].Media.length > 0) {
+                    console.log("downloading");
+                    for (var y = 0; y < list[i].Media.length; y++) {
+                        console.log("path:" + encodeURIComponent(list[i].Media[y].Path));
+                        console.log("path:" + encodeURIComponent(list[i].Media[y].Filename));
+                        var token = appSettings.getString("token", "");
+                        var imageUrl = global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].Media[y].Path) + "&filename=" + list[i].Media[y].Filename;
+                        console.log(imageUrl);
+                        storyImages.push({ Path: imageUrl });
+                    }
+                }
+
                 feed.push(new observableModule.Observable({
                     Author: list[i].WrittenBy,
                     Date: global.FormatDate(new Date()),
-                    Images: new observableArray.ObservableArray([{ Path: "https://www.nzgeo.com/wp-content/uploads/1970/01/Playcentre_mowing-1600x1068.jpg" }]),
-                    Content: list[0].Content
+                        Images: storyImages,
+                    Content: list[i].Content
                 }));
             }
 

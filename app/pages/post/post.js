@@ -266,7 +266,7 @@ PostPage.prototype.Post = function () {
 
         //UploadMedia(response.content);
 
-        global.CallSecuredApi("/PostStory", "POST", JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy' }),
+        global.CallSecuredApi("/PostStory", "POST", JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy' }), "",
             function (result) {
                 console.log("story id: " + result);
                 UploadMedia(result);
