@@ -42,6 +42,10 @@ page {
     text-align: center;
 }
 
+.fa {
+    font-family: 'fontawesome-webfont';
+}
+
 .imagecaptured {
     margin-right : 5px;
     margin-left : 5px;

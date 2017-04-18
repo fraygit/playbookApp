@@ -1,8 +1,24 @@
 <grid-layout class="drawer-content">
   <stack-layout>
-    <label text="Home" tap="navigate" class="{{ selectedPage == 'home' ? 'selected' : '' }}" />
-    <label text="About" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />
-    <label text="Settings" tap="navigate" class="{{ selectedPage == 'settings' ? 'selected' : '' }}" />
-    <label text="Logout" tap="logout" />
+    <wrapLayout>
+      <Label text="&#xf015;" class="fa"/>
+      <label text="Home" tap="navigate" class="{{ selectedPage == 'home' ? 'selected' : '' }}" />
+    </wrapLayout>
+    <wrapLayout>
+      <Label text="&#xf1ae;" class="fa"/>
+      <label text="Children" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />
+    </wrapLayout>
+    <wrapLayout>
+      <Label text="&#xf05a;" class="fa"/>
+      <label text="About" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />
+    </wrapLayout>
+    <wrapLayout>
+      <Label text="&#xf013;" class="fa"/>
+      <label text="Settings" tap="navigate" class="{{ selectedPage == 'settings' ? 'selected' : '' }}" />
+    </wrapLayout>
+    <wrapLayout>
+      <Label text="&#xf08b;" class="fa"/>
+      <label text="Logout" tap="logout" />
+    </wrapLayout>
   </stack-layout>
 </grid-layout>
