@@ -16,7 +16,7 @@ BasePage.prototype.toggleDrawer = function() {
   page.getViewById("drawer").toggleDrawerState();
 }
 BasePage.prototype.navigate = function(args) {
-  var pageName = args.view.text.toLowerCase();
+  var pageName = args.view.text.toLowerCase().replace(" ", "");
   appViewModel.set("selectedPage", pageName);
 
   var navigationEntry = {

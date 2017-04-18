@@ -1,0 +1,47 @@
+﻿<page
+  xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  xmlns:widgets="shared/widgets"
+  xmlns:statusbar="nativescript-statusbar"
+  loaded="pageLoaded">
+
+  <statusbar:StatusBar ios:barStyle="light" />
+
+  <page.actionBar>
+    <action-bar title="My Children">
+      <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="GoBack"/>
+      <action-bar.actionItems>
+        <ios>
+          <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
+        </ios>
+      </action-bar.actionItems>
+      <ActionItem tap="addChild"
+          ios.systemIcon="9" ios.position="left"
+          android.systemIcon="ic_input_add" android.position="actionBar"/>
+    </action-bar>
+  </page.actionBar>
+
+  <drawer:rad-side-drawer id="drawer">
+    <drawer:rad-side-drawer.mainContent>
+      
+      <stack-layout style.backgroundColor="white" loaded="contentLoaded">
+        <ListView items="{{ childrenList }}" height="100%">
+          <ListView.itemTemplate>
+            <wrap-layout class="{{ Class }}" tap="SelectChild">
+              <stack-layout >
+                <Image src="{{ ProfileImage }}" class="circle-wrapper"></Image>
+              </stack-layout>
+              <Label text="{{ Name }}" class="item-name"/>
+            </wrap-layout>
+          </ListView.itemTemplate>
+        </ListView>
+      </stack-layout>
+
+    </drawer:rad-side-drawer.mainContent>
+    <drawer:rad-side-drawer.drawerContent>
+      <widgets:drawer-content />
+    </drawer:rad-side-drawer.drawerContent>
+  </drawer:rad-side-drawer>
+
+</page>
+

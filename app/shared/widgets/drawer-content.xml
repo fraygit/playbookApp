@@ -6,7 +6,7 @@
     </wrapLayout>
     <wrapLayout>
       <Label text="&#xf1ae;" class="fa"/>
-      <label text="Children" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />
+      <label text="My Children" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />
     </wrapLayout>
     <wrapLayout>
       <Label text="&#xf05a;" class="fa"/>
