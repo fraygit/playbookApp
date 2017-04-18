@@ -3,5 +3,6 @@
     <label text="Home" tap="navigate" class="{{ selectedPage == 'home' ? 'selected' : '' }}" />
     <label text="About" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />
     <label text="Settings" tap="navigate" class="{{ selectedPage == 'settings' ? 'selected' : '' }}" />
+    <label text="Logout" tap="logout" />
   </stack-layout>
 </grid-layout>

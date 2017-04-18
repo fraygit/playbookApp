@@ -1,16 +1,18 @@
 ﻿<Page loaded="pageLoaded">
-  <ActionBar title="Playbook" class="action-bar"></ActionBar>
+  <ActionBar title="Sign-up" class="action-bar"></ActionBar>
   <!-- Your UI components go here -->
 
   <stack-layout style="background-color:silver;">
     <Label text="" style="height:100px;"></Label>
     <stack-layout style="background-color:white;width:90%;border-radius: 8px">
       <TextView text="" hint="Emaill address" style="padding:10;margin:10;" id="txtUsername"/>
+      <TextView text="" hint="First Name" style="padding:10;margin:10;" id="txtFirstName"/>
+      <TextView text="" hint="Last Name" style="padding:10;margin:10;" id="txtLastName"/>
       <TextView text="" hint="Password" style="padding:10;margin:10;" id="txtPassword"/>
 
-      <Button tap="Login" text="Login"/>
-      <Button tap="GotoRegistration" text="Sign-up"/>
+      <Button tap="Login" text="Sign-up"/>
+      <Button tap="GoLogin" text="Go back to login"/>
     </stack-layout>
   </stack-layout>
-  
+
 </Page>

@@ -20,7 +20,18 @@ exports.pageLoaded = function (args) {
     console.log('app started - login page');
 };
 
-
+exports.GotoRegistration = function () {
+    var registrationPage = {
+        moduleName: "pages/registration/registration",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    };
+    frameModule.topmost().navigate(registrationPage);
+};
 
 exports.Login = function () {
     txtUsername = page.getViewById("txtUsername");

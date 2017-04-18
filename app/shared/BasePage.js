@@ -1,5 +1,6 @@
 var topmost = require("ui/frame").topmost;
 var Observable = require("data/observable").Observable;
+var appSettings = require("application-settings");
 
 var appViewModel = new Observable();
 appViewModel.selectedPage = "home";
@@ -28,6 +29,20 @@ BasePage.prototype.navigate = function(args) {
       }
   };
   topmost().navigate(navigationEntry);
+}
+
+BasePage.prototype.logout = function (args) {
+    appSettings.setString("token", "");
+    var navigationEntry = {
+        moduleName: "pages/login/login",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    };
+    topmost().navigate(navigationEntry);
 }
 
 module.exports = BasePage;

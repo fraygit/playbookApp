@@ -138,3 +138,8 @@ page {
 .feed-images {
     margin:5px;
 }
+
+.feed-images-multi {
+    margin:5px;
+    width: 45%;
+}
