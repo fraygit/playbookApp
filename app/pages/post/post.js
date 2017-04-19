@@ -13,7 +13,7 @@ var imageSource = require("image-source")
 var bghttp = require("nativescript-background-http");
 var appSettings = require("application-settings");
 
-var session = bghttp.session("image-upload");
+var session = bghttp.session("image-upload"); 
 
 var PostPage = function (args) {
     console.log("ok post1.1");

@@ -22,10 +22,14 @@
     <drawer:rad-side-drawer.mainContent>
 
       <stack-layout style.backgroundColor="white" loaded="contentLoaded">
+        <Label text="Profile Photo" class="form-label"></Label>
+        <Image class="circle-wrapper" id="profilePhoto"></Image>
+        <Label text="&#xf03e;" style="margin-top:0;" class="lbl fa-photo" tap="OpenGallery"/>
         <TextField hint="First Name" id="txtFirstName"/>
         <TextField hint="Last Name" id="txtLastName"/>
+        <Label text="Date of birth" class="form-label"></Label>
         <DatePicker hint="Last Name" id="txtLastName"/>
-        <Button tap="Login" text="Add Child"/>
+        <Button tap="AddChild" text="Add Child" class="btn" id="btnAddChild"/>
       </stack-layout>
 
     </drawer:rad-side-drawer.mainContent>

@@ -16,6 +16,7 @@ var appSettings = require("application-settings");
 var session = bghttp.session("image-upload");
 
 var page;
+var selectedImage;
 
 var AddChildPage = function (args) {
     console.log("my children page");
@@ -43,6 +44,46 @@ AddChildPage.prototype.GoBack = function () {
             curve: "easeIn"
         }
     });
+};
+
+AddChildPage.prototype.OpenGallery = function () {
+    var context = imagepickerModule.create({
+        mode: "multiple"
+    });
+
+    var profilePhoto = page.getViewById("profilePhoto");
+
+    context
+        .authorize()
+        .then(function () {
+            return context.present();
+        })
+        .then(function (selection) {
+            console.log("Selection done:");
+            selection.forEach(function (selected) {
+                console.log(" - " + selected.uri);
+                var newImageCaptured = { Id: global.GenerateGuid(), ImagePath: selected.fileUri, Thumb: selected.thumb };
+                selectedImage = newImageCaptured;
+                profilePhoto.src = selected.fileUri;
+
+            });
+        }).catch(function (e) {
+            console.log(e);
+        });
+}
+
+AddChildPage.prototype.AddChild = function () {
+    var btnAddChild = page.getViewById("btnAddChild");
+    btnAddChild.isEnabled = false;
+    //topmost().navigate({
+    //    moduleName: "pages/mychildren/mychildren",
+    //    animated: true,
+    //    transition: {
+    //        name: "slide",
+    //        duration: 380,
+    //        curve: "easeIn"
+    //    }
+    //});
 };
 
 module.exports = new AddChildPage();

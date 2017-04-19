@@ -22,6 +22,15 @@
   color: #e4ba4e;
 }
 
+.form-label {
+    font-size: 17pt;
+    margin-left:5px;
+}
+
+.btn {
+    background-color :#F1F0FF;
+}
+
 page {
     background-color :#F1F0FF;
 }

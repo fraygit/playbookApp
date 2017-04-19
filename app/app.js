@@ -54,6 +54,17 @@ global.CallSecuredApi = function (url, method, param, queryString, resultCallbac
     });
 }
 
+global.GenerateGuid = function () {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+};
+
+
 global.FormatDate = function (date) {
     var monthNames = [
       "January", "February", "March",
