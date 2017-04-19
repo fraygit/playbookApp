@@ -63,5 +63,18 @@ MyChildrenPage.prototype.GoBack = function () {
     });
 };
 
+MyChildrenPage.prototype.addChild = function () {
+    topmost().navigate({
+        moduleName: "pages/addchild/addchild",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    });
+};
+
+
 module.exports = new MyChildrenPage();
 
