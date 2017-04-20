@@ -42,7 +42,8 @@ global.CallSecuredApi = function (url, method, param, queryString, resultCallbac
             });
         }
         else {
-            errorApiCallback();
+            console.log('error thrown by api');
+            errorApiCallback(response);
         }
     }, function (e) {
         errorCallback(e);
