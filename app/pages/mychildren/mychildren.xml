@@ -24,7 +24,7 @@
   <drawer:rad-side-drawer id="drawer">
     <drawer:rad-side-drawer.mainContent>
       
-      <stack-layout style.backgroundColor="white" loaded="contentLoaded">
+      <stack-layout style.backgroundColor="white" loaded="contentLoaded" navigatingTo="navigatingTo">
         <ListView items="{{ childrenList }}" height="100%">
           <ListView.itemTemplate>
             <wrap-layout class="{{ Class }}" tap="SelectChild">

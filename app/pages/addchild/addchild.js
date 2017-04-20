@@ -83,8 +83,6 @@ AddChildPage.prototype.AddChild = function () {
     var dob = new Date(dteDOB.year, dteDOB.month, dteDOB.day);
     console.log(dob);
 
-
-
     global.CallSecuredApi("/Child", "PUT", JSON.stringify({ FirstName: txtFirstName.text, LastName: txtLastName.text, DateOfBirth: dob }), "",
         function (result) {
             console.log("child id: " + result);
@@ -109,16 +107,6 @@ AddChildPage.prototype.AddChild = function () {
                 var task = session.multipartUpload(params, request);
                 console.log("uploading: " + selectedImage.ImagePath);
 
-                topmost().navigate({
-                    moduleName: "pages/mychildren/mychildren",
-                    animated: true,
-                    transition: {
-                        name: "slide",
-                        duration: 380,
-                        curve: "easeIn"
-                    }
-                });
-
                 task.on("progress", function () {
                     console.log("progress");
                 });
@@ -129,6 +117,15 @@ AddChildPage.prototype.AddChild = function () {
                     console.log("complete");
                 });
             }
+            topmost().navigate({
+                moduleName: "pages/mychildren/mychildren",
+                animated: true,
+                transition: {
+                    name: "slide",
+                    duration: 380,
+                    curve: "easeIn"
+                }
+            });
         },
         function (error) {
         },
