@@ -179,7 +179,8 @@ PostPage.prototype.OpenGallery = function () {
             console.log("Selection done:");
             selection.forEach(function (selected) {
                 console.log(" - " + selected.uri);
-                var newImageCaptured = { Id: generateGuid(), ImagePath: selected.fileUri, Thumb: selected.thumb };
+                var filename = 'img_' + new Date().getTime() + '.jpg';
+                var newImageCaptured = { Id: generateGuid(), ImagePath: selected.fileUri, Thumb: selected.thumb, Filename: filename };
                 selectedImages.push(newImageCaptured);
 
                 ReloadImages();

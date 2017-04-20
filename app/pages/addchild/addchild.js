@@ -74,16 +74,67 @@ AddChildPage.prototype.OpenGallery = function () {
 
 AddChildPage.prototype.AddChild = function () {
     var btnAddChild = page.getViewById("btnAddChild");
+    var txtFirstName = page.getViewById("txtFirstName");
+    var txtLastName = page.getViewById("txtLastName");
+    var dteDOB = page.getViewById("dteDOB");
+
     btnAddChild.isEnabled = false;
-    //topmost().navigate({
-    //    moduleName: "pages/mychildren/mychildren",
-    //    animated: true,
-    //    transition: {
-    //        name: "slide",
-    //        duration: 380,
-    //        curve: "easeIn"
-    //    }
-    //});
+
+    var dob = new Date(dteDOB.year, dteDOB.month, dteDOB.day);
+    console.log(dob);
+
+
+
+    global.CallSecuredApi("/Child", "PUT", JSON.stringify({ FirstName: txtFirstName.text, LastName: txtLastName.text, DateOfBirth: dob }), "",
+        function (result) {
+            console.log("child id: " + result);
+            var childId = result;
+            console.log(selectedImage);
+            var token = appSettings.getString("token", "");
+            if (selectedImage != null && selectedImage != undefined) {
+                console.log("start Upload - " + token);
+                var filename = 'img_' + new Date().getTime() + '.jpg';
+                var request = {
+                    url: global.ApiUrl + '/Child?api_key=' + token,
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/octet-stream",
+                        "File-Name": filename
+                    },
+                    description: "{ 'childId': '" + childId + "' }"
+                };
+                console.log("Req: " + JSON.stringify(request));
+                var params = [{ name: "childId", value: childId.toString() }, { name: "fileToUpload", filename: selectedImage.ImagePath, mimeType: 'image/jpeg' }];
+                console.log("params: " + JSON.stringify(params));
+                var task = session.multipartUpload(params, request);
+                console.log("uploading: " + selectedImage.ImagePath);
+
+                topmost().navigate({
+                    moduleName: "pages/mychildren/mychildren",
+                    animated: true,
+                    transition: {
+                        name: "slide",
+                        duration: 380,
+                        curve: "easeIn"
+                    }
+                });
+
+                task.on("progress", function () {
+                    console.log("progress");
+                });
+                task.on("error", function () {
+                    console.log("error");
+                });
+                task.on("complete", function () {
+                    console.log("complete");
+                });
+            }
+        },
+        function (error) {
+        },
+        function (apiErrorMessage) {
+        });
+
 };
 
 module.exports = new AddChildPage();

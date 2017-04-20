@@ -28,7 +28,7 @@
         <TextField hint="First Name" id="txtFirstName"/>
         <TextField hint="Last Name" id="txtLastName"/>
         <Label text="Date of birth" class="form-label"></Label>
-        <DatePicker hint="Last Name" id="txtLastName"/>
+        <DatePicker hint="Last Name" id="dteDOB"/>
         <Button tap="AddChild" text="Add Child" class="btn" id="btnAddChild"/>
       </stack-layout>
 
