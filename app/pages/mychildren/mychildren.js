@@ -19,6 +19,8 @@ var page;
 var children = new ObservableArray.ObservableArray([]);
 var childrenList = new Observable.Observable();
 
+var token = appSettings.getString("token", "");
+
 var MyChildrenPage = function (args) {
     console.log("my children page");
     //var page = args.object;
@@ -56,12 +58,12 @@ MyChildrenPage.prototype.contentLoaded = function (args) {
             console.log(list);
 
             for (var i = 0; i < list.length; i++) {
-
+                var filename = 'img_' + new Date().getTime() + '.jpg';
                 var child = new Observable.Observable({
                     Name: list[i].FirstName,
                     Id: list[i].Id,
                     Class: 'list-item',
-                    ProfileImage: 'https://pbs.twimg.com/profile_images/450103729383956480/Tiys3m4x.jpeg',
+                    ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
                 });
                 children.push(child);
             }
