@@ -33,7 +33,7 @@
         <label text="Welcome to the NativeScript drawer template! This is the home page. Try tapping the logo." margin="20" horizontalAlignment="center" textWrap="true" />
       </stack-layout>-->
 
-      <TabView loaded="contentLoaded">
+      <TabView loaded="contentLoaded" id="tabView1">
         <TabView.items>
           <TabViewItem title="Tag">
             <TabViewItem.view>

@@ -43,26 +43,55 @@ PostPage.prototype.contentLoaded = function (args) {
     page = args.object;
     page.bindingContext = childrenList;
     children = [];
-    children.push(new Observable.Observable({
-        Name: 'Andy',
-        Id: '123',
-        ProfileImage: 'https://assets.babycenter.com/ims/2016/10/iStock_43693432_4x3.jpg',
-        Class: 'list-item'
-    }));
-    children.push(new Observable.Observable({
-        Name: 'Sam',
-        Id: '456',
-        ProfileImage: 'https://pbs.twimg.com/profile_images/450103729383956480/Tiys3m4x.jpeg',
-        Class: 'list-item'
-    }));
+    //children.push(new Observable.Observable({
+    //    Name: 'Andy',
+    //    Id: '123',
+    //    ProfileImage: 'https://assets.babycenter.com/ims/2016/10/iStock_43693432_4x3.jpg',
+    //    Class: 'list-item'
+    //}));
+    //children.push(new Observable.Observable({
+    //    Name: 'Sam',
+    //    Id: '456',
+    //    ProfileImage: 'https://pbs.twimg.com/profile_images/450103729383956480/Tiys3m4x.jpeg',
+    //    Class: 'list-item'
+    //}));
 
-    childrenList.set("childrenList", children);
+    global.CallSecuredApi("/Child", "GET", null, "",
+        function (result) {
+            console.log("get children");
+            console.log(result);
+            var list = JSON.parse(result);
+            console.log(list);
+            var token = appSettings.getString("token", "");
+
+            for (var i = 0; i < list.length; i++) {
+                var filename = 'img_' + new Date().getTime() + '.jpg';
+                var child = new Observable.Observable({
+                    Name: list[i].FirstName,
+                    Id: list[i].Id,
+                    Class: 'list-item',
+                    ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
+                });
+                children.push(child);
+            }
+            childrenList.set("childrenList", children);
+
+        },
+        function (error) {
+        },
+        function (apiErrorMessage) {
+        });
+
+    
     console.log("ok post 3");
 };
 
 PostPage.prototype.SelectChild = function (args) {
     var item = args.object;
     var itemData = item.bindingContext;
+    var tabView1 = page.getViewById("tabView1");
+    tabView1.selectedIndex = 1;
+
     if (itemData.Class == 'list-item') {
         itemData.Class = 'list-item-selected';
     }
