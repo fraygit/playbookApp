@@ -35,6 +35,7 @@ var capturedImages = [];
 
 var children = new ObservableArray.ObservableArray([]);
 var childrenList = new Observable.Observable();
+var childrenSelected;
 
 console.log("ok post");
 
@@ -66,10 +67,20 @@ PostPage.prototype.contentLoaded = function (args) {
 
             for (var i = 0; i < list.length; i++) {
                 var filename = 'img_' + new Date().getTime() + '.jpg';
+
+                var imageClass = 'list-item';
+                if (childrenSelected != undefined) {
+                    for (var c = 0; c < childrenSelected.length; c++) {
+                        if (childrenSelected[c] == list[i].Id) {
+                            imageClass = 'list-item-selected';
+                        }
+                    }
+                }
+
                 var child = new Observable.Observable({
                     Name: list[i].FirstName,
                     Id: list[i].Id,
-                    Class: 'list-item',
+                    Class: imageClass,
                     ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
                 });
                 children.push(child);
@@ -163,9 +174,18 @@ var ReloadImages = function () {
     
 };
 
-
+var GetSelectedChildren = function () {
+    childrenSelected = [];
+    for (var c = 0; c < children.length; c++) {
+        if (children[c].Class == "list-item-selected") {
+            childrenSelected.push(children[c].Id);
+            console.log("Selected Child: " + children[c].Name);
+        }
+    }
+};
 
 PostPage.prototype.OpenCamera = function () {
+    GetSelectedChildren();
     camera.requestPermissions();
     camera.takePicture()
         .then(function (imageAsset) {
@@ -195,6 +215,7 @@ PostPage.prototype.OpenCamera = function () {
 
 
 PostPage.prototype.OpenGallery = function () {
+    GetSelectedChildren();
     var context = imagepickerModule.create({
         mode: "multiple"
     });
@@ -292,11 +313,11 @@ PostPage.prototype.Post = function () {
 
     if (isContinuePost) {
 
-
+        GetSelectedChildren();
 
         //UploadMedia(response.content);
 
-        global.CallSecuredApi("/PostStory", "POST", JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy' }), "",
+        global.CallSecuredApi("/PostStory", "POST", JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy', TaggedChildren: childrenSelected }), "",
             function (result) {
                 console.log("story id: " + result);
                 UploadMedia(result);
