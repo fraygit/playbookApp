@@ -142,7 +142,7 @@ var ReloadImages = function () {
 
     pnlMedia = page.getViewById("pnlMedia");
     txtStory = page.getViewById("txtStory");
-    txtStory.height = "50%";
+    txtStory.height = "44%";
     pnlMedia.height = "42%";
 
     pnlMedia.removeChildren();
@@ -304,6 +304,7 @@ var UploadMedia = function (storyId) {
 PostPage.prototype.Post = function () {
     var isContinuePost = true;
     txtStory = page.getViewById("txtStory");
+    txtTitle = page.getViewById("txtTitle");
     if (global.IsBlank(txtStory.text)) {
         isContinuePost = false;
         dialogs.alert("Can not post story. Story is blank!").then(function () {
@@ -317,7 +318,7 @@ PostPage.prototype.Post = function () {
 
         //UploadMedia(response.content);
 
-        global.CallSecuredApi("/PostStory", "POST", JSON.stringify({ Title: "Test", Content: txtStory.text, WrittenBy: 'fy', TaggedChildren: childrenSelected }), "",
+        global.CallSecuredApi("/PostStory", "POST", JSON.stringify({ Title: txtTitle.text, Content: txtStory.text, WrittenBy: 'fy', TaggedChildren: childrenSelected }), "",
             function (result) {
                 console.log("story id: " + result);
                 UploadMedia(result);
