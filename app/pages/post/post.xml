@@ -3,6 +3,7 @@
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   xmlns:widgets="shared/widgets"
   xmlns:statusbar="nativescript-statusbar"
+  xmlns:IC="nativescript-web-image-cache"
   loaded="pageLoaded">
 
   <statusbar:StatusBar ios:barStyle="light" />
@@ -42,7 +43,7 @@
                   <ListView.itemTemplate>
                     <wrap-layout class="{{ Class }}" tap="SelectChild">
                       <stack-layout >
-                        <Image src="{{ ProfileImage }}" class="circle-wrapper"></Image>
+                        <Image imageSource="{{ ProfileImage }}" class="circle-wrapper"></Image>
                       </stack-layout>
                       <Label text="{{ Name }}" class="item-name"/>
                     </wrap-layout>                    

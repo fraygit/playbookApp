@@ -320,6 +320,9 @@ var TabViewStyler = (function () {
         }
     };
     TabViewStyler.resetFontInternalProperty = function (v, nativeValue) {
+        if (!nativeValue) {
+            return;
+        }
         var tab = v;
         var tabLayout = tab._getAndroidTabView();
         var tabCount = tabLayout.getItemCount();

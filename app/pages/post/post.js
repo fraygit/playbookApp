@@ -12,6 +12,7 @@ var fs = require("file-system");
 var imageSource = require("image-source")
 var bghttp = require("nativescript-background-http");
 var appSettings = require("application-settings");
+var imageCacheModule = require("ui/image-cache");
 
 var session = bghttp.session("image-upload"); 
 
@@ -57,6 +58,38 @@ PostPage.prototype.contentLoaded = function (args) {
     //    Class: 'list-item'
     //}));
 
+    var GetImageFromCache = function (imgPath, childItem, imgCallBack) {
+        console.log("start image cache");
+        var cache = new imageCacheModule.Cache();
+        cache.maxRequests = 5;
+        cache.enableDownload();
+
+        var imgSrc;
+
+        var image = cache.get(imgPath);
+        if (image) {
+            console.log("image retrieve");
+            imgSrc = imageSource.fromNativeSource(image);
+            imgCallBack(imgSrc);
+        }
+        else {
+            console.log("image cache push");
+            cache.push({
+                key: imgPath,
+                url: imgPath,
+                completed: function (cachedImage, key) {
+                    console.log("image completed");
+                    console.log("image output: " + JSON.stringify(cachedImage));
+                    if (imgPath === key) {
+                        imgSrc = imageSource.fromNativeSource(cachedImage);
+                        imgCallBack(imgSrc, childItem);
+                    }
+                }
+            });
+        }
+
+    };
+
     global.CallSecuredApi("/Child", "GET", null, "",
         function (result) {
             console.log("get children");
@@ -77,13 +110,18 @@ PostPage.prototype.contentLoaded = function (args) {
                     }
                 }
 
+
                 var child = new Observable.Observable({
                     Name: list[i].FirstName,
                     Id: list[i].Id,
                     Class: imageClass,
-                    ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
+                    //ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
+                    ProfileImage: 'https://www.w3schools.com/css/trolltunga.jpg'
+                    //ProfileImage: profileImage
                 });
                 children.push(child);
+
+
             }
             childrenList.set("childrenList", children);
 
@@ -187,7 +225,8 @@ var GetSelectedChildren = function () {
 PostPage.prototype.OpenCamera = function () {
     GetSelectedChildren();
     camera.requestPermissions();
-    camera.takePicture()
+    var cameraOptions = { width: 300, height: 300, keepAspectRatio: false, saveToGallery: true };
+    camera.takePicture(cameraOptions)
         .then(function (imageAsset) {
             var img = imageAsset
             var savepath = fs.knownFolders.documents().path;

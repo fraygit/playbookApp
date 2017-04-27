@@ -2,6 +2,15 @@ var application = require("application");
 var appSettings = require("application-settings");
 var topmost = require("ui/frame").topmost;
 var http = require("http");
+var imageCache = require("nativescript-web-image-cache");
+
+
+if (application.android) {
+    application.onLaunch = function (intent) {
+        imageCache.initialize();
+    };
+}
+
 //application.start({ moduleName: "pages/home/home" });
 
 
@@ -9,7 +18,8 @@ global.IsBlank = function (str) {
     return (!str || /^\s*$/.test(str));
 };
 
-global.ApiUrl = 'http://10.0.2.2:1001/api';
+//global.ApiUrl = 'http://10.0.2.2:1001/api';
+global.ApiUrl = 'http://34.209.177.254/api';
 
 var token = appSettings.getString("token", "");
 
@@ -80,6 +90,8 @@ global.FormatDate = function (date) {
 
     return day + ' ' + monthNames[monthIndex] + ' ' + year;
 }
+
+console.log("token - " + token);
 
 // Add token validation
 if (!global.IsBlank(token)) {

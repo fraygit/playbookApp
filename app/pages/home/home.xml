@@ -3,6 +3,7 @@
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   xmlns:widgets="shared/widgets"
   xmlns:statusbar="nativescript-statusbar"
+  xmlns:IC="nativescript-web-image-cache"
   loaded="pageLoaded">
 
   <statusbar:StatusBar ios:barStyle="light" />
@@ -27,46 +28,55 @@
         <label text="Welcome to the NativeScript drawer template! This is the home page. Try tapping the logo." margin="20" horizontalAlignment="center" textWrap="true" />
       </stack-layout>-->
       <stack-layout loaded="contentLoaded">
-        <stack-layout>
+        <stack-layout style.backgroundColor="white" >
+          <!--<TextView hint="Write a story" class="home" tap="WriteStory"/>-->
           <grid-layout columns="*, *, *" rows="auto, auto, auto" style.backgroundColor="white" class="home">
             <Label text="Write a story" col="0" row="0" colspan="3" style="margin-top:15;margin-bottom:20;padding-bottom:15;margin-left:10;margin-right:10; border-color: #C3C3E5; border-width: 0 0 1 0;" tap="WriteStory"/>
             <Label text="&#xf03d;" col="0" row="1" style="margin-top:0;" class="fa-video lbl"/>
-            <Label text="&#xf030;" class="fa-camera lbl" col="1" row="1" style="margin-top:0;" tap="OpenCamera"/>
-            <Label text="&#xf03e;" col="2" row="1" style="margin-top:0;" class="lbl fa-photo" tap="OpenVideoRecorder"/>
+            <Label text="&#xf030;" class="fa-camera lbl" col="1" row="1" style="margin-top:0;" tap="WriteStory"/>
+            <Label text="&#xf03e;" col="2" row="1" style="margin-top:0;" class="lbl fa-photo" tap="WriteStory"/>
           </grid-layout>
         </stack-layout>
 
-        <ListView items="{{ Feed }}" height="100%"> 
+        <WebView id="wv"  src="https://www.google.com"></WebView>
+
+        <!--<ListView items="{{ Feed }}" height="100%"> 
           <ListView.itemTemplate>
             <stack-layout>
-              <grid-layout columns="*, *" rows="auto, auto, auto, auto, auto" style.backgroundColor="white" class="feedItem">
-                <Label text="{{ Content }}" col="0" row="0" colspan="2"/>
-                <WrapLayout col="0" row="1" colspan="2">
-                  <Label text="{{ Author }}"  class="feedAuthor"/>
-                  <Label text=" "  class="feedAuthor"/>
-                  <Label text="{{ Date }}"  class="feedAuthor"/>
-                </WrapLayout>
+              <stack-layout style.backgroundColor="white" class="feedItem">
+                <wrap-layout>
+                  <Image src="https://www.nzgeo.com/wp-content/uploads/1970/01/Playcentre_mowing-1600x1068.jpg" width="15%"></Image>
+                  <StackLayout col="0" row="1" colspan="2" class="feedHeader">
+                    <Label text="{{ Title }}" class="feedAuthor"/>
+                    <Label text="{{ Author }}"/>
+                    <Label text="{{ Date }}" class="feedSmall"/>
+                  </StackLayout>
+                </wrap-layout>
+                <Label text="{{ Content }}"  />
                 
-
                 <WrapLayout col="0" row="2" colspan="3" style="text-align:center;">
                   <Repeater items="{{ Images }}">
                     <Repeater.itemsLayout>
                       <WrapLayout />
                     </Repeater.itemsLayout>
                     <Repeater.itemTemplate>
-                      <Image src="{{ Path }}" width="45%" class="feed-images"></Image>
+                      <Image src="{{ Path }}" class="{{ ImageCount == 0 ? 'feed-images-multi' : 'feed-images' }}"></Image>
                     </Repeater.itemTemplate>
                   </Repeater>
                 </WrapLayout>
-                
-                <Label text="" col="0" row="3" colspan="3" class="feedLB"/>
-                <Label text="Like" col="0" row="4" class="feedComment"/>
-                <Label text="Comment" col="1" row="4" class="feedComment"/>
+
+                <WrapLayout class="feedComment">
+                  <Label text=" " width="40%"/>
+                  <Label text="&#xf0e5;" class="fa" style="margin-top:5px;"/>
+                  <Label text=" " class="fa" />
+                  <Label text="Comment" style="margin-top:5px;"/>
+                </WrapLayout>
               
-            </grid-layout>
+              </stack-layout>
+
             </stack-layout>
           </ListView.itemTemplate>          
-        </ListView>
+        </ListView>-->
         
       </stack-layout>
       <!--<stack-layout loaded="contentLoaded">

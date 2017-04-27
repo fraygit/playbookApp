@@ -12,6 +12,7 @@ var fs = require("file-system");
 var imageSource = require("image-source")
 var bghttp = require("nativescript-background-http");
 var appSettings = require("application-settings");
+var imageCacheModule = require("ui/image-cache");
 
 var session = bghttp.session("image-upload");
 
@@ -46,6 +47,36 @@ AddChildPage.prototype.GoBack = function () {
     });
 };
 
+var GetImageFromCache = function (imgPath, imgCallBack) {
+    console.log("start image cache");
+    var cache = new imageCacheModule.Cache();
+    cache.maxRequests = 5;
+    cache.enableDownload();
+
+    var imgSrc;
+
+    var image = cache.get(imgPath);
+    if (image) {
+        console.log("image retrieve");
+        imgSrc = imageSource.fromNativeSource(image);
+        imgCallBack(imgSrc);
+    }
+    else {
+        console.log("image cache push");
+        cache.push({
+            key: imgPath,
+            url: imgPath,
+            completed: function (cachedImage, key) {
+                if (imgPath === key) {
+                    imgSrc = imageSource.fromNativeSource(cachedImage);
+                    imgCallBack(imgSrc);
+                }
+            }
+        });
+    }
+    
+};
+
 AddChildPage.prototype.OpenGallery = function () {
     var context = imagepickerModule.create({
         mode: "multiple"
@@ -64,7 +95,16 @@ AddChildPage.prototype.OpenGallery = function () {
                 console.log(" - " + selected.uri);
                 var newImageCaptured = { Id: global.GenerateGuid(), ImagePath: selected.fileUri, Thumb: selected.thumb };
                 selectedImage = newImageCaptured;
-                profilePhoto.src = selected.fileUri;
+
+                //profilePhoto.src = selected.fileUri;
+                console.log('thumb-' + JSON.stringify(selected.thumb));
+                profilePhoto.src = selected.thumb;
+                //GetImageFromCache(selected.fileUri, function (imgSrc) {
+                //    console.log("return image source");
+                //    console.log("imgSrc" + JSON.stringify(imgSrc));
+                //    profilePhoto.imageSource = imgSrc;
+                //});
+                
 
             });
         }).catch(function (e) {
