@@ -3,7 +3,6 @@
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   xmlns:widgets="shared/widgets"
   xmlns:statusbar="nativescript-statusbar"
-  xmlns:IC="nativescript-web-image-cache"
   loaded="pageLoaded">
 
   <statusbar:StatusBar ios:barStyle="light" />
@@ -38,9 +37,9 @@
           </grid-layout>
         </stack-layout>
 
-        <WebView id="wv"  src="https://www.google.com"></WebView>
+        <!--<WebView id="wv"  src="https://www.google.com"></WebView>-->
 
-        <!--<ListView items="{{ Feed }}" height="100%"> 
+        <ListView items="{{ Feed }}" height="100%"> 
           <ListView.itemTemplate>
             <stack-layout>
               <stack-layout style.backgroundColor="white" class="feedItem">
@@ -76,7 +75,7 @@
 
             </stack-layout>
           </ListView.itemTemplate>          
-        </ListView>-->
+        </ListView>
         
       </stack-layout>
       <!--<stack-layout loaded="contentLoaded">

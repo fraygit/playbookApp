@@ -59,13 +59,15 @@ MyChildrenPage.prototype.contentLoaded = function (args) {
 
             for (var i = 0; i < list.length; i++) {
                 var filename = 'img_' + new Date().getTime() + '.jpg';
+
                 var child = new Observable.Observable({
                     Name: list[i].FirstName,
                     Id: list[i].Id,
                     Class: 'list-item',
-                    ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
+                    ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename
                 });
                 children.push(child);
+
             }
             childrenList.set("childrenList", children);
 

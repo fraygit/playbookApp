@@ -38,6 +38,10 @@ var children = new ObservableArray.ObservableArray([]);
 var childrenList = new Observable.Observable();
 var childrenSelected;
 
+var photosCaptured = new ObservableArray.ObservableArray([]);
+var photosList = new Observable.Observable();
+
+
 console.log("ok post");
 
 PostPage.prototype.contentLoaded = function (args) {
@@ -45,6 +49,9 @@ PostPage.prototype.contentLoaded = function (args) {
     page = args.object;
     page.bindingContext = childrenList;
     children = [];
+
+
+    photosCaptured = new ObservableArray.ObservableArray([]);
     //children.push(new Observable.Observable({
     //    Name: 'Andy',
     //    Id: '123',
@@ -109,15 +116,11 @@ PostPage.prototype.contentLoaded = function (args) {
                         }
                     }
                 }
-
-
                 var child = new Observable.Observable({
                     Name: list[i].FirstName,
                     Id: list[i].Id,
                     Class: imageClass,
-                    //ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
-                    ProfileImage: 'https://www.w3schools.com/css/trolltunga.jpg'
-                    //ProfileImage: profileImage
+                    ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
                 });
                 children.push(child);
 
@@ -184,8 +187,6 @@ var ReloadImages = function () {
     pnlMedia.height = "42%";
 
     pnlMedia.removeChildren();
-    //console.log("display images");
-    //console.log("selected images : " + selectedImages.length);
 
     var numOfImages = capturedImages.length + selectedImages.length;
     var imgWidth = 100 / numOfImages;
@@ -197,16 +198,24 @@ var ReloadImages = function () {
             newImage.src = capturedImages[i].ImagePath;
             newImage.id = capturedImages[i].Id;
             newImage.class = "imagecaptured";
-            newImage.height = imgWidth + '%';
+            //newImage.height = imgWidth + '%';
+            newImage.height = '100px';
             pnlMedia.addChild(newImage);
+            var newLabel = new label.Label();
+            newLabel.text = " ";
+            pnlMedia.addChild(newLabel);
         }
         for (var i = 0; i < selectedImages.length; i++) {
             var newImage = new image.Image();
-            newImage.src = selectedImages[i].ImagePath;
+            newImage.src = selectedImages[i].Thumb;
             newImage.id = selectedImages[i].Id;
             newImage.class = "imagecaptured";
-            newImage.height = imgWidth + '%';
+            //newImage.height = imgWidth + '%';
+            newImage.height = '100px';
             pnlMedia.addChild(newImage);
+            var newLabel2 = new label.Label();
+            newLabel2.text = " ";
+            pnlMedia.addChild(newLabel2);
         }
     }
     
@@ -240,13 +249,17 @@ PostPage.prototype.OpenCamera = function () {
                 var newImageCaptured = { Id: generateGuid(), Image: imageAsset, ImagePath: filepath, Filename: filename };
                 capturedImages.push(newImageCaptured);
                 console.log("image captured:" + filepath);
-                console.log(imageAsset)
+                console.log(imageAsset);
 
+                //var pnlMedia = page.getViewById("pnlMedia");
+                //pnlMedia.bindingContext = photosList;                
+
+                //var photo = new Observable.Observable({ Id: generateGuid(), Image: imageAsset, ImagePath: filepath, Filename: filename });
+                //photosCaptured.push(photo);
+                //photosList.set("photosList", photosCaptured);
+                
                 ReloadImages();
             });
-
-
-
         }).catch(function (err) {
             console.log("Error -> " + err.message);
         });

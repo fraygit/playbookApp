@@ -3,7 +3,6 @@
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   xmlns:widgets="shared/widgets"
   xmlns:statusbar="nativescript-statusbar"
-  xmlns:IC="nativescript-web-image-cache"
   loaded="pageLoaded">
 
   <statusbar:StatusBar ios:barStyle="light" />
@@ -16,9 +15,9 @@
           <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
         </ios>
       </action-bar.actionItems>
-      <ActionItem tap="onShare"
+      <!--<ActionItem tap="onShare"
           ios.systemIcon="9" ios.position="left"
-          android.systemIcon="ic_menu_save" android.position="actionBar"/>
+          android.systemIcon="ic_menu_save" android.position="actionBar"/>-->
       <ActionItem tap="Post"
           ios.systemIcon="9" ios.position="left"
           android.systemIcon="ic_menu_send" android.position="actionBar"/>
@@ -43,7 +42,7 @@
                   <ListView.itemTemplate>
                     <wrap-layout class="{{ Class }}" tap="SelectChild">
                       <stack-layout >
-                        <Image imageSource="{{ ProfileImage }}" class="circle-wrapper"></Image>
+                        <Image src="{{ ProfileImage }}" class="circle-wrapper"></Image>
                       </stack-layout>
                       <Label text="{{ Name }}" class="item-name"/>
                     </wrap-layout>                    
@@ -62,6 +61,12 @@
                     <TextView hint="Write story" col="0" row="1" colspan="3" height="85%" id="txtStory"/>
 
                     <wrap-layout col="0" row="2" colspan="3" height="0" id="pnlMedia">
+                      <Label text="sd"></Label>
+                      <ListView items="{{ photosList }}">
+                        <ListView.itemTemplate>
+                          <Image src="{{ ImagePath }}"></Image>
+                        </ListView.itemTemplate>
+                      </ListView>
                     </wrap-layout>
                     <Label text="&#xf03d;" col="0" row="3" style="margin-top:0;" class="fa-video lbl" tap="OpenGallery"/>
                     <Label text="&#xf030;" class="fa-camera lbl" col="1" row="3" style="margin-top:0;" tap="OpenCamera"/>

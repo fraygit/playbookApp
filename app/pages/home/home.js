@@ -69,10 +69,10 @@ HomePage.prototype.contentLoaded = function (args) {
                 console.log("looping " + list.length);
                 var storyImages = new observableArray.ObservableArray([]);
                 //console.log("media num:" + list[i].Media.length);
-                if (list[i].Media != null || list[i].Media != undefined) {
-                    if (list[i].Media.length > 0) {
+                if (list[i].MediaThumb != null || list[i].MediaThumb != undefined) {
+                    if (list[i].MediaThumb.length > 0) {
 
-                        var imageUrl = global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].Media[0].Path) + "&filename=" + list[i].Media[0].Filename;
+                        var imageUrl = global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].MediaThumb[0].Path) + "&filename=" + list[i].MediaThumb[0].Filename;
                         console.log("image:" + imageUrl);
                         storyImages.push({ Path: imageUrl });
                         console.log("image ok");

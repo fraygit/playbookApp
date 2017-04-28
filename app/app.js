@@ -2,12 +2,12 @@ var application = require("application");
 var appSettings = require("application-settings");
 var topmost = require("ui/frame").topmost;
 var http = require("http");
-var imageCache = require("nativescript-web-image-cache");
 
 
 if (application.android) {
     application.onLaunch = function (intent) {
-        imageCache.initialize();
+        console.log('init');
+        //imageCache.initialize();
     };
 }
 

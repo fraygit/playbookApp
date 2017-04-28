@@ -56,9 +56,13 @@ page {
 }
 
 .imagecaptured {
-    margin-right : 5px;
-    margin-left : 5px;
-}
+  background-color: #666666;
+  /*border-radius: 100;*/
+  width: 70px;
+  height: 70px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;}
 
 .tag-container{
     margin-left : 10px;
@@ -101,6 +105,10 @@ page {
   background-color: #666666;
   /*border-radius: 100;*/
   width: 70px;
+  height: 70px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 
