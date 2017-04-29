@@ -42,7 +42,7 @@
         <ListView items="{{ Feed }}" height="100%"> 
           <ListView.itemTemplate>
             <stack-layout>
-              <stack-layout style.backgroundColor="white" class="feedItem">
+              <stack-layout style.backgroundColor="white" class="feedItem" tap="GoToStory">
                 <wrap-layout>
                   <Image src="https://www.nzgeo.com/wp-content/uploads/1970/01/Playcentre_mowing-1600x1068.jpg" width="15%"></Image>
                   <StackLayout col="0" row="1" colspan="2" class="feedHeader">

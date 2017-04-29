@@ -80,10 +80,12 @@ HomePage.prototype.contentLoaded = function (args) {
                 }
                 
                 feed.push(new observableModule.Observable({
+                    Id: list[i].Id,
                     Title: list[i].Title,
-                    Author: list[i].WrittenBy,
+                    Author: list[i].Author,
                     Date: global.FormatDate(new Date(list[i].DatePosted)),
                     Images: storyImages,
+                    ThumbImages: list[i].MediaThumb,
                     Content: list[i].Content,
                     ImageCount: 0
                 }));
@@ -143,14 +145,43 @@ HomePage.prototype.OpenVideoRecorder = function () {
 };
 
 HomePage.prototype.fun = function() {
-  var page = topmost().currentPage;
-  var logo = page.getViewById("logo");
-  logo.animate({
-    rotate: 3600,
-    duration: 3000
-  }).then(function() {
-    logo.rotate = 0;
-  });
-}
+    var page = topmost().currentPage;
+    var logo = page.getViewById("logo");
+    logo.animate({
+        rotate: 3600,
+        duration: 3000
+    }).then(function() {
+        logo.rotate = 0;
+    });
+};
+
+
+HomePage.prototype.GoToStory = function(args){
+    var item = args.object;
+    var itemData = item.bindingContext;
+    console.log('story details:' + itemData.get("Id"));
+
+    var storyId = itemData.get("Id");
+
+    topmost().navigate({
+        moduleName: "pages/story/story",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        },
+        context: {
+            Id: itemData.get("Id"),
+            Title: itemData.get("Title"),
+            Author: itemData.get("Author"),
+            Date: itemData.get("Date"),
+            Images: itemData.get("Images"),
+            Content: itemData.get("Content"),
+            ThumbImages: itemData.get("ThumbImages"),
+            ImageCount: 0
+        }
+    });
+};
 
 module.exports = new HomePage();

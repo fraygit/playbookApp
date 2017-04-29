@@ -27,6 +27,18 @@
     margin-left:5px;
 }
 
+.storyImageItem{
+    margin-top:10px;
+    background-color:white;
+    padding:5px;
+}
+
+.lblContent {
+    text-align: justify;
+    text-justify: inter-word;
+    color:black;
+}
+
 .btn {
     background-color :#F1F0FF;
 }
