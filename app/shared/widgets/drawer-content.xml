@@ -6,11 +6,11 @@
     </wrapLayout>
     <wrapLayout>
       <Label text="&#xf1ae;" class="fa"/>
-      <label text="My Children" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />
+      <label text="My Children" tap="navigate" class="{{ selectedPage == 'mychildren' ? 'selected' : '' }}" />
     </wrapLayout>
     <wrapLayout>
-      <Label text="&#xf05a;" class="fa"/>
-      <label text="About" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />
+      <Label text="&#xf2bd;" class="fa"/>
+      <label text="My Profile" tap="navigate" class="{{ selectedPage == 'myprofile' ? 'selected' : '' }}" />
     </wrapLayout>
     <wrapLayout>
       <Label text="&#xf013;" class="fa"/>
@@ -19,6 +19,10 @@
     <wrapLayout>
       <Label text="&#xf08b;" class="fa"/>
       <label text="Logout" tap="logout" />
+    </wrapLayout>
+    <wrapLayout>
+      <Label text="&#xf05a;" class="fa"/>
+      <label text="About" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />
     </wrapLayout>
   </stack-layout>
 </grid-layout>
