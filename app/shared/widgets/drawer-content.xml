@@ -4,22 +4,27 @@
       <Label text="&#xf015;" class="fa"/>
       <label text="Home" tap="navigate" class="{{ selectedPage == 'home' ? 'selected' : '' }}" />
     </wrapLayout>
+    <StackLayout class="hr-dark" width="95%"></StackLayout>    
     <wrapLayout>
       <Label text="&#xf1ae;" class="fa"/>
       <label text="My Children" tap="navigate" class="{{ selectedPage == 'mychildren' ? 'selected' : '' }}" />
     </wrapLayout>
+    <StackLayout class="hr-dark" width="95%"></StackLayout>
     <wrapLayout>
       <Label text="&#xf2bd;" class="fa"/>
       <label text="My Profile" tap="navigate" class="{{ selectedPage == 'myprofile' ? 'selected' : '' }}" />
     </wrapLayout>
+    <StackLayout class="hr-dark" width="95%"></StackLayout>
     <wrapLayout>
       <Label text="&#xf013;" class="fa"/>
       <label text="Settings" tap="navigate" class="{{ selectedPage == 'settings' ? 'selected' : '' }}" />
     </wrapLayout>
+    <StackLayout class="hr-dark" width="95%"></StackLayout>
     <wrapLayout>
       <Label text="&#xf08b;" class="fa"/>
       <label text="Logout" tap="logout" />
     </wrapLayout>
+    <StackLayout class="hr-dark" width="95%"></StackLayout>
     <wrapLayout>
       <Label text="&#xf05a;" class="fa"/>
       <label text="About" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />

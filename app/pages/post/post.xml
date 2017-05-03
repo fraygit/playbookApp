@@ -82,23 +82,23 @@
               <stack-layout style.backgroundColor="white" class="form">
                 <wrap-layout class="form-item">
                   <Label text="Mana atua (Well-being)" width="70%"/>
-                  <Switch />
+                  <Switch class="switch"/>
                 </wrap-layout>
                 <wrap-layout class="form-item">
                   <Label text="Mana reo (Communication)" width="70%"/>
-                  <Switch  />
+                  <Switch class="switch" />
                 </wrap-layout>
                 <wrap-layout class="form-item">
                   <Label text="Mana auturoa (Exploration)" width="70%"/>
-                  <Switch  />
+                  <Switch  class="switch"/>
                 </wrap-layout>
                 <wrap-layout class="form-item">
                   <Label text="Mana tangata (Contribution)" width="70%"/>
-                  <Switch  />
+                  <Switch  class="switch"/>
                 </wrap-layout>
                 <wrap-layout class="form-item">
                   <Label text="Mana whenua (Belonging)" width="70%"/>
-                  <Switch  />
+                  <Switch class="switch" />
                 </wrap-layout>
 
               </stack-layout>

@@ -1,4 +1,6 @@
-﻿action-bar {
+﻿@import 'nativescript-theme-core/css/purple.css';
+
+action-bar {
   background-color: #443266;
   color: white;
 }
@@ -39,9 +41,9 @@
     color:black;
 }
 
-.btn {
+/*.btn {
     background-color :#F1F0FF;
-}
+}*/
 
 page {
     background-color :#F1F0FF;
