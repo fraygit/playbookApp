@@ -11,8 +11,8 @@
       <TextField text="" hint="Password" style="padding:10;margin:10;" id="txtPassword" secure="true"/>
       <TextField text="" hint="Confirm Password" style="padding:10;margin:10;" id="txtPassword2" secure="true"/>
 
-      <Button tap="SignUp" text="Sign-up" id="btnSignUp"/>
-      <Button tap="GoLogin" text="Go back to login"/>
+      <Button tap="SignUp" text="Sign-up" id="btnSignUp" class="btn btn-primary"/>
+      <Button tap="GoLogin" text="Go back to login" class="btn btn-primary"/>
     </stack-layout>
   </stack-layout>
 
