@@ -37,6 +37,16 @@ HomePage.prototype.contentLoaded = function (args) {
     page.bindingContext = pageData;
     //var feed = new observableArray.ObservableArray([]);
     feed = [];
+    var token = appSettings.getString("token", "");
+
+    var webView = page.getViewById("wv");
+    if (webView.android) { // in IOS android will be undefined
+        webView.android.getSettings().setBuiltInZoomControls(false);
+    }
+    var webViewUrl = "http://34.209.177.254:81/index.html#/home?api_key=" + token;
+    console.log("web view " + webViewUrl);
+    webView.src = webViewUrl;
+    //webView.src = "https://www.google.com";
 
     //feed.push(new observableModule.Observable({
     //    Author: 'fray',
@@ -54,7 +64,6 @@ HomePage.prototype.contentLoaded = function (args) {
     //    ImageCount: 0
     //}));
 
-    var token = appSettings.getString("token", "");
 
     global.CallSecuredApi("/PostStory", "GET", null, "",
         function (result) {
@@ -99,6 +108,52 @@ HomePage.prototype.contentLoaded = function (args) {
         });
     
     
+};
+
+HomePage.prototype.RefreshFeed = function (args) {
+    var pullRefresh = args.object;
+    global.CallSecuredApi("/PostStory", "GET", null, "",
+        function (result) {
+            console.log("stories");
+            //console.log(result);
+            var list = JSON.parse(result);
+            console.log(list);
+
+            var imageCount = 1;
+
+            for (var i = 0; i < list.length; i++) {
+                console.log("looping " + list.length);
+                var storyImages = new observableArray.ObservableArray([]);
+                //console.log("media num:" + list[i].Media.length);
+                if (list[i].MediaThumb != null || list[i].MediaThumb != undefined) {
+                    if (list[i].MediaThumb.length > 0) {
+
+                        var imageUrl = global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].MediaThumb[0].Path) + "&filename=" + list[i].MediaThumb[0].Filename;
+                        console.log("image:" + imageUrl);
+                        storyImages.push({ Path: imageUrl });
+                        console.log("image ok");
+                    }
+                }
+
+                feed.push(new observableModule.Observable({
+                    Id: list[i].Id,
+                    Title: list[i].Title,
+                    Author: list[i].Author,
+                    Date: global.FormatDate(new Date(list[i].DatePosted)),
+                    Images: storyImages,
+                    ThumbImages: list[i].MediaThumb,
+                    Content: list[i].Content,
+                    ImageCount: 0
+                }));
+                pullRefresh.refreshing = false;
+                console.log("image ok2");
+            }
+            pageData.set("Feed", feed);
+        },
+        function (error) {
+        },
+        function (apiErrorMessage) {
+        });
 };
 
 

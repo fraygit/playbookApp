@@ -1,5 +1,7 @@
 <grid-layout class="drawer-content">
   <stack-layout>
+    <AbsoluteLayout class="sidedrawer-header menu-header">
+    </AbsoluteLayout>    
     <wrapLayout>
       <Label text="&#xf015;" class="fa"/>
       <label text="Home" tap="navigate" class="{{ selectedPage == 'home' ? 'selected' : '' }}" />

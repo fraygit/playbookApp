@@ -3,6 +3,7 @@
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   xmlns:widgets="shared/widgets"
   xmlns:statusbar="nativescript-statusbar"
+  xmlns:PullRefresh="nativescript-pulltorefresh"
   loaded="pageLoaded">
 
   <statusbar:StatusBar ios:barStyle="light" />
@@ -34,48 +35,47 @@
             <Label text="&#xf03d;" col="0" row="1" style="margin-top:0;" class="fa-video lbl"/>
             <Label text="&#xf030;" class="fa-camera lbl" col="1" row="1" style="margin-top:0;" tap="WriteStory"/>
             <Label text="&#xf03e;" col="2" row="1" style="margin-top:0;" class="lbl fa-photo" tap="WriteStory"/>
-          </grid-layout>
+          </grid-layout> 
         </stack-layout>
 
-        <!--<WebView id="wv"  src="https://www.google.com"></WebView>-->
+        <WebView id="wv" ></WebView>
+          <!--<ListView items="{{ Feed }}" height="100%">
+            <ListView.itemTemplate>
+              <stack-layout>
+                <stack-layout style.backgroundColor="white" class="feedItem" tap="GoToStory">
+                  <wrap-layout>
+                    <Image src="https://www.nzgeo.com/wp-content/uploads/1970/01/Playcentre_mowing-1600x1068.jpg" width="15%"></Image>
+                    <StackLayout col="0" row="1" colspan="2" class="feedHeader">
+                      <Label text="{{ Title }}" class="feedAuthor"/>
+                      <Label text="{{ Author }}"/>
+                      <Label text="{{ Date }}" class="feedSmall"/>
+                    </StackLayout>
+                  </wrap-layout>
+                  <Label text="{{ Content }}"  class="feed-content"/>
 
-        <ListView items="{{ Feed }}" height="100%"> 
-          <ListView.itemTemplate>
-            <stack-layout>
-              <stack-layout style.backgroundColor="white" class="feedItem" tap="GoToStory">
-                <wrap-layout>
-                  <Image src="https://www.nzgeo.com/wp-content/uploads/1970/01/Playcentre_mowing-1600x1068.jpg" width="15%"></Image>
-                  <StackLayout col="0" row="1" colspan="2" class="feedHeader">
-                    <Label text="{{ Title }}" class="feedAuthor"/>
-                    <Label text="{{ Author }}"/>
-                    <Label text="{{ Date }}" class="feedSmall"/>
-                  </StackLayout>
-                </wrap-layout>
-                <Label text="{{ Content }}"  />
-                
-                <WrapLayout col="0" row="2" colspan="3" style="text-align:center;">
-                  <Repeater items="{{ Images }}">
-                    <Repeater.itemsLayout>
-                      <WrapLayout />
-                    </Repeater.itemsLayout>
-                    <Repeater.itemTemplate>
-                      <Image src="{{ Path }}" class="{{ ImageCount == 0 ? 'feed-images-multi' : 'feed-images' }}"></Image>
-                    </Repeater.itemTemplate>
-                  </Repeater>
-                </WrapLayout>
+                  <WrapLayout col="0" row="2" colspan="3" style="text-align:center;">
+                    <Repeater items="{{ Images }}">
+                      <Repeater.itemsLayout>
+                        <WrapLayout />
+                      </Repeater.itemsLayout>
+                      <Repeater.itemTemplate>
+                        <Image src="{{ Path }}" class="feed-images"></Image>
+                      </Repeater.itemTemplate>
+                    </Repeater>
+                  </WrapLayout>
 
-                <WrapLayout class="feedComment">
-                  <Label text=" " width="40%"/>
-                  <Label text="&#xf0e5;" class="fa" style="margin-top:5px;"/>
-                  <Label text=" " class="fa" />
-                  <Label text="Comment" style="margin-top:5px;"/>
-                </WrapLayout>
-              
+                  <WrapLayout class="feedComment">
+                    <Label text=" " width="40%"/>
+                    <Label text="&#xf0e5;" class="fa" style="margin-top:5px;"/>
+                    <Label text=" " class="fa" />
+                    <Label text="Comment" style="margin-top:5px;"/>
+                  </WrapLayout>
+
+                </stack-layout>
+
               </stack-layout>
-
-            </stack-layout>
-          </ListView.itemTemplate>          
-        </ListView>
+            </ListView.itemTemplate>
+          </ListView>-->
         
       </stack-layout>
       <!--<stack-layout loaded="contentLoaded">

@@ -33,7 +33,7 @@
               <Label id="txtDate" class="feedSmall"/>
             </StackLayout>
           </wrap-layout>
-          <Label id="lblContent" textWrap="true" class="lblContent"/>
+          <Label id="lblContent" textWrap="true" class="lblContent feed-content"/>
 
           <!--<WrapLayout col="0" row="2" colspan="3" style="text-align:center;">
             <Repeater items="{{ Images }}">

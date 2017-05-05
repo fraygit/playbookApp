@@ -14,7 +14,7 @@ action-bar {
 .drawer-content {
   background-color: #443266;
   color: white;
-  padding-top: 20;
+  padding-top: 0;
 }
 .drawer-content label {
   font-size: 20;
@@ -182,9 +182,28 @@ page {
 
 .feed-images {
     margin:5px;
+    max-height:10px;
 }
 
 .feed-images-multi {
     margin:5px;
     width: 45%;
+}
+
+.feed-content {
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.menu-header {
+    background-image: ~/images/playcentre.jpg;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin:0px!important;
+}
+
+.profilename{
+    position:absolute;
+    bottom:0px;
 }
