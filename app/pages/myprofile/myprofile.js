@@ -36,6 +36,18 @@ MyProfilePage.prototype.GoBack = function () {
     });
 };
 
+MyProfilePage.prototype.GotoEditProfile = function () {
+    topmost().navigate({
+        moduleName: "pages/EditProfile/EditProfile",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    });
+};
+
 var token = appSettings.getString("token", "");
 
 
