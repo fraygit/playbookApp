@@ -48,10 +48,11 @@ PostPage.prototype.contentLoaded = function (args) {
     console.log("ok post2");
     page = args.object;
     page.bindingContext = childrenList;
+    photosCaptured = new ObservableArray.ObservableArray([]);
+
     children = [];
 
 
-    photosCaptured = new ObservableArray.ObservableArray([]);
     //children.push(new Observable.Observable({
     //    Name: 'Andy',
     //    Id: '123',
@@ -177,7 +178,18 @@ function generateGuid() {
       s4() + '-' + s4() + s4() + s4();
 }
 
-
+PostPage.prototype.DeletePhoto = function () {
+    dialogs.confirm("Your message").then(function (result) {
+        console.log("Dialog result: " + result);
+    });
+    //for (var i = 0; i < capturedImages.length; i++) {
+    //    if (capturedImages[i].Id == imageGuid)
+    //    {
+    //        capturedImages.splice(i, 1);
+    //    }
+    //}
+    //ReloadImages();
+}
 
 var ReloadImages = function () {
 
@@ -198,8 +210,8 @@ var ReloadImages = function () {
             newImage.src = capturedImages[i].ImagePath;
             newImage.id = capturedImages[i].Id;
             newImage.class = "imagecaptured";
-            //newImage.height = imgWidth + '%';
-            newImage.height = '100px';
+            newImage.height = '65px';
+            newImage.tap = "DeletePhoto";
             pnlMedia.addChild(newImage);
             var newLabel = new label.Label();
             newLabel.text = " ";
@@ -210,8 +222,7 @@ var ReloadImages = function () {
             newImage.src = selectedImages[i].Thumb;
             newImage.id = selectedImages[i].Id;
             newImage.class = "imagecaptured";
-            //newImage.height = imgWidth + '%';
-            newImage.height = '100px';
+            newImage.height = '65px';
             pnlMedia.addChild(newImage);
             var newLabel2 = new label.Label();
             newLabel2.text = " ";
@@ -251,14 +262,14 @@ PostPage.prototype.OpenCamera = function () {
                 console.log("image captured:" + filepath);
                 console.log(imageAsset);
 
-                //var pnlMedia = page.getViewById("pnlMedia");
-                //pnlMedia.bindingContext = photosList;                
+                var pnlMedia = page.getViewById("pnlMedia");
+                pnlMedia.bindingContext = photosList;                
 
                 //var photo = new Observable.Observable({ Id: generateGuid(), Image: imageAsset, ImagePath: filepath, Filename: filename });
                 //photosCaptured.push(photo);
-                //photosList.set("photosList", photosCaptured);
-                
+                //childrenList.set("testOB", "f");
                 ReloadImages();
+
             });
         }).catch(function (err) {
             console.log("Error -> " + err.message);
@@ -357,6 +368,33 @@ PostPage.prototype.Post = function () {
     var isContinuePost = true;
     txtStory = page.getViewById("txtStory");
     txtTitle = page.getViewById("txtTitle");
+    var txtNoticing = page.getViewById("txtNoticing");
+    var txtRecognising = page.getViewById("txtRecognising");
+    var txtResponding = page.getViewById("txtResponding");
+    var chkStrand1 = page.getViewById("chkStrand1");
+    var chkStrand1Goal1 = page.getViewById("chkStrand1Goal1");
+    var chkStrand1Goal2 = page.getViewById("chkStrand1Goal2");
+    var chkStrand1Goal3 = page.getViewById("chkStrand1Goal3");
+    var chkStrand2 = page.getViewById("chkStrand2");
+    var chkStrand2Goal1 = page.getViewById("chkStrand2Goal1");
+    var chkStrand2Goal2 = page.getViewById("chkStrand2Goal2");
+    var chkStrand2Goal3 = page.getViewById("chkStrand2Goal3");
+    var chkStrand2Goal4 = page.getViewById("chkStrand2Goal4");
+    var chkStrand3 = page.getViewById("chkStrand3");
+    var chkStrand3Goal1 = page.getViewById("chkStrand3Goal1");
+    var chkStrand3Goal2 = page.getViewById("chkStrand3Goal2");
+    var chkStrand3Goal3 = page.getViewById("chkStrand3Goal3");
+    var chkStrand4 = page.getViewById("chkStrand4");
+    var chkStrand4Goal1 = page.getViewById("chkStrand4Goal1");
+    var chkStrand4Goal2 = page.getViewById("chkStrand4Goal2");
+    var chkStrand4Goal3 = page.getViewById("chkStrand4Goal3");
+    var chkStrand4Goal4 = page.getViewById("chkStrand4Goal4");
+    var chkStrand5 = page.getViewById("chkStrand5");
+    var chkStrand5Goal1 = page.getViewById("chkStrand5Goal1");
+    var chkStrand5Goal2 = page.getViewById("chkStrand5Goal2");
+    var chkStrand5Goal3 = page.getViewById("chkStrand5Goal3");
+    var chkStrand5Goal4 = page.getViewById("chkStrand5Goal4");
+
     if (global.IsBlank(txtStory.text)) {
         isContinuePost = false;
         dialogs.alert("Can not post story. Story is blank!").then(function () {
@@ -370,7 +408,40 @@ PostPage.prototype.Post = function () {
 
         //UploadMedia(response.content);
 
-        global.CallSecuredApi("/PostStory", "POST", JSON.stringify({ Title: txtTitle.text, Content: txtStory.text, WrittenBy: 'fy', TaggedChildren: childrenSelected }), "",
+        var postStory = {
+            Title: txtTitle.text,
+            Content: txtStory.text,
+            WrittenBy: 'fy',
+            TaggedChildren: childrenSelected,
+            Noticing: txtNoticing.text,
+            Recognising: txtRecognising.text,
+            Responding: txtResponding.text,
+            Strand1: chkStrand1.checked,
+            Strand1Goal1: chkStrand1Goal1.checked,
+            Strand1Goal2: chkStrand1Goal2.checked,
+            Strand1Goal3: chkStrand1Goal3.checked,
+            Strand2: chkStrand2.checked,
+            Strand2Goal1: chkStrand2Goal1.checked,
+            Strand2Goal2: chkStrand2Goal2.checked,
+            Strand2Goal3: chkStrand2Goal3.checked,
+            Strand2Goal4: chkStrand2Goal4.checked,
+            Strand3: chkStrand3.checked,
+            Strand3Goal1: chkStrand3Goal1.checked,
+            Strand3Goal2: chkStrand3Goal2.checked,
+            Strand3Goal3: chkStrand3Goal3.checked,
+            Strand4: chkStrand4.checked,
+            Strand4Goal1: chkStrand4Goal1.checked,
+            Strand4Goal2: chkStrand4Goal2.checked,
+            Strand4Goal3: chkStrand4Goal3.checked,
+            Strand4Goal4: chkStrand4Goal4.checked,
+            Strand5: chkStrand5.checked,
+            Strand5Goal1: chkStrand5Goal1.checked,
+            Strand5Goal2: chkStrand5Goal2.checked,
+            Strand5Goal3: chkStrand5Goal3.checked,
+            Strand5Goal4: chkStrand5Goal4.checked
+        };
+
+        global.CallSecuredApi("/PostStory", "POST", JSON.stringify(postStory), "",
             function (result) {
                 console.log("story id: " + result);
                 UploadMedia(result);
@@ -426,6 +497,87 @@ PostPage.prototype.Post = function () {
         //});
     }
 
+};
+
+PostPage.prototype.ChangeStrand1 = function () {
+    console.log('tap strand');
+    var chkStrand1 = page.getViewById("chkStrand1");
+    console.log('tap strand' + chkStrand1.checked);
+
+    var pnlStrand1 = page.getViewById("pnlStrand1");
+    if (!chkStrand1.checked) {
+        pnlStrand1.visibility = 'visible';
+    }
+    else {
+        pnlStrand1.visibility = 'collapsed';
+    }
+};
+
+
+PostPage.prototype.ChangeStrand1 = function () {
+    console.log('tap strand');
+    var chkStrand1 = page.getViewById("chkStrand1");
+    console.log('tap strand' + chkStrand1.checked);
+
+    var pnlStrand1 = page.getViewById("pnlStrand1");
+    if (!chkStrand1.checked) {
+        pnlStrand1.visibility = 'visible';
+    }
+    else {
+        pnlStrand1.visibility = 'collapsed';
+    }
+};
+
+PostPage.prototype.ChangeStrand2 = function () {
+    console.log('tap strand');
+    var chkStrand2 = page.getViewById("chkStrand2");
+    console.log('tap strand' + chkStrand2.checked);
+    var pnlStrand2 = page.getViewById("pnlStrand2");
+    if (!chkStrand2.checked) {
+        pnlStrand2.visibility = 'visible';
+    }
+    else {
+        pnlStrand2.visibility = 'collapsed';
+    }
+};
+
+PostPage.prototype.ChangeStrand3 = function () {
+    console.log('tap strand');
+    var chkStrand3 = page.getViewById("chkStrand3");
+    console.log('tap strand' + chkStrand3.checked);
+    var pnlStrand3 = page.getViewById("pnlStrand3");
+    if (!chkStrand3.checked) {
+        pnlStrand3.visibility = 'visible';
+    }
+    else {
+        pnlStrand3.visibility = 'collapsed';
+    }
+};
+
+PostPage.prototype.ChangeStrand4 = function () {
+    console.log('tap strand');
+    var chkStrand4 = page.getViewById("chkStrand4");
+    console.log('tap strand' + chkStrand4.checked);
+    var pnlStrand4 = page.getViewById("pnlStrand4");
+    if (!chkStrand4.checked) {
+        pnlStrand4.visibility = 'visible';
+    }
+    else {
+        pnlStrand4.visibility = 'collapsed';
+    }
+};
+
+PostPage.prototype.ChangeStrand5 = function () {
+    console.log('tap strand');
+    var chkStrand5 = page.getViewById("chkStrand5");
+    console.log('tap strand' + chkStrand5.checked);
+    var pnlStrand5 = page.getViewById("pnlStrand5");
+    if (!chkStrand5.checked) {
+        pnlStrand5.visibility = 'visible';
+    }
+    else {
+        pnlStrand5.visibility = 'collapsed';
+    }
 };
 
 

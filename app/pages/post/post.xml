@@ -60,14 +60,16 @@
                     <TextView hint="Title" col="0" row="0" colspan="3" id="txtTitle"/>
                     <TextView hint="Write story" col="0" row="1" colspan="3" height="85%" id="txtStory"/>
 
-                    <wrap-layout col="0" row="2" colspan="3" height="0" id="pnlMedia">
-                      <Label text="sd"></Label>
-                      <ListView items="{{ photosList }}">
-                        <ListView.itemTemplate>
-                          <Image src="{{ ImagePath }}"></Image>
-                        </ListView.itemTemplate>
-                      </ListView>
-                    </wrap-layout>
+                    
+                      <wrap-layout col="0" row="2" colspan="3" height="0" id="pnlMedia">
+                        <ListView items="{{ photosList }}">
+                          <ListView.itemTemplate>
+                            <Label text="1"/>
+                            <Image src="{{ ImagePath }}"></Image>
+                          </ListView.itemTemplate>
+                        </ListView>
+                      </wrap-layout>
+                    
                     <Label text="&#xf03d;" col="0" row="3" style="margin-top:0;" class="fa-video lbl" tap="OpenGallery"/>
                     <Label text="&#xf030;" class="fa-camera lbl" col="1" row="3" style="margin-top:0;" tap="OpenCamera"/>
                     <Label text="&#xf03e;" col="2" row="3" style="margin-top:0;" class="lbl fa-photo" tap="OpenGallery"/>
@@ -79,29 +81,128 @@
           </TabViewItem>
           <TabViewItem title="Te Whariki">
             <TabViewItem.view>
-              <stack-layout style.backgroundColor="white" class="form">
-                <wrap-layout class="form-item">
-                  <Label text="Mana atua (Well-being)" width="70%"/>
-                  <Switch class="switch"/>
-                </wrap-layout>
-                <wrap-layout class="form-item">
-                  <Label text="Mana reo (Communication)" width="70%"/>
-                  <Switch class="switch" />
-                </wrap-layout>
-                <wrap-layout class="form-item">
-                  <Label text="Mana auturoa (Exploration)" width="70%"/>
-                  <Switch  class="switch"/>
-                </wrap-layout>
-                <wrap-layout class="form-item">
-                  <Label text="Mana tangata (Contribution)" width="70%"/>
-                  <Switch  class="switch"/>
-                </wrap-layout>
-                <wrap-layout class="form-item">
-                  <Label text="Mana whenua (Belonging)" width="70%"/>
-                  <Switch class="switch" />
-                </wrap-layout>
+              <ScrollView>
+                <stack-layout style.backgroundColor="white" class="form">
+                  <TextView hint="Noticing" height="30%" id="txtNoticing" row="2"/>
+                  <TextView hint="Recognising" height="30%" id="txtRecognising"/>
+                  <TextView hint="Responding" height="30%" id="txtResponding"/>
 
-              </stack-layout>
+                  <Label text=" " style="font-weight:bold"/>
+                  <Label text="Te Whariki Stands and Goals" style="font-weight:bold"/>
+                  
+                  <wrap-layout class="form-item">
+                    <Switch id="chkStrand1" tap="ChangeStrand1" checked="false"/>
+                    <Label text="Mana atua (Well-being)"/>
+                  </wrap-layout>
+
+                  <stack-layout style="margin-left:20px;" id="pnlStrand1" visibility="collapsed">
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand1Goal1"/>
+                      <Label text="Goal 1: Children’s health is promoted." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand1Goal2"/>
+                      <Label text="Goal 2: Children’s emotional well-being is nurtured." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand1Goal3"/>
+                      <Label text="Goal 3: Children are kept safe from harm." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                  </stack-layout>
+
+                  <wrap-layout class="form-item">
+                    <Switch id="chkStrand2" checked="false" tap="ChangeStrand2"/>
+                    <Label text="Mana whenua (Belonging)"/>
+                  </wrap-layout>
+                  <stack-layout style="margin-left:20px;" id="pnlStrand2" visibility="collapsed">
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand2Goal1"/>
+                      <Label text="Goal 1: Connecting links with the family and the wider world are affirmed and extended." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand2Goal2"/>
+                      <Label text="Goal 2: Children know they have a place." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand2Goal3"/>
+                      <Label text="Goal 3: Children feel comfor table with the routines, customs, and regular events." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand2Goal4"/>
+                      <Label text="Goal 4: Children know the limits and boundaries of acceptable behavior." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                  </stack-layout>
+
+                  <wrap-layout class="form-item">
+                    <Switch checked="false" id="chkStrand3" tap="ChangeStrand3"/>
+                    <Label text="Mana tangata (Contribution)"/>
+                  </wrap-layout>
+                  <stack-layout style="margin-left:20px;" id="pnlStrand3" visibility="collapsed">
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand3Goal1"/>
+                      <Label text="Goal 1: Children experience an environment where there are equitable opportunities for learning irrespective of gender, ability, age, ethnicity or background." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand3Goal2"/>
+                      <Label text="Goal 2: Children experience an environment where they are affirmed as individuals." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand3Goal3"/>
+                      <Label text="Goal 3: Children experience an environment where they are encouraged to learn with and alongside others." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                  </stack-layout>
+
+
+                  <wrap-layout class="form-item">
+                    <Switch checked="false" id="chkStrand4" tap="ChangeStrand4"/>
+                    <Label text="Mana reo (Communication)"/>
+                  </wrap-layout>
+                  <stack-layout style="margin-left:20px;" id="pnlStrand4" visibility="collapsed">
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand4Goal1"/>
+                      <Label text="Goal 1: Children experience an environment where they develop non-verbal communication skills for a range of purposes." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand4Goal2"/>
+                      <Label text="Goal 2: Children experience an environment where they develop verbal communication skills for a range of purposes." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand4Goal3"/>
+                      <Label text="Goal 3: Children experience an environment where they experience the stories and symbols of their own and other cultures." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand4Goal4"/>
+                      <Label text="Goal 4: Children experience an environment where they discover and develop different ways to be creative and expressive." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                  </stack-layout>
+
+                  <wrap-layout class="form-item">
+                    <Switch checked="false" id="chkStrand5" tap="ChangeStrand5"/>
+                    <Label text="Mana auturoa (Exploration)"/>
+                  </wrap-layout>
+                  <stack-layout style="margin-left:20px;" id="pnlStrand5" visibility="collapsed">
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand5Goal1"/>
+                      <Label text="Goal 1: Children experience an environment where their play is valued as meaningful learning and the importance of spontaneous play is recognized." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand5Goal2"/>
+                      <Label text="Goal 2: Children experience an environment where they gain confidence in and control of their bodies." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand5Goal3"/>
+                      <Label text="Goal 3: Children experience an environment where they learn strategies for active exploration, thinking and reasoning." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                    <wrap-layout class="form-item">
+                      <Switch checked="false" id="chkStrand5Goal4"/>
+                      <Label text="Goal 4: Children experience an environment where they develop working theories for making sense of the natural, social, physical, and material worlds." textWrap="true" width="70%"/>
+                    </wrap-layout>
+                  </stack-layout>
+
+
+
+                </stack-layout>
+              </ScrollView>
             </TabViewItem.view>
           </TabViewItem>
         </TabView.items>
