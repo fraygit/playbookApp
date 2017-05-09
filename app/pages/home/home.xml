@@ -16,6 +16,9 @@
           <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
         </ios>
       </action-bar.actionItems>
+      <ActionItem tap="WriteStory"
+          ios.systemIcon="9" ios.position="left"
+          android.systemIcon="ic_menu_edit" android.position="actionBar"/>
     </action-bar>
   </page.actionBar>
 
@@ -28,15 +31,14 @@
         <label text="Welcome to the NativeScript drawer template! This is the home page. Try tapping the logo." margin="20" horizontalAlignment="center" textWrap="true" />
       </stack-layout>-->
       <stack-layout loaded="contentLoaded">
-        <stack-layout style.backgroundColor="white" >
-          <!--<TextView hint="Write a story" class="home" tap="WriteStory"/>-->
+        <!--<stack-layout style.backgroundColor="white" >
           <grid-layout columns="*, *, *" rows="auto, auto, auto" style.backgroundColor="white" class="home">
             <Label text="Write a story" col="0" row="0" colspan="3" style="margin-top:15;margin-bottom:20;padding-bottom:15;margin-left:10;margin-right:10; border-color: #C3C3E5; border-width: 0 0 1 0;" tap="WriteStory"/>
             <Label text="&#xf03d;" col="0" row="1" style="margin-top:0;" class="fa-video lbl"/>
             <Label text="&#xf030;" class="fa-camera lbl" col="1" row="1" style="margin-top:0;" tap="WriteStory"/>
             <Label text="&#xf03e;" col="2" row="1" style="margin-top:0;" class="lbl fa-photo" tap="WriteStory"/>
           </grid-layout> 
-        </stack-layout>
+        </stack-layout>-->
 
         <WebView id="wv" ></WebView>
           <!--<ListView items="{{ Feed }}" height="100%">

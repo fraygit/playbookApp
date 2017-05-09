@@ -97,6 +97,17 @@ page {
     margin-left:25px;
     vertical-align:middle;
 }
+
+.item-label-pending{
+    background-color:silver;
+}
+
+.item-label-small{
+    color: black;
+    font-size: 20pt;
+    vertical-align:middle;
+}
+
 .item-chevron{
     color: black;
     font-size: 30pt;
@@ -226,6 +237,15 @@ page {
     margin: 20px;
     border-width: 1 1 1 1;
     border-color:green;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.alert-warning {
+    background-color:red;
+    margin: 20px;
+    border-width: 1 1 1 1;
+    border-color:darkred;
     border-radius: 10px;
     padding: 10px;
 }

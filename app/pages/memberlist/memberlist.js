@@ -40,6 +40,7 @@ MemberList.prototype.pageLoaded = function (args) {
             member = [];
 
             for (var i = 0; i < list.length; i++) {
+                console.log("member id:" + list[i].Id);
                 member.push(list[i]);
             }
             memberList.set("memberList", member);
@@ -50,6 +51,18 @@ MemberList.prototype.pageLoaded = function (args) {
         function (apiErrorMessage) {
         });
 }
+
+MemberList.prototype.AddMember = function () {
+    topmost().navigate({
+        moduleName: "pages/addmember/addmember",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    });
+};
 
 
 

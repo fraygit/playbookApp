@@ -8,36 +8,24 @@
   <statusbar:StatusBar ios:barStyle="light" />
 
   <page.actionBar>
-    <action-bar title="Members">
+    <action-bar title="Add Member">
       <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="GoBack"/>
       <action-bar.actionItems>
         <ios>
           <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
         </ios>
       </action-bar.actionItems>
-      <ActionItem tap="AddMember"
-          ios.systemIcon="9" ios.position="left"
-          android.systemIcon="ic_input_add" android.position="actionBar"/>
     </action-bar>
   </page.actionBar>
 
   <drawer:rad-side-drawer id="drawer">
     <drawer:rad-side-drawer.mainContent>
 
-      <ScrollView>
-
-        <stack-layout height="100%">
-          <ListView items="{{ memberList }}" height="100%">
-            <ListView.itemTemplate>
-              <wrap-layout class="list-item" tap="GoToPost" class="{{ Id == '000000000000000000000000' ? 'item-label-pending' : 'item-label' }}">
-                <Label text="{{ FirstName }}" class="item-label"/>
-              </wrap-layout>
-            </ListView.itemTemplate>
-          </ListView>
-
-        </stack-layout>
-      </ScrollView>
-
+      <stack-layout style.backgroundColor="white" loaded="contentLoaded">
+        <TextField hint="Email" id="txtEmail"/>
+        <Label text="Please input member email address" class="alert-warning" visibility="collapsed" id="pnlError"></Label>
+        <Button tap="AddMember" text="Add Member" class="btn btn-primary" id="btnAddChild"/>
+      </stack-layout>
 
     </drawer:rad-side-drawer.mainContent>
     <drawer:rad-side-drawer.drawerContent>
