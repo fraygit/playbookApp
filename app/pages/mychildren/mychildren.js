@@ -33,6 +33,22 @@ var MyChildrenPage = function (args) {
 MyChildrenPage.prototype = new BasePage();
 MyChildrenPage.prototype.constructor = MyChildrenPage;
 
+MyChildrenPage.prototype.SelectChild = function (args) {
+    var item = args.object;
+    var itemData = item.bindingContext;
+    console.log("child id" + itemData.Id);
+    appSettings.setString("CurrentChildId", itemData.Id);
+    topmost().navigate({
+        moduleName: "pages/mychildmenu/mychildmenu",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    });
+};
+
 MyChildrenPage.prototype.contentLoaded = function (args) {
     page = args.object;
     page.bindingContext = childrenList;
