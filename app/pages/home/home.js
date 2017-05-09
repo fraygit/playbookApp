@@ -43,9 +43,20 @@ HomePage.prototype.contentLoaded = function (args) {
     if (webView.android) { // in IOS android will be undefined
         webView.android.getSettings().setBuiltInZoomControls(false);
     }
-    var webViewUrl = "http://34.209.177.254:81/index.html#/home?api_key=" + token;
-    console.log("web view " + webViewUrl);
-    webView.src = webViewUrl;
+
+    global.CallSecuredApi("/FeedVersion", "GET", null, "",
+        function (result) {
+            //var webViewUrl = "http://34.209.177.254:81/index.html#/home?api_key=" + token;
+            var webViewUrl = result.toString().replace(/"/g, "") + "/#home?api_key=" + token;
+            console.log("web view " + webViewUrl);
+            webView.src = webViewUrl;
+
+        },
+        function (error) {
+        },
+        function (apiErrorMessage) {
+        });
+
     //webView.src = "https://www.google.com";
 
     //feed.push(new observableModule.Observable({
