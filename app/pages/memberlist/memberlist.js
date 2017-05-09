@@ -16,31 +16,33 @@ var imageCacheModule = require("ui/image-cache");
 
 var session = bghttp.session("image-upload");
 
-var MyPlaycentre = function (args) {
+var MemberList = function (args) {
     console.log("ok profile page");
 
 };
-MyPlaycentre.prototype = new BasePage();
-MyPlaycentre.prototype.constructor = MyPlaycentre;
+MemberList.prototype = new BasePage();
+MemberList.prototype.constructor = MemberList;
 
-var playcentre = new ObservableArray.ObservableArray([]);
-var playcentreList = new Observable.Observable();
+var member = new ObservableArray.ObservableArray([]);
+var memberList = new Observable.Observable();
 
-
-MyPlaycentre.prototype.pageLoaded = function (args) {
+MemberList.prototype.pageLoaded = function (args) {
     page = args.object;
-    page.bindingContext = playcentreList;
+    page.bindingContext = memberList;
 
-    global.CallSecuredApi("/Playcentre", "GET", null, "",
+    var playcentreId = appSettings.getString("PlaycentreId", "");
+
+    console.log("playcentre:" + playcentreId);
+    global.CallSecuredApi("/PlaycentreMembers", "GET", null, "&playcentreId=" + playcentreId,
         function (result) {
             var list = JSON.parse(result);
             console.log(list);
+            member = [];
 
             for (var i = 0; i < list.length; i++) {
-                playcentre.push(list[i]);
-                console.log(JSON.stringify(list[i]));
+                member.push(list[i]);
             }
-            playcentreList.set("playcentreList", playcentre);
+            memberList.set("memberList", member);
 
         },
         function (error) {
@@ -49,10 +51,9 @@ MyPlaycentre.prototype.pageLoaded = function (args) {
         });
 }
 
-MyPlaycentre.prototype.GotoPlaycentre = function (args) {
-    var item = args.object;
-    var itemData = item.bindingContext;
-    console.log("current playcentre " + itemData.Id);
+
+
+MemberList.prototype.GoBack = function () {
     topmost().navigate({
         moduleName: "pages/playcentremenu/playcentremenu",
         animated: true,
@@ -62,20 +63,8 @@ MyPlaycentre.prototype.GotoPlaycentre = function (args) {
             curve: "easeIn"
         }
     });
-}
-
-MyPlaycentre.prototype.GoBack = function () {
-    topmost().navigate({
-        moduleName: "pages/home/home",
-        animated: true,
-        transition: {
-            name: "slide",
-            duration: 380,
-            curve: "easeIn"
-        }
-    });
 };
 
 
 
-module.exports = new MyPlaycentre();
+module.exports = new MemberList();

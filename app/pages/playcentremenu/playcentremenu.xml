@@ -8,16 +8,13 @@
   <statusbar:StatusBar ios:barStyle="light" />
 
   <page.actionBar>
-    <action-bar title="Select Playcentre">
+    <action-bar title="My Playcentre">
       <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="GoBack"/>
       <action-bar.actionItems>
         <ios>
           <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
         </ios>
       </action-bar.actionItems>
-      <ActionItem tap="addPlaycentre"
-          ios.systemIcon="9" ios.position="left"
-          android.systemIcon="ic_input_add" android.position="actionBar"/>
     </action-bar>
   </page.actionBar>
 
@@ -27,13 +24,18 @@
       <ScrollView>
 
         <stack-layout>
-          <ListView items="{{ playcentreList }}" height="100%">
-            <ListView.itemTemplate>
-              <wrap-layout class="list-item" tap="GotoPlaycentre">
-                <Label text="{{ Name }}" class="item-label"/>
-              </wrap-layout>
-            </ListView.itemTemplate>
-          </ListView>
+          <wrap-layout class="list-item" tap="GoToMembers">
+            <Label text="&#xf0c0;" class="fa item-label"/>
+            <Label text="Members" class="item-label"/>
+          </wrap-layout>
+          <wrap-layout class="list-item" tap="GotoEditProfile">
+            <Label text="&#xf2c3;" class="fa item-label"/>
+            <Label text="Enrollment" class="item-label"/>
+          </wrap-layout>
+          <wrap-layout class="list-item" tap="GotoEditProfile">
+            <Label text="&#xf0e6;" class="fa item-label"/>
+            <Label text="Forum" class="item-label"/>
+          </wrap-layout>
 
         </stack-layout>
       </ScrollView>

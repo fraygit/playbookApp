@@ -12,30 +12,32 @@ var fs = require("file-system");
 var imageSource = require("image-source")
 var bghttp = require("nativescript-background-http");
 var appSettings = require("application-settings");
+var imageCacheModule = require("ui/image-cache");
 
 var session = bghttp.session("image-upload");
 
-var page;
+var PlaycentreMenu = function (args) {
+    console.log("ok profile page");
 
-var token = appSettings.getString("token", "");
-
-var MyChildMenuPage = function (args) {
-    console.log("my children page");
-    //var page = args.object;
-    //var params = page.navigationContext;
-    //console.log("image:" + params.image);
-    //if (params.image != null) {
-
-    //}
 };
-MyChildMenuPage.prototype = new BasePage();
-MyChildMenuPage.prototype.constructor = MyChildMenuPage;
+PlaycentreMenu.prototype = new BasePage();
+PlaycentreMenu.prototype.constructor = PlaycentreMenu;
 
-
-
-MyChildMenuPage.prototype.GoBack = function () {
+PlaycentreMenu.prototype.GoBack = function () {
     topmost().navigate({
-        moduleName: "pages/mychildren/mychildren",
+        moduleName: "pages/myplaycentre/myplaycentre",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    });
+};
+
+PlaycentreMenu.prototype.GoToMembers = function () {
+    topmost().navigate({
+        moduleName: "pages/memberlist/memberlist",
         animated: true,
         transition: {
             name: "slide",
@@ -46,6 +48,4 @@ MyChildMenuPage.prototype.GoBack = function () {
 };
 
 
-
-module.exports = new MyChildMenuPage();
-
+module.exports = new PlaycentreMenu();
