@@ -19,7 +19,7 @@ var observableModule = require("data/observable");
 
 
 var navigationEntry = {
-    moduleName: "pages/post/post",
+    moduleName: "pages/playcentrelist/playcentrelist",
     animated: true,
     transition: {
         name: "slide",

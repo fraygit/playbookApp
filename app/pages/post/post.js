@@ -412,6 +412,7 @@ PostPage.prototype.Post = function () {
             Title: txtTitle.text,
             Content: txtStory.text,
             WrittenBy: 'fy',
+            PlaycentreId: appSettings.getString("PlaycentreId", ""),
             TaggedChildren: childrenSelected,
             Noticing: txtNoticing.text,
             Recognising: txtRecognising.text,

@@ -1,7 +1,5 @@
 <grid-layout class="drawer-content">
   <stack-layout>
-    <AbsoluteLayout class="sidedrawer-header menu-header">
-    </AbsoluteLayout>    
     <wrapLayout>
       <Label text="&#xf015;" class="fa"/>
       <label text="Home" tap="navigate" class="{{ selectedPage == 'home' ? 'selected' : '' }}" />
@@ -15,6 +13,11 @@
     <wrapLayout>
       <Label text="&#xf2bd;" class="fa"/>
       <label text="My Profile" tap="navigate" class="{{ selectedPage == 'myprofile' ? 'selected' : '' }}" />
+    </wrapLayout>
+    <StackLayout class="hr-dark" width="95%"></StackLayout>
+    <wrapLayout>
+      <Label text="&#xf1e3;" class="fa"/>
+      <label text="My Playcentre" tap="navigate" class="{{ selectedPage == 'myplaycentre' ? 'selected' : '' }}" />
     </wrapLayout>
     <StackLayout class="hr-dark" width="95%"></StackLayout>
     <wrapLayout>
