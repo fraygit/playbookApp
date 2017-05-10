@@ -45,7 +45,8 @@ MyChildrenPage.prototype.SelectChild = function (args) {
             name: "slide",
             duration: 380,
             curve: "easeIn"
-        }
+        },
+        context: { Name: itemData.Name }
     });
 };
 

@@ -31,6 +31,13 @@ var MyChildMenuPage = function (args) {
 MyChildMenuPage.prototype = new BasePage();
 MyChildMenuPage.prototype.constructor = MyChildMenuPage;
 
+MyChildMenuPage.prototype.pageLoaded = function (args) {
+    page = args.object;
+    var pageContext = page.navigationContext;
+    console.log("child name: " + pageContext.Name);
+    var viewModel = new Observable.Observable({ ActionBarTitle: pageContext.Name.toUpperCase() });
+    args.object.bindingContext = viewModel;
+};
 
 
 MyChildMenuPage.prototype.GoBack = function () {
