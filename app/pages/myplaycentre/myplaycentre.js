@@ -53,6 +53,9 @@ MyPlaycentre.prototype.GotoPlaycentre = function (args) {
     var item = args.object;
     var itemData = item.bindingContext;
     console.log("current playcentre " + itemData.Id);
+
+    var playcentreId = appSettings.setString("PlaycentreId", itemData.Id);
+
     topmost().navigate({
         moduleName: "pages/playcentremenu/playcentremenu",
         animated: true,

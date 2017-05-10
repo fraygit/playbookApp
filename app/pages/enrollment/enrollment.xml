@@ -27,7 +27,8 @@
           <ListView items="{{ playcentreList }}" >
             <ListView.itemTemplate>
               <wrap-layout class="list-item" tap="GoToPost" width="100%">
-                <Button tap="Join" text="Join" class="btn btn-primary" width="15%" visibility="{{ Enrolled ? 'collapsed' : 'visible' }}"/>
+                <Button tap="Join" text="Join" class="btn btn-primary btn-round" width="15%" visibility="{{ Enrolled ? 'collapsed' : 'visible' }}"/>
+                <Button tap="Leave" text="Leave" class="btn btn-primary btn-round" width="15%" visibility="{{ !Enrolled ? 'collapsed' : 'visible' }}"/>
                 <Label text="{{ PlaycentreName }}" class="item-label"/>
               </wrap-layout>
             </ListView.itemTemplate>

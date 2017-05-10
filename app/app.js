@@ -18,8 +18,8 @@ global.IsBlank = function (str) {
     return (!str || /^\s*$/.test(str));
 };
 
-//global.ApiUrl = 'http://10.0.2.2:1001/api';
-global.ApiUrl = 'http://34.209.177.254/api';
+global.ApiUrl = 'http://10.0.2.2:1001/api';
+//global.ApiUrl = 'http://34.209.177.254/api';
 
 var token = appSettings.getString("token", "");
 
@@ -28,7 +28,7 @@ global.CallSecuredApi = function (url, method, param, queryString, resultCallbac
     console.log("token:" + token);
     console.log("Call api " + url);
     http.request({
-        url: global.ApiUrl + url + '?api_key=' + token + queryString,
+        url: global.ApiUrl + url + '?api_key=' + encodeURIComponent(token) + queryString,
         method: method,
         headers: { "Content-Type": "application/json" },
         content: param

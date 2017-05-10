@@ -1,19 +1,19 @@
 ﻿<Page loaded="pageLoaded">
   <ActionBar title="Sign-up" class="action-bar"></ActionBar>
   <!-- Your UI components go here -->
+  <ScrollView>
+    <stack-layout style="background-color:silver;">
+      <Label text="" style="height:100px;"></Label>
+      <stack-layout style="background-color:white;width:90%;border-radius: 8px">
+        <TextField text="" hint="Emaill address" style="padding:10;margin:10;" id="txtUsername"/>
+        <TextField text="" hint="First Name" style="padding:10;margin:10;" id="txtFirstName"/>
+        <TextField text="" hint="Last Name" style="padding:10;margin:10;" id="txtLastName"/>
+        <TextField text="" hint="Password" style="padding:10;margin:10;" id="txtPassword" secure="true"/>
+        <TextField text="" hint="Confirm Password" style="padding:10;margin:10;" id="txtPassword2" secure="true"/>
 
-  <stack-layout style="background-color:silver;">
-    <Label text="" style="height:100px;"></Label>
-    <stack-layout style="background-color:white;width:90%;border-radius: 8px">
-      <TextField text="" hint="Emaill address" style="padding:10;margin:10;" id="txtUsername"/>
-      <TextField text="" hint="First Name" style="padding:10;margin:10;" id="txtFirstName"/>
-      <TextField text="" hint="Last Name" style="padding:10;margin:10;" id="txtLastName"/>
-      <TextField text="" hint="Password" style="padding:10;margin:10;" id="txtPassword" secure="true"/>
-      <TextField text="" hint="Confirm Password" style="padding:10;margin:10;" id="txtPassword2" secure="true"/>
-
-      <Button tap="SignUp" text="Sign-up" id="btnSignUp" class="btn btn-primary"/>
-      <Button tap="GoLogin" text="Go back to login" class="btn btn-primary"/>
+        <Button tap="SignUp" text="Sign-up" id="btnSignUp" class="btn btn-primary"/>
+        <Button tap="GoLogin" text="Go back to login" class="btn btn-primary"/>
+      </stack-layout>
     </stack-layout>
-  </stack-layout>
-
+  </ScrollView>
 </Page>

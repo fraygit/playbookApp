@@ -50,9 +50,66 @@ Enrollment.prototype.pageLoaded = function (args) {
         });
 }
 
-Enrollment.prototype.Join = function (args) {
-    dialogs.confirm("Are you sure you want to join this child to ").then(function (result) {
+Enrollment.prototype.Leave = function (args) {
+    var item = args.object;
+    var itemData = item.bindingContext;
+
+    dialogs.confirm("Are you sure you want to leave this playcentre?").then(function (result) {
         console.log("Dialog result: " + result);
+        console.log("playcen " + itemData.PlaycentreId);
+        if (result) {
+            console.log("enrol child");
+            var childId = appSettings.getString("CurrentChildId", "");
+            global.CallSecuredApi("/ChildEnrollment", "DELETE", null, "&childId=" + childId + "&playcentreId=" + itemData.PlaycentreId,
+                function (resultapi) {
+                    topmost().navigate({
+                        moduleName: "pages/mychildren/mychildren",
+                        animated: true,
+                        transition: {
+                            name: "slide",
+                            duration: 380,
+                            curve: "easeIn"
+                        }
+                    });
+                },
+                function (error) {
+                },
+                function (apiErrorMessage) {
+                });
+
+        }
+    });
+};
+
+
+Enrollment.prototype.Join = function (args) {
+    var item = args.object;
+    var itemData = item.bindingContext;
+
+    dialogs.confirm("Are you sure you want to join this child to this playcentre?").then(function (result) {
+        console.log("Dialog result: " + result);
+        console.log("playcen " + itemData.PlaycentreId);
+        if (result) {
+            console.log("enrol child");
+            var childId = appSettings.getString("CurrentChildId", "");
+            global.CallSecuredApi("/ChildEnrollment", "PUT", null, "&childId=" + childId + "&playcentreId=" + itemData.PlaycentreId,
+                function (resultapi) {
+                    topmost().navigate({
+                        moduleName: "pages/mychildren/mychildren",
+                        animated: true,
+                        transition: {
+                            name: "slide",
+                            duration: 380,
+                            curve: "easeIn"
+                        }
+                    });
+                },
+                function (error) {
+                },
+                function (apiErrorMessage) {
+                });
+
+        }
     });
 };
 

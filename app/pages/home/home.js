@@ -47,7 +47,7 @@ HomePage.prototype.contentLoaded = function (args) {
     global.CallSecuredApi("/FeedVersion", "GET", null, "",
         function (result) {
             //var webViewUrl = "http://34.209.177.254:81/index.html#/home?api_key=" + token;
-            var webViewUrl = result.toString().replace(/"/g, "") + "/#home?api_key=" + token;
+            var webViewUrl = result.toString().replace(/"/g, "") + "/#home?api_key=" + encodeURIComponent(token);
             console.log("web view " + webViewUrl);
             webView.src = webViewUrl;
 
