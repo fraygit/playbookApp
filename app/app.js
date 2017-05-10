@@ -18,8 +18,8 @@ global.IsBlank = function (str) {
     return (!str || /^\s*$/.test(str));
 };
 
-global.ApiUrl = 'http://10.0.2.2:1001/api';
-//global.ApiUrl = 'http://34.209.177.254/api';
+//global.ApiUrl = 'http://10.0.2.2:1001/api';
+global.ApiUrl = 'http://34.209.177.254/api';
 
 var token = appSettings.getString("token", "");
 
