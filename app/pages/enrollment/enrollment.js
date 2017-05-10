@@ -16,22 +16,23 @@ var imageCacheModule = require("ui/image-cache");
 
 var session = bghttp.session("image-upload");
 
-var MyPlaycentre = function (args) {
+var Enrollment = function (args) {
     console.log("ok profile page");
 
 };
-MyPlaycentre.prototype = new BasePage();
-MyPlaycentre.prototype.constructor = MyPlaycentre;
+Enrollment.prototype = new BasePage();
+Enrollment.prototype.constructor = Enrollment;
 
 var playcentre = new ObservableArray.ObservableArray([]);
 var playcentreList = new Observable.Observable();
 
 
-MyPlaycentre.prototype.pageLoaded = function (args) {
+Enrollment.prototype.pageLoaded = function (args) {
     page = args.object;
     page.bindingContext = playcentreList;
 
-    global.CallSecuredApi("/Playcentre", "GET", null, "",
+    var childId = appSettings.getString("CurrentChildId", "");
+    global.CallSecuredApi("/ChildEnrollment", "GET", null, "&childId=" + childId,
         function (result) {
             var list = JSON.parse(result);
             console.log(list);
@@ -49,24 +50,15 @@ MyPlaycentre.prototype.pageLoaded = function (args) {
         });
 }
 
-MyPlaycentre.prototype.GotoPlaycentre = function (args) {
-    var item = args.object;
-    var itemData = item.bindingContext;
-    console.log("current playcentre " + itemData.Id);
-    topmost().navigate({
-        moduleName: "pages/playcentremenu/playcentremenu",
-        animated: true,
-        transition: {
-            name: "slide",
-            duration: 380,
-            curve: "easeIn"
-        }
+Enrollment.prototype.Join = function (args) {
+    dialogs.confirm("Are you sure you want to join this child to ").then(function (result) {
+        console.log("Dialog result: " + result);
     });
-}
+};
 
-MyPlaycentre.prototype.GoBack = function () {
+Enrollment.prototype.GoBack = function () {
     topmost().navigate({
-        moduleName: "pages/home/home",
+        moduleName: "pages/mychildren/mychildren",
         animated: true,
         transition: {
             name: "slide",
@@ -78,4 +70,4 @@ MyPlaycentre.prototype.GoBack = function () {
 
 
 
-module.exports = new MyPlaycentre();
+module.exports = new Enrollment();

@@ -8,7 +8,7 @@
   <statusbar:StatusBar ios:barStyle="light" />
 
   <page.actionBar>
-    <action-bar title="{{ ActionBarTitle }}">
+    <action-bar title="Playcentres">
       <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="GoBack"/>
       <action-bar.actionItems>
         <ios>
@@ -23,15 +23,15 @@
 
       <ScrollView>
 
-        <stack-layout>
-          <wrap-layout class="list-item" tap="GoEnrollment">
-            <Label text="&#xf007;" class="fa item-label"/>
-            <Label text="Enrollment" class="item-label"/>
-          </wrap-layout>
-          <wrap-layout class="list-item">
-            <Label text="&#xf02d;" class="fa item-label"/>
-            <Label text="Learning Stories" class="item-label"/>
-          </wrap-layout>
+        <stack-layout height="100%">
+          <ListView items="{{ playcentreList }}" >
+            <ListView.itemTemplate>
+              <wrap-layout class="list-item" tap="GoToPost" width="100%">
+                <Button tap="Join" text="Join" class="btn btn-primary" width="15%" visibility="{{ Enrolled ? 'collapsed' : 'visible' }}"/>
+                <Label text="{{ PlaycentreName }}" class="item-label"/>
+              </wrap-layout>
+            </ListView.itemTemplate>
+          </ListView>
 
         </stack-layout>
       </ScrollView>
