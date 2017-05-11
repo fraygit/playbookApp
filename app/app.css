@@ -249,3 +249,7 @@ page {
 .btn-round {
     border-radius: 20px;
 }
+
+.btn-normal {
+    border-radius: 5px;
+}

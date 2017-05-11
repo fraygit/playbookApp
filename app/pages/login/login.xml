@@ -8,8 +8,8 @@
       <TextField text="" hint="Emaill address" style="padding:10;margin:10;" id="txtUsername"/>
       <TextField text="" hint="Password" style="padding:10;margin:10;" id="txtPassword" secure="true"/>
 
-      <Button tap="Login" text="Login" class="btn btn-primary"/>
-      <Button tap="GotoRegistration" class="btn btn-primary" text="Sign-up"/>
+      <Button tap="Login" text="Login" class="btn btn-primary btn-normal"/>
+      <Button tap="GotoRegistration" class="btn btn-primary btn-normal" text="Sign-up"/>
     </stack-layout>
   </stack-layout>
   

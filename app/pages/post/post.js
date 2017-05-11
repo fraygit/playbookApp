@@ -121,7 +121,7 @@ PostPage.prototype.contentLoaded = function (args) {
                     Name: list[i].FirstName,
                     Id: list[i].Id,
                     Class: imageClass,
-                    ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
+                    ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + encodeURIComponent(token) + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
                 });
                 children.push(child);
 
@@ -308,7 +308,7 @@ var UploadMedia = function (storyId) {
     var token = appSettings.getString("token", "");
     for (var i = 0; i < capturedImages.length; i++) {
         var request = {
-            url: global.ApiUrl + '/PostMedia?api_key=' + token,
+            url: global.ApiUrl + '/PostMedia?api_key=' + encodeURIComponent(token),
             method: "POST",
             headers: {
                 "Content-Type": "application/octet-stream",
@@ -336,7 +336,7 @@ var UploadMedia = function (storyId) {
     console.log("upload " + global.ApiUrl + '/PostMedia?api_key=' + token);
     for (var i = 0; i < selectedImages.length; i++) {
         var request = {
-            url: global.ApiUrl + '/PostMedia?api_key=' + token,
+            url: global.ApiUrl + '/PostMedia?api_key=' + encodeURIComponent(token),
             method: "POST",
             headers: {
                 "Content-Type": "application/octet-stream",

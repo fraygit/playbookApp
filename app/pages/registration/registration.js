@@ -71,50 +71,66 @@ exports.SignUp = function (args) {
         function (result) {
             console.log("ok signup:" + JSON.stringify(result));
 
-            http.request({
-                url: global.ApiUrl + '/User',
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                content: JSON.stringify({ Email: txtUsername.text, Password: txtPassword.text })
-            }).then(function (response) {
-                console.log("response:" + response.statusCode);
-                if (response.statusCode == 200) {
-                    var userToken = JSON.parse(response.content);
-                    console.log("token:" + userToken.UserToken.Token);
-
-                    appSettings.setString("token", userToken.UserToken.Token);
-
-                    var homePage = {
-                        moduleName: "pages/home/home",
-                        animated: true,
-                        transition: {
-                            name: "slide",
-                            duration: 380,
-                            curve: "easeIn"
-                        }
-                    };
-                    frameModule.topmost().navigate(homePage);
-                }
-                else {
-                    dialogs.alert("Invalid username or password!").then(function () {
-                        return;
-                    })
-                }
-
-            }, function (e) {
-                console.log("Error occurred " + e);
-                console.log("url:" + global.ApiUrl + '/PostStory');
-                dialogs.alert("Invalid username or password!").then(function () {
-                    return;
-                })
+            dialogs.alert("Account has been created. Please check your email and click the link to activate account.").then(function () {
+                frameModule.topmost().navigate({
+                    moduleName: "pages/login/login",
+                    animated: true,
+                    transition: {
+                        name: "slide",
+                        duration: 380,
+                        curve: "easeIn"
+                    }
+                });
             });
+
+            //http.request({
+            //    url: global.ApiUrl + '/User',
+            //    method: "POST",
+            //    headers: { "Content-Type": "application/json" },
+            //    content: JSON.stringify({ Email: txtUsername.text, Password: txtPassword.text })
+            //}).then(function (response) {
+            //    console.log("response:" + response.statusCode);
+            //    if (response.statusCode == 200) {
+            //        var userToken = JSON.parse(response.content);
+            //        console.log("token:" + userToken.UserToken.Token);
+
+
+
+            //        //appSettings.setString("token", userToken.UserToken.Token);
+
+            //        //var homePage = {
+            //        //    moduleName: "pages/home/home",
+            //        //    animated: true,
+            //        //    transition: {
+            //        //        name: "slide",
+            //        //        duration: 380,
+            //        //        curve: "easeIn"
+            //        //    }
+            //        //};
+            //        //frameModule.topmost().navigate(homePage);
+            //    }
+            //    else {
+            //        dialogs.alert("Invalid username or password!").then(function () {
+            //            return;
+            //        })
+            //    }
+
+            //}, function (e) {
+            //    console.log("Error occurred " + e);
+            //    console.log("url:" + global.ApiUrl + '/PostStory');
+            //    dialogs.alert("Invalid username or password!").then(function () {
+            //        return;
+            //    })
+            //});
 
         },
         function (error) {
             console.log('here error:' + error);
+            btnSignUp.isEnabled = true;
         },
         function (apiErrorMessage) {
             dialogs.alert("User with the same email address already exist.").then(function () {
+                btnSignUp.isEnabled = true;
             });
         });
 };

@@ -55,9 +55,16 @@ exports.Login = function () {
             frameModule.topmost().navigate(navigationEntry);
         }
         else {
-            dialogs.alert("Invalid username or password!").then(function () {
-                return;
-            })
+            if (response.statusCode == 409) {
+                dialogs.alert("Account has not been activated. Please check your email and click the link to activate account.").then(function () {
+                    return;
+                })
+            }
+            else {
+                dialogs.alert("Invalid username or password!").then(function () {
+                    return;
+                })
+            }
         }
 
     }, function (e) {
