@@ -15,9 +15,6 @@
           <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
         </ios>
       </action-bar.actionItems>
-      <ActionItem tap="addPlaycentre"
-          ios.systemIcon="9" ios.position="left"
-          android.systemIcon="ic_input_add" android.position="actionBar"/>
     </action-bar>
   </page.actionBar>
 
@@ -35,6 +32,8 @@
             </ListView.itemTemplate>
           </ListView>
 
+          <Button tap="Join" text="Join a playcentre" class="btn btn-primary btn-normal"/>
+          <Button tap="Login" text="Create a new playcentre" class="btn btn-primary btn-normal"/>
         </stack-layout>
       </ScrollView>
 

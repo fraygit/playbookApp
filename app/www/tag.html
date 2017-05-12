@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="./css/app_1.min.css" rel="stylesheet" />
+    <link href="./css/app_2.min.css" rel="stylesheet" />
+    <link href="./css/summernote.css" rel="stylesheet" />
+    <link href="./css/material-design-iconic-font.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .note-editable.panel-body {
+            overflow-y: scroll !important;
+            -webkit-touch-overflow: scroll !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .note-toolbar.panel-heading {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <section id="main" style="background:white;padding-top:0px;">
+        <div class="container" style="padding-left:0px;padding-right:0px;">
+            <div class="list-group lg-odd-black" style="padding:0px;margin:0px;" id="pnlChildList">
+                <div class="list-group-item media">
+                    <div class="checkbox pull-left">
+                        <label>
+                            <input type="checkbox" value="">
+                            <i class="input-helper"></i>
+                        </label>
+                    </div>
+                    <div class="pull-left">
+                        <img class="lgi-img" src="./img/image_preview.png" alt="">
+                    </div>
+                    <div class="media-body">
+                        <div class="lgi-heading" style="font-size:27px;">Caden</div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </section>
+
+    <script id="template" type="x-tmpl-mustache">
+        {{ #Children }}
+        <div class="list-group-item media">
+            <div class="checkbox pull-left">
+                <label>
+                    <input type="checkbox" value="">
+                    <i class="input-helper"></i>
+                </label>
+            </div>
+            <div class="pull-left">
+                <img class="lgi-img" src="./img/image_preview.png" alt="">
+            </div>
+            <div class="media-body">
+                <div class="lgi-heading" style="font-size:27px;">{{ Name }}</div>
+            </div>
+        </div>
+        {{ /Children }}
+    </script>
+
+    <script src="./js/global.js"></script>
+    <script src="./lib/nativescript-webview-interface.js"></script>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/bootstrap.min.js"></script>
+    <script src="./lib/summernote-updated.min.js"></script>
+
+    <script src="./lib/mustache.min.js"></script>
+    <script src="./js/tag.js"></script>
+</body>
+</html>

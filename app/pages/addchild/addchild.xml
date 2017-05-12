@@ -29,7 +29,7 @@
         <TextField hint="Last Name" id="txtLastName"/>
         <Label text="Date of birth" class="form-label"></Label>
         <DatePicker hint="Last Name" id="dteDOB" year="2017"/>
-        <Button tap="AddChild" text="Add Child" class="btn btn-primary" id="btnAddChild"/>
+        <Button tap="AddChild" text="Add Child" class="btn btn-primary btn-normal" id="btnAddChild"/>
       </stack-layout>
 
     </drawer:rad-side-drawer.mainContent>

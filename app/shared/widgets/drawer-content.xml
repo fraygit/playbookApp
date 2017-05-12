@@ -2,37 +2,37 @@
   <stack-layout>
     <wrapLayout>
       <Label text="&#xf015;" class="fa"/>
-      <label text="Home" tap="navigate" class="{{ selectedPage == 'home' ? 'selected' : '' }}" />
+      <label text="Home" tap="navigate"/>
     </wrapLayout>
     <StackLayout class="hr-dark" width="95%"></StackLayout>    
     <wrapLayout>
       <Label text="&#xf1ae;" class="fa"/>
-      <label text="My Children" tap="navigate" class="{{ selectedPage == 'mychildren' ? 'selected' : '' }}" />
+      <label text="My Children" tap="navigate" />
     </wrapLayout>
     <StackLayout class="hr-dark" width="95%"></StackLayout>
     <wrapLayout>
       <Label text="&#xf2bd;" class="fa"/>
-      <label text="My Profile" tap="navigate" class="{{ selectedPage == 'myprofile' ? 'selected' : '' }}" />
+      <label text="My Profile" tap="navigate"  />
     </wrapLayout>
     <StackLayout class="hr-dark" width="95%"></StackLayout>
     <wrapLayout>
       <Label text="&#xf1e3;" class="fa"/>
-      <label text="My Playcentre" tap="navigate" class="{{ selectedPage == 'myplaycentre' ? 'selected' : '' }}" />
+      <label text="My Playcentre" tap="navigate"  />
     </wrapLayout>
     <StackLayout class="hr-dark" width="95%"></StackLayout>
-    <wrapLayout>
+    <!--<wrapLayout>
       <Label text="&#xf013;" class="fa"/>
-      <label text="Settings" tap="navigate" class="{{ selectedPage == 'settings' ? 'selected' : '' }}" />
-    </wrapLayout>
+      <label text="Settings" tap="navigate"  />
+    </wrapLayout>-->
     <StackLayout class="hr-dark" width="95%"></StackLayout>
     <wrapLayout>
       <Label text="&#xf08b;" class="fa"/>
       <label text="Logout" tap="logout" />
     </wrapLayout>
     <StackLayout class="hr-dark" width="95%"></StackLayout>
-    <wrapLayout>
+    <!--<wrapLayout>
       <Label text="&#xf05a;" class="fa"/>
       <label text="About" tap="navigate" class="{{ selectedPage == 'about' ? 'selected' : '' }}" />
-    </wrapLayout>
+    </wrapLayout>-->
   </stack-layout>
 </grid-layout>

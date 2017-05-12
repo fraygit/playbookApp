@@ -3,7 +3,7 @@
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   xmlns:widgets="shared/widgets"
   xmlns:statusbar="nativescript-statusbar"
-  loaded="pageLoaded">
+  loaded="contentLoaded">
 
   <statusbar:StatusBar ios:barStyle="light" />
 
@@ -15,9 +15,9 @@
           <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
         </ios>
       </action-bar.actionItems>
-      <!--<ActionItem tap="onShare"
+      <ActionItem tap="TestWb"
           ios.systemIcon="9" ios.position="left"
-          android.systemIcon="ic_menu_save" android.position="actionBar"/>-->
+          android.systemIcon="ic_menu_save" android.position="actionBar"/>
       <ActionItem tap="Post"
           ios.systemIcon="9" ios.position="left"
           android.systemIcon="ic_menu_send" android.position="actionBar"/>
@@ -33,12 +33,15 @@
         <label text="Welcome to the NativeScript drawer template! This is the home page. Try tapping the logo." margin="20" horizontalAlignment="center" textWrap="true" />
       </stack-layout>-->
 
-      <TabView loaded="contentLoaded" id="tabView1" class="tab-view">
+      <TabView id="tabView1" class="tab-view">
         <TabView.items>
           <TabViewItem title="Tag">
             <TabViewItem.view>
               <stack-layout style.backgroundColor="white">
-                <ListView items="{{ childrenList }}" height="100%">
+
+                <WebView id="wvTagChild" style="margin:0px;padding:0px;"></WebView>
+                
+                <!--<ListView items="{{ childrenList }}" height="100%">
                   <ListView.itemTemplate>
                     <wrap-layout class="{{ Class }}" tap="SelectChild">
                       <stack-layout >
@@ -47,42 +50,54 @@
                       <Label text="{{ Name }}" class="item-name"/>
                     </wrap-layout>                    
                   </ListView.itemTemplate>
-                </ListView>
+                </ListView>-->
               </stack-layout>
             </TabViewItem.view>
           </TabViewItem>
-          <TabViewItem title="Story">
+          <TabViewItem title="Media">
             <TabViewItem.view>
               <stack-layout>
                 <stack-layout>
                   <grid-layout columns="*, *, *" rows="auto, auto, auto, auto" style.backgroundColor="white" class="home">
                     
-                    <TextView hint="Title" col="0" row="0" colspan="3" id="txtTitle"/>
-                    <TextView hint="Write story" col="0" row="1" colspan="3" height="85%" id="txtStory"/>
-
+                    <!--<TextView hint="Title" col="0" row="0" colspan="3" id="txtTitle"/>
+                    <TextView hint="Write story" col="0" row="1" colspan="3" height="85%" id="txtStory"/>-->
+                      <stack-layout id="pnlMedia" col="0" row="0" colspan="3" height="92%">
+                        <ListView items="{{ SelectedMedia }}">
+                          <ListView.itemTemplate>
+                            <stack-layout>
+                              <Image src="{{ Preview }}" style="padding:5px;"></Image>
+                              <Label text="&#xf014;" style="margin-bottom:10px;font-size:25px;text-align:center;" class="fa" tap="DeletePhoto"></Label>
+                            </stack-layout>
+                          </ListView.itemTemplate>
+                        </ListView>
+                      </stack-layout>
                     
-                      <wrap-layout col="0" row="2" colspan="3" height="0" id="pnlMedia">
+                      <!--<wrap-layout col="0" row="1" colspan="3" height="0">
                         <ListView items="{{ photosList }}">
                           <ListView.itemTemplate>
                             <Label text="1"/>
                             <Image src="{{ ImagePath }}"></Image>
                           </ListView.itemTemplate>
                         </ListView>
-                      </wrap-layout>
+                      </wrap-layout>-->
                     
-                    <Label text="&#xf03d;" col="0" row="3" style="margin-top:0;" class="fa-video lbl" tap="OpenGallery"/>
-                    <Label text="&#xf030;" class="fa-camera lbl" col="1" row="3" style="margin-top:0;" tap="OpenCamera"/>
-                    <Label text="&#xf03e;" col="2" row="3" style="margin-top:0;" class="lbl fa-photo" tap="OpenGallery"/>
+                    <Label text="&#xf03d;" col="0" row="1" style="margin-top:0;" class="fa-video lbl" tap="OpenGallery"/>
+                    <Label text="&#xf030;" class="fa-camera lbl" col="1" row="1" style="margin-top:0;" tap="OpenCamera"/>
+                    <Label text="&#xf03e;" col="2" row="1" style="margin-top:0;" class="lbl fa-photo" tap="OpenGallery"/>
                   </grid-layout>
                 </stack-layout>
 
               </stack-layout>
             </TabViewItem.view>
           </TabViewItem>
-          <TabViewItem title="Te Whariki">
+          <TabViewItem title="Story">
             <TabViewItem.view>
               <ScrollView>
-                <stack-layout style.backgroundColor="white" class="form">
+                <stack-layout style.backgroundColor="white">
+                  
+                  <WebView id="wvWriteStory" height="30%" style="margin:0px;padding:0px;"></WebView>
+                  <!--
                   <TextView hint="Noticing" height="30%" id="txtNoticing" row="2"/>
                   <TextView hint="Recognising" height="30%" id="txtRecognising"/>
                   <TextView hint="Responding" height="30%" id="txtResponding"/>
@@ -198,7 +213,7 @@
                       <Label text="Goal 4: Children experience an environment where they develop working theories for making sense of the natural, social, physical, and material worlds." textWrap="true" width="70%"/>
                     </wrap-layout>
                   </stack-layout>
-
+//-->
 
 
                 </stack-layout>

@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="./css/app_1.min.css" rel="stylesheet" />
+    <link href="./css/app_2.min.css" rel="stylesheet" />
+    <link href="./css/summernote.css" rel="stylesheet" />
+    <link href="./css/material-design-iconic-font.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .note-editable.panel-body {
+            overflow-y: scroll!important;
+            -webkit-touch-overflow:scroll!important;
+            -webkit-overflow-scrolling: touch;
+        }
+        .note-toolbar.panel-heading{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <section id="main" style="background:white;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px">
+        <div class="container">
+
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <input type="text" class="form-control input-sm" placeholder="Title" id="txtTitle">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="f-500 m-b-15 c-black">Story</p>
+                    <div id="txtStory"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="f-500 m-b-15 c-black">Recognising</p>
+                    <div id="txtRecognising"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="f-500 m-b-15 c-black">Responding</p>
+                    <div id="txtResponding"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel-group" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                        Mana atua (Well-being)
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand1Goal1">
+                                            <i class="input-helper"></i>
+                                            Goal 1: Children’s health is promoted.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand1Goal2">
+                                            <i class="input-helper"></i>
+                                            Goal 2: Children’s emotional well-being is nurtured.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand1Goal3">
+                                            <i class="input-helper"></i>
+                                            Goal 3: Children are kept safe from harm.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Mana whenua (Belonging)
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand2Goal1">
+                                            <i class="input-helper"></i>
+                                            Goal 1: Connecting links with the family and the wider world are affirmed and extended.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand2Goal2">
+                                            <i class="input-helper"></i>
+                                            Goal 2: Children know they have a place.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand2Goal3">
+                                            <i class="input-helper"></i>
+                                            Goal 3: Children feel comfor table with the routines, customs, and regular events.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand2Goal4">
+                                            <i class="input-helper"></i>
+                                            Goal 4: Children know the limits and boundaries of acceptable behavior.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Mana tangata (Contribution)
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand3Goal1">
+                                            <i class="input-helper"></i>
+                                            Goal 1: Children experience an environment where there are equitable opportunities for learning irrespective of gender, ability, age, ethnicity or background.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand3Goal2">
+                                            <i class="input-helper"></i>
+                                            Goal 2: Children experience an environment where they are affirmed as individuals.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand3Goal3">
+                                            <i class="input-helper"></i>
+                                            Goal 3: Children experience an environment where they are encouraged to learn with and alongside others.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingFour">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        Mana reo (Communication)
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+                                <div class="panel-body">
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand4Goal1">
+                                            <i class="input-helper"></i>
+                                            Goal 1: Children experience an environment where they develop non-verbal communication skills for a range of purposes.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand4Goal2">
+                                            <i class="input-helper"></i>
+                                            Goal 2: Children experience an environment where they develop verbal communication skills for a range of purposes.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand4Goal3">
+                                            <i class="input-helper"></i>
+                                            Goal 3: Children experience an environment where they experience the stories and symbols of their own and other cultures.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand4Goal4">
+                                            <i class="input-helper"></i>
+                                            Goal 4: Children experience an environment where they discover and develop different ways to be creative and expressive.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingFive">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        Mana auturoa (Exploration)
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive">
+                                <div class="panel-body">
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand5Goal1">
+                                            <i class="input-helper"></i>
+                                            Goal 1: Children experience an environment where their play is valued as meaningful learning and the importance of spontaneous play is recognized.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand5Goal2">
+                                            <i class="input-helper"></i>
+                                            Goal 2: Children experience an environment where they gain confidence in and control of their bodies.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand5Goal3">
+                                            <i class="input-helper"></i>
+                                            Goal 3: Children experience an environment where they learn strategies for active exploration, thinking and reasoning.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" id="Strand5Goal4">
+                                            <i class="input-helper"></i>
+                                            Goal 4: Children experience an environment where they develop working theories for making sense of the natural, social, physical, and material worlds.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <script src="./lib/nativescript-webview-interface.js"></script>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/bootstrap.min.js"></script>
+    <script src="./lib/summernote-updated.min.js"></script>
+
+    <script src="./js/writestory.js"></script>
+</body>
+</html>
