@@ -21,6 +21,7 @@
         var responding = $($(".note-editable.panel-body")[2]).html();
 
         var model = {
+            Type: $("#ddType").val(),
             Title: $("#txtTitle").val(),
             Story: story != undefined ? story : '',
             Recognising: recognising != undefined ? recognising : '',

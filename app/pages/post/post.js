@@ -474,6 +474,7 @@ var PostStory = function (postData) {
         }
 
         var postStory = {
+            Type: postData.Type,
             Title: postData.Title,
             Content: postData.Story,
             WrittenBy: 'fy',

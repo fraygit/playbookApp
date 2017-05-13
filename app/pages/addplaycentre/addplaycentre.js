@@ -20,25 +20,24 @@ var session = bghttp.session("image-upload");
 
 var page;
 
-var AddMember = function (args) {
+var AddPlaycentre = function (args) {
     console.log("ok profile page");
 
 };
-AddMember.prototype = new BasePage();
-AddMember.prototype.constructor = AddMember;
+AddPlaycentre.prototype = new BasePage();
+AddPlaycentre.prototype.constructor = AddPlaycentre;
 
-AddMember.prototype.pageLoaded = function (args) {
+AddPlaycentre.prototype.pageLoaded = function (args) {
     page = args.object;
-    var wvAddMember = page.getViewById('wvAddMember');
-    if (wvAddMember.android) { // in IOS android will be undefined
-        wvAddMember.android.getSettings().setBuiltInZoomControls(false);
+    var wvAddPlaycentre = page.getViewById('wvAddPlaycentre');
+    if (wvAddPlaycentre.android) { // in IOS android will be undefined
+        wvAddPlaycentre.android.getSettings().setBuiltInZoomControls(false);
     }
-    oWebViewInterface = new webViewInterfaceModule.WebViewInterface(wvAddMember, '~/www/AddMember.html')
-    oWebViewInterface.on('AddMember', function (eventData) {
+    oWebViewInterface = new webViewInterfaceModule.WebViewInterface(wvAddPlaycentre, '~/www/AddPlaycentre.html')
+    oWebViewInterface.on('AddPlaycentre', function (eventData) {
         console.log(JSON.stringify(eventData));
-        var playcentreId = appSettings.getString("PlaycentreId", "");
         if (!global.IsBlank(eventData.Email)) {
-            global.CallSecuredApi("/PlaycentreMembers", "PUT", JSON.stringify(eventData), "&playcentreId=" + playcentreId,
+            global.CallSecuredApi("/Playcentre", "PUT", JSON.stringify(eventData), "",
                 function (result) {
                     topmost().navigate({
                         moduleName: "pages/memberlist/memberlist",
@@ -58,21 +57,9 @@ AddMember.prototype.pageLoaded = function (args) {
     });
 }
 
-//AddMember.prototype.AddMember = function () {
-//    var txtEmail = page.getViewById("txtEmail");
-//    var playcentreId = appSettings.getString("PlaycentreId", "");
-//    if (!global.IsBlank(txtEmail.text)) {
-
-//    }
-//    else {
-//        var pnlError = page.getViewById("pnlError");
-//        pnlError.visibility = "visible";
-//    }
-//};
-
-AddMember.prototype.GoBack = function () {
+AddPlaycentre.prototype.GoBack = function () {
     topmost().navigate({
-        moduleName: "pages/memberlist/memberlist",
+        moduleName: "pages/myplaycentre/myplaycentre",
         animated: true,
         transition: {
             name: "slide",
@@ -84,4 +71,4 @@ AddMember.prototype.GoBack = function () {
 
 
 
-module.exports = new AddMember();
+module.exports = new AddPlaycentre();

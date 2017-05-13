@@ -22,9 +22,7 @@
     <drawer:rad-side-drawer.mainContent>
 
       <stack-layout style.backgroundColor="white" loaded="contentLoaded">
-        <TextField hint="Email" id="txtEmail"/>
-        <Label text="Please input member email address" class="alert-warning" visibility="collapsed" id="pnlError"></Label>
-        <Button tap="AddMember" text="Add Member" class="btn btn-primary" id="btnAddChild"/>
+        <WebView id="wvAddMember" style="margin:0px;padding:0px;" height="100%"></WebView>
       </stack-layout>
 
     </drawer:rad-side-drawer.mainContent>

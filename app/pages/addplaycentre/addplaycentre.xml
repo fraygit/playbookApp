@@ -8,7 +8,7 @@
   <statusbar:StatusBar ios:barStyle="light" />
 
   <page.actionBar>
-    <action-bar title="Select Playcentre">
+    <action-bar title="Add Playcentre">
       <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="GoBack"/>
       <action-bar.actionItems>
         <ios>
@@ -21,26 +21,9 @@
   <drawer:rad-side-drawer id="drawer">
     <drawer:rad-side-drawer.mainContent>
 
-      
-
-        <stack-layout>
-          <stack-layout height="77%">
-            <ListView items="{{ playcentreList }}" height="100%">
-              <ListView.itemTemplate>
-                <wrap-layout class="list-item" tap="GotoPlaycentre">
-                  <Label text="{{ Name }}" class="item-label"/>
-                </wrap-layout>
-              </ListView.itemTemplate>
-            </ListView>
-          </stack-layout>
-
-          <stack-layout>
-            <Button tap="Join" text="Join a playcentre" class="btn btn-primary btn-normal"/>
-            <Button tap="Create" text="Create a new playcentre" class="btn btn-primary btn-normal"/>
-          </stack-layout>
-        </stack-layout>
-      
-
+      <stack-layout style.backgroundColor="white" loaded="contentLoaded">
+        <WebView id="wvAddPlaycentre" style="margin:0px;padding:0px;" height="100%"></WebView>
+      </stack-layout>
 
     </drawer:rad-side-drawer.mainContent>
     <drawer:rad-side-drawer.drawerContent>

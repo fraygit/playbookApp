@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="./css/app_1.min.css" rel="stylesheet" />
+    <link href="./css/app_2.min.css" rel="stylesheet" />
+    <link href="./css/summernote.css" rel="stylesheet" />
+    <link href="./css/material-design-iconic-font.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .note-editable.panel-body {
+            overflow-y: scroll !important;
+            -webkit-touch-overflow: scroll !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .note-toolbar.panel-heading {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <section id="main" style="background:white;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <b>Email</b>
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <input type="text" class="form-control input-sm" placeholder="Email Address" id="txtEmail">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" id="chkParent" checked/>
+                            <i class="input-helper"></i>
+                            Parent
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" id="chkEducator" checked />
+                            <i class="input-helper"></i>
+                            Educator
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button class="btn bgm-purple waves-effect btn-block" id="btnAddMember">Add Member</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./lib/nativescript-webview-interface.js"></script>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/bootstrap.min.js"></script>
+    <script src="./lib/summernote-updated.min.js"></script>
+
+    <script src="./js/addmember.js"></script>
+</body>
+</html>

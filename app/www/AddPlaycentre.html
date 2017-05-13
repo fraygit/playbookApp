@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="./css/app_1.min.css" rel="stylesheet" />
+    <link href="./css/app_2.min.css" rel="stylesheet" />
+    <link href="./css/summernote.css" rel="stylesheet" />
+    <link href="./css/material-design-iconic-font.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .note-editable.panel-body {
+            overflow-y: scroll !important;
+            -webkit-touch-overflow: scroll !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .note-toolbar.panel-heading {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <section id="main" style="background:white;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <b>Name</b>
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <input type="text" class="form-control input-sm" placeholder="Playcentre name" id="txtName">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <b>Address</b>
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <input type="text" class="form-control input-sm" placeholder="Playcentre address" id="txtAddress">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <b>Contact Number</b>
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <input type="text" class="form-control input-sm" placeholder="Landline" id="txtContactNumber">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <b>Contact Person</b>
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <input type="text" class="form-control input-sm" placeholder="Main contact person" id="txtContactPerson">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button class="btn bgm-purple waves-effect btn-block" id="btnAddPlaycentre">Add Playcentre</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./lib/nativescript-webview-interface.js"></script>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/bootstrap.min.js"></script>
+    <script src="./lib/summernote-updated.min.js"></script>
+
+    <script src="./js/addplaycentre.js"></script>
+</body>
+</html>

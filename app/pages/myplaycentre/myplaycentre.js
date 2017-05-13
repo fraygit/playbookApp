@@ -49,6 +49,18 @@ MyPlaycentre.prototype.pageLoaded = function (args) {
         });
 }
 
+MyPlaycentre.prototype.Create = function () {
+    topmost().navigate({
+        moduleName: "pages/addplaycentre/addplaycentre",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    });
+}
+
 MyPlaycentre.prototype.GotoPlaycentre = function (args) {
     var item = args.object;
     var itemData = item.bindingContext;
