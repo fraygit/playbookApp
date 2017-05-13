@@ -1,0 +1,36 @@
+﻿<page
+  xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  xmlns:widgets="shared/widgets"
+  xmlns:statusbar="nativescript-statusbar"
+  loaded="contentLoaded">
+
+  <statusbar:StatusBar ios:barStyle="light" />
+
+  <page.actionBar>
+    <action-bar title="Tag Child">
+      <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="GoBack"/>
+      <action-bar.actionItems>
+        <ios>
+          <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
+        </ios>
+      </action-bar.actionItems>
+      <ActionItem tap="Post"
+          ios.systemIcon="9" ios.position="left"
+          android.systemIcon="ic_menu_send" android.position="actionBar"/>
+    </action-bar>
+  </page.actionBar>
+
+  <drawer:rad-side-drawer id="drawer">
+    <drawer:rad-side-drawer.mainContent>
+        <stack-layout style.backgroundColor="white">
+          <WebView id="wvTagChild" style="margin:0px;padding:0px;" height="100%"></WebView>
+        </stack-layout>
+      
+      </drawer:rad-side-drawer.mainContent>
+    <drawer:rad-side-drawer.drawerContent>
+      <widgets:drawer-content />
+    </drawer:rad-side-drawer.drawerContent>
+  </drawer:rad-side-drawer>
+
+</page>

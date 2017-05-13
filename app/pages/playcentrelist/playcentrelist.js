@@ -58,7 +58,7 @@ MyPlaycentre.prototype.GoToPost = function (args) {
     appSettings.setString("PlaycentreId", itemData.Id);
 
     topmost().navigate({
-        moduleName: "pages/post/post",
+        moduleName: "pages/tagchild/tagchild",
         animated: true,
         transition: {
             name: "slide",

@@ -8,7 +8,7 @@
   <statusbar:StatusBar ios:barStyle="light" />
 
   <page.actionBar>
-    <action-bar title="Playbook">
+    <action-bar title="Write Story">
       <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="GoBack"/>
       <action-bar.actionItems>
         <ios>
@@ -35,25 +35,13 @@
 
       <TabView id="tabView1" class="tab-view">
         <TabView.items>
-          <TabViewItem title="Tag">
+          <!--<TabViewItem title="Tag">
             <TabViewItem.view>
               <stack-layout style.backgroundColor="white">
 
-                <WebView id="wvTagChild" style="margin:0px;padding:0px;"></WebView>
-                
-                <!--<ListView items="{{ childrenList }}" height="100%">
-                  <ListView.itemTemplate>
-                    <wrap-layout class="{{ Class }}" tap="SelectChild">
-                      <stack-layout >
-                        <Image src="{{ ProfileImage }}" class="circle-wrapper"></Image>
-                      </stack-layout>
-                      <Label text="{{ Name }}" class="item-name"/>
-                    </wrap-layout>                    
-                  </ListView.itemTemplate>
-                </ListView>-->
               </stack-layout>
             </TabViewItem.view>
-          </TabViewItem>
+          </TabViewItem>-->
           <TabViewItem title="Media">
             <TabViewItem.view>
               <stack-layout>

@@ -82,45 +82,45 @@ PostPage.prototype.contentLoaded = function (args) {
         PostStory(eventData);
     });
 
-    wvTagChild = page.getViewById('wvTagChild');
-    if (wvTagChild.android) { // in IOS android will be undefined
-        wvTagChild.android.getSettings().setBuiltInZoomControls(false);
-    }
-    oWebViewInterface = new webViewInterfaceModule.WebViewInterface(wvTagChild, '~/www/tag.html')
-    wvTagChild.on('loadFinished', function (wbargs) {
-        if (!args.error) {
+    //wvTagChild = page.getViewById('wvTagChild');
+    //if (wvTagChild.android) { // in IOS android will be undefined
+    //    wvTagChild.android.getSettings().setBuiltInZoomControls(false);
+    //}
+    //oWebViewInterface = new webViewInterfaceModule.WebViewInterface(wvTagChild, '~/www/tag.html')
+    //wvTagChild.on('loadFinished', function (wbargs) {
+    //    if (!args.error) {
 
-            global.CallSecuredApi("/Child", "GET", null, "",
-                function (result) {
-                    console.log("get children");
-                    console.log(result);
-                    var list = JSON.parse(result);
-                    console.log(list);
-                    var token = appSettings.getString("token", "");
-                    var chdrn = [];
-                    for (var i = 0; i < list.length; i++) {
-                        var filename = 'img_' + new Date().getTime() + '.jpg';
+    //        global.CallSecuredApi("/Child", "GET", null, "",
+    //            function (result) {
+    //                console.log("get children");
+    //                console.log(result);
+    //                var list = JSON.parse(result);
+    //                console.log(list);
+    //                var token = appSettings.getString("token", "");
+    //                var chdrn = [];
+    //                for (var i = 0; i < list.length; i++) {
+    //                    var filename = 'img_' + new Date().getTime() + '.jpg';
 
-                        var childItem = {
-                            Name: list[i].FirstName,
-                            Id: list[i].Id,
-                            ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + encodeURIComponent(token) + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
-                        };
-                        chdrn.push(childItem);
-                    }
+    //                    var childItem = {
+    //                        Name: list[i].FirstName,
+    //                        Id: list[i].Id,
+    //                        ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + encodeURIComponent(token) + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
+    //                    };
+    //                    chdrn.push(childItem);
+    //                }
                     
-                    oWebViewInterface.emit('LoadChildrenList', JSON.stringify(chdrn));
+    //                oWebViewInterface.emit('LoadChildrenList', JSON.stringify(chdrn));
 
-                },
-                function (error) {
-                },
-                function (apiErrorMessage) {
-                });
+    //            },
+    //            function (error) {
+    //            },
+    //            function (apiErrorMessage) {
+    //            });
 
 
             
-        }
-    });
+    //    }
+    //});
 
     //children.push(new Observable.Observable({
     //    Name: 'Andy',
@@ -203,7 +203,7 @@ PostPage.prototype.GoBack = function () {
     selectedImages = [];
     capturedImages = [];
     topmost().navigate({
-        moduleName: "pages/home/home",
+        moduleName: "pages/tagchild/tagchild",
         animated: true,
         transition: {
             name: "slide",
@@ -361,20 +361,22 @@ PostPage.prototype.OpenGallery = function () {
 var UploadMedia = function (storyId) {
     console.log("Start Upload");
     var token = appSettings.getString("token", "");
-    for (var i = 0; i < capturedImages.length; i++) {
+
+    console.log(mediaArr.length);
+    for (var i = 0; i < mediaArr.length; i++) {
         var request = {
             url: global.ApiUrl + '/PostMedia?api_key=' + encodeURIComponent(token),
             method: "POST",
             headers: {
                 "Content-Type": "application/octet-stream",
-                "File-Name": capturedImages[i].Filename
+                "File-Name": mediaArr.getItem(i).Filename
             },
             description: "{ 'storyid': '" + storyId + "' }"
         };
-        var params = [{ name: "StoryId", value: storyId.toString() }, { name: "fileToUpload", filename: capturedImages[i].ImagePath, mimeType: 'image/jpeg' }];
-        //var task = session.uploadFile(capturedImages[i].ImagePath, request);
+        console.log('request' + JSON.stringify(request));
+        var params = [{ name: "StoryId", value: storyId.toString() }, { name: "fileToUpload", filename: mediaArr.getItem(i).ImagePath, mimeType: 'image/jpeg' }];
         var task = session.multipartUpload(params, request);
-        console.log("uploading: " + capturedImages[i].ImagePath);
+        console.log("uploading: " + mediaArr.getItem(i).ImagePath);
 
         task.on("progress", function () {
             console.log("progress");
@@ -385,36 +387,64 @@ var UploadMedia = function (storyId) {
         task.on("complete", function () {
             console.log("complete");
         });
-
     }
-    capturedImages = [];
-    console.log("upload " + global.ApiUrl + '/PostMedia?api_key=' + token);
-    for (var i = 0; i < selectedImages.length; i++) {
-        var request = {
-            url: global.ApiUrl + '/PostMedia?api_key=' + encodeURIComponent(token),
-            method: "POST",
-            headers: {
-                "Content-Type": "application/octet-stream",
-                "File-Name": selectedImages[i].Filename
-            },
-            description: "{ 'storyid': '" + storyId + "' }"
-        };
-        var params = [{ name: "StoryId", value: storyId.toString() }, { name: "fileToUpload", filename: selectedImages[i].ImagePath, mimeType: 'image/jpeg' }];
-        //var task = session.uploadFile(capturedImages[i].ImagePath, request);
-        var task = session.multipartUpload(params, request);
-        console.log("uploading: " + selectedImages[i].ImagePath);
 
-        task.on("progress", function () {
-            console.log("progress");
-        });
-        task.on("error", function () {
-            console.log("error");
-        });
-        task.on("complete", function () {
-            console.log("complete");
-        });
-
+    while (mediaArr.length > 0) {
+        mediaArr.pop();
     }
+
+    //for (var i = 0; i < capturedImages.length; i++) {
+    //    var request = {
+    //        url: global.ApiUrl + '/PostMedia?api_key=' + encodeURIComponent(token),
+    //        method: "POST",
+    //        headers: {
+    //            "Content-Type": "application/octet-stream",
+    //            "File-Name": capturedImages[i].Filename
+    //        },
+    //        description: "{ 'storyid': '" + storyId + "' }"
+    //    };
+    //    var params = [{ name: "StoryId", value: storyId.toString() }, { name: "fileToUpload", filename: capturedImages[i].ImagePath, mimeType: 'image/jpeg' }];
+    //    var task = session.multipartUpload(params, request);
+    //    console.log("uploading: " + capturedImages[i].ImagePath);
+
+    //    task.on("progress", function () {
+    //        console.log("progress");
+    //    });
+    //    task.on("error", function () {
+    //        console.log("error");
+    //    });
+    //    task.on("complete", function () {
+    //        console.log("complete");
+    //    });
+
+    //}
+    //capturedImages = [];
+    //console.log("upload " + global.ApiUrl + '/PostMedia?api_key=' + token);
+    //for (var i = 0; i < selectedImages.length; i++) {
+    //    var request = {
+    //        url: global.ApiUrl + '/PostMedia?api_key=' + encodeURIComponent(token),
+    //        method: "POST",
+    //        headers: {
+    //            "Content-Type": "application/octet-stream",
+    //            "File-Name": selectedImages[i].Filename
+    //        },
+    //        description: "{ 'storyid': '" + storyId + "' }"
+    //    };
+    //    var params = [{ name: "StoryId", value: storyId.toString() }, { name: "fileToUpload", filename: selectedImages[i].ImagePath, mimeType: 'image/jpeg' }];
+    //    var task = session.multipartUpload(params, request);
+    //    console.log("uploading: " + selectedImages[i].ImagePath);
+
+    //    task.on("progress", function () {
+    //        console.log("progress");
+    //    });
+    //    task.on("error", function () {
+    //        console.log("error");
+    //    });
+    //    task.on("complete", function () {
+    //        console.log("complete");
+    //    });
+
+    //}
     selectedImages = [];
 
 }
@@ -438,13 +468,17 @@ var PostStory = function (postData) {
         GetSelectedChildren();
 
         //UploadMedia(response.content);
+        var taggedChildren = [];
+        if (appSettings.getString("TaggedChild", "") != "") {
+            taggedChildren = JSON.parse(appSettings.getString("TaggedChild", ""));
+        }
 
         var postStory = {
             Title: postData.Title,
             Content: postData.Story,
             WrittenBy: 'fy',
             PlaycentreId: appSettings.getString("PlaycentreId", ""),
-            TaggedChildren: childrenSelected,
+            TaggedChildren: taggedChildren,
             Noticing: postData.Story,
             Recognising: postData.Recognising,
             Responding: postData.Responding,

@@ -1,6 +1,7 @@
-﻿$(document).ready(function () {
+﻿var oWebViewInterface = window.nsWebViewInterface;
 
-    var oWebViewInterface = window.nsWebViewInterface;
+$(document).ready(function () {
+
 
     oWebViewInterface.on('LoadChildrenList', function (eventData) {
 
@@ -14,4 +15,23 @@
 
 
 
+
+
+
 });
+var tagList = [];
+
+function TagChild(childId, e) {
+    console.log(childId);
+    if ($(e).prop("checked")) {
+        tagList.push(childId);
+    }
+    else {
+        for (var i = 0; i < tagList.length; i++) {
+            if (tagList[i] == childId) {
+                tagList.splice(i, 1);
+            }
+        }
+    }
+    oWebViewInterface.emit("TagChild", JSON.stringify(tagList));
+}
