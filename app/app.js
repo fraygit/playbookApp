@@ -18,8 +18,8 @@ global.IsBlank = function (str) {
     return (!str || /^\s*$/.test(str));
 };
 
-global.ApiUrl = 'http://10.0.2.2:1001/api';
-//global.ApiUrl = 'http://api1.myplaybook.co.nz/api';
+//global.ApiUrl = 'http://10.0.2.2:1001/api';
+global.ApiUrl = 'http://api1.myplaybook.co.nz/api';
 
 var token = appSettings.getString("token", "");
 
@@ -94,12 +94,13 @@ global.FormatDate = function (date) {
 console.log("token - " + token);
 
 // Add token validation
-if (!global.IsBlank(token)) {
-    application.start({ moduleName: "pages/home/home" });
-}
-else {
-    application.start({ moduleName: "pages/login/login" });
-}
+//if (!global.IsBlank(token)) {
+//    application.start({ moduleName: "pages/feed/feed" });
+//}
+//else {
+//    application.start({ moduleName: "pages/login/login" });
+//}
+application.start({ moduleName: "pages/feed/feed" });
 
 
 

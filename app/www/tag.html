@@ -22,23 +22,6 @@
     <section id="main" style="background:white;padding-top:0px;">
         <div class="container" style="padding-left:0px;padding-right:0px;">
             <div class="list-group lg-odd-black" style="padding:0px;margin:0px;" id="pnlChildList">
-                <div class="list-group-item media">
-                    <div class="checkbox pull-left">
-                        <label>
-                            <input type="checkbox" value="">
-                            <i class="input-helper"></i>
-                        </label>
-                    </div>
-                    <div class="pull-left">
-                        <img class="lgi-img" src="./img/image_preview.png" alt="">
-                    </div>
-                    <div class="media-body">
-                        <div class="lgi-heading" style="font-size:27px;">Caden</div>
-                    </div>
-                </div>
-
-
-
 
             </div>
 
@@ -47,7 +30,7 @@
 
     <script id="template" type="x-tmpl-mustache">
         {{ #Children }}
-        <div class="list-group-item media">
+        <div class="list-group-item media" style="border-bottom:1px solid silver;">
             <div class="checkbox pull-left">
                 <label>
                     <input type="checkbox" value="" class="chkTag" data-child-id="{{ Id }}" onchange="javascript: TagChild('{{ Id }}', this);">

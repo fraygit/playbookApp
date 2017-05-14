@@ -6,7 +6,7 @@ var dialogs = require("ui/dialogs");
 var page;
 
 var navigationEntry = {
-    moduleName: "pages/home/home",
+    moduleName: "pages/feed/feed",
     animated: true,
     transition: {
         name: "slide",

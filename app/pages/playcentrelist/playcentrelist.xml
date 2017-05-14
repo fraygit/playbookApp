@@ -21,7 +21,7 @@
   <drawer:rad-side-drawer id="drawer">
     <drawer:rad-side-drawer.mainContent>
 
-      <ScrollView>
+      
 
         <stack-layout>
           <ListView items="{{ playcentreList }}" height="100%">
@@ -33,7 +33,7 @@
           </ListView>
 
         </stack-layout>
-      </ScrollView>
+      
 
 
     </drawer:rad-side-drawer.mainContent>

@@ -71,6 +71,8 @@ TagChild.prototype.contentLoaded = function (args) {
                         chdrn.push(childItem);
                     }
 
+                    console.log('children:', JSON.stringify(chdrn));
+
                     oWebViewInterface.emit('LoadChildrenList', JSON.stringify(chdrn));
 
                 },

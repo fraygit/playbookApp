@@ -547,7 +547,7 @@ var PostStory = function (postData) {
                 console.log("story id: " + result);
                 UploadMedia(result);
                 topmost().navigate({
-                    moduleName: "pages/home/home",
+                    moduleName: "pages/feed/feed",
                     animated: true,
                     transition: {
                         name: "slide",

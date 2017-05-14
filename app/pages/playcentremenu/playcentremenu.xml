@@ -28,23 +28,23 @@
             <Label text="&#xf0c0;" class="fa item-label"/>
             <Label text="Members" class="item-label"/>
           </wrap-layout>
-          <wrap-layout class="list-item" tap="GoToMembers">
+          <wrap-layout class="list-item" tap="GoToMembers" style="background-color:silver;">
             <Label text="&#xf046;" class="fa item-label"/>
-            <Label text="Safety Checklist" class="item-label"/>
+            <Label text="Duty Checklist" class="item-label"/>
           </wrap-layout>          
-          <wrap-layout class="list-item" tap="GotoEditProfile">
+          <wrap-layout class="list-item" tap="GotoEditProfile" style="background-color:silver;">
             <Label text="&#xf0e6;" class="fa item-label"/>
             <Label text="Hui" class="item-label"/>
           </wrap-layout>
-          <wrap-layout class="list-item" tap="GotoEditProfile">
+          <wrap-layout class="list-item" tap="GotoEditProfile" style="background-color:silver;">
             <Label text="&#xf27b;" class="fa item-label"/>
             <Label text="Forum" class="item-label"/>
           </wrap-layout>
-          <wrap-layout class="list-item" tap="GotoEditProfile">
+          <wrap-layout class="list-item" tap="GotoEditProfile" style="background-color:silver;">
             <Label text="&#xf0f9;" class="fa item-label"/>
             <Label text="Incident Report" class="item-label"/>
           </wrap-layout>
-          <wrap-layout class="list-item" tap="GotoEditProfile">
+          <wrap-layout class="list-item" tap="GotoEditProfile" style="background-color:silver;">
             <Label text="&#xf013;" class="fa item-label"/>
             <Label text="Settings" class="item-label"/>
           </wrap-layout>

@@ -14,10 +14,6 @@ $(document).ready(function () {
     });
 
 
-
-
-
-
 });
 var tagList = [];
 

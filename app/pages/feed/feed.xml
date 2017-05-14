@@ -8,19 +8,24 @@
   <statusbar:StatusBar ios:barStyle="light" />
 
   <page.actionBar>
-    <action-bar title="Tag Child">
-      <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="GoBack"/>
+    <action-bar title="Playbook">
+      <navigation-button icon="res://ic_menu" tap="toggleDrawer" ios:visibility="collapsed" />
       <action-bar.actionItems>
         <ios>
           <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
         </ios>
       </action-bar.actionItems>
-      <ActionItem text="Custom ActionItem" position="right">
+      <ActionItem text="Write Story" position="right">
         <ActionItem.actionView>
-          <Label text="&#xf054;" cssClass="fa" tap="Post" style="font-size:20pt;"/>
+          <Label text="&#xf044;" cssClass="fa" tap="Post" style="font-size:30pt;"/>
         </ActionItem.actionView>
       </ActionItem>
-      <ActionItem text="Custom ActionItem" position="right">
+      <ActionItem text=" " position="right">
+        <ActionItem.actionView>
+          <Label text=" " cssClass="action-item" tap="Post"/>
+        </ActionItem.actionView>
+      </ActionItem>
+      <ActionItem text=" " position="right">
         <ActionItem.actionView>
           <Label text=" " cssClass="action-item" tap="Post"/>
         </ActionItem.actionView>
@@ -30,11 +35,11 @@
 
   <drawer:rad-side-drawer id="drawer">
     <drawer:rad-side-drawer.mainContent>
-        <stack-layout style.backgroundColor="white">
-          <WebView id="wvTagChild" style="margin:0px;padding:0px;" height="100%"></WebView>
-        </stack-layout>
-      
-      </drawer:rad-side-drawer.mainContent>
+      <stack-layout style.backgroundColor="white">
+        <WebView id="wvFeed" style="margin:0px;padding:0px;" height="100%"></WebView>
+      </stack-layout>
+
+    </drawer:rad-side-drawer.mainContent>
     <drawer:rad-side-drawer.drawerContent>
       <widgets:drawer-content />
     </drawer:rad-side-drawer.drawerContent>

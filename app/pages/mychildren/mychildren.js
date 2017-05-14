@@ -99,7 +99,7 @@ MyChildrenPage.prototype.contentLoaded = function (args) {
 
 MyChildrenPage.prototype.GoBack = function () {
     topmost().navigate({
-        moduleName: "pages/home/home",
+        moduleName: "pages/feed/feed",
         animated: true,
         transition: {
             name: "slide",

@@ -4,6 +4,9 @@ var topmost = require("ui/frame").topmost;
 var camera = require("nativescript-camera");
 var vr = require("nativescript-videorecorder");
 var appSettings = require("application-settings");
+var webViewInterfaceModule = require('nativescript-webview-interface');
+var oWebViewInterface;
+
 
 var videorecorder = new vr.VideoRecorder();
 
@@ -44,18 +47,47 @@ HomePage.prototype.contentLoaded = function (args) {
         webView.android.getSettings().setBuiltInZoomControls(false);
     }
 
-    global.CallSecuredApi("/FeedVersion", "GET", null, "",
-        function (result) {
-            //var webViewUrl = "http://34.209.177.254:81/index.html#/home?api_key=" + token;
-            var webViewUrl = result.toString().replace(/"/g, "") + "/#home?api_key=" + encodeURIComponent(token);
-            console.log("web view " + webViewUrl);
-            webView.src = webViewUrl;
+    oWebViewInterface = new webViewInterfaceModule.WebViewInterface(webView, '~/www/feed.html')
+    webView.on('loadFinished', function (wbargs) {
+        console.log('webiviewloaded');
 
-        },
-        function (error) {
-        },
-        function (apiErrorMessage) {
-        });
+    });
+
+    //global.CallSecuredApi("/FeedVersion", "GET", null, "",
+    //    function (result) {
+    //        //var webViewUrl = "http://34.209.177.254:81/index.html#/home?api_key=" + token;
+    //        var webViewUrl = result.toString().replace(/"/g, "") + "/#home?api_key=" + encodeURIComponent(token);
+    //        console.log("web view " + webViewUrl);
+    //        //webView.src = webViewUrl;
+
+    //        oWebViewInterface = new webViewInterfaceModule.WebViewInterface(webView, '~/www/feed.html')
+    //        webView.on('loadFinished', function (wbargs) {
+    //            console.log('webiviewloaded');
+    //            if (!args.error) {
+
+    //                global.CallSecuredApi("/PostStory", "GET", null, "",
+    //                    function (result) {
+
+    //                        var data = JSON.parse(result);
+
+    //                        oWebViewInterface.emit('LoadFeed', JSON.stringify(data));
+
+    //                    },
+    //                    function (error) {
+    //                    },
+    //                    function (apiErrorMessage) {
+    //                    });
+
+
+
+    //            }
+    //        });
+
+    //    },
+    //    function (error) {
+    //    },
+    //    function (apiErrorMessage) {
+    //    });
 
     //webView.src = "https://www.google.com";
 
@@ -76,47 +108,47 @@ HomePage.prototype.contentLoaded = function (args) {
     //}));
 
 
-    global.CallSecuredApi("/PostStory", "GET", null, "",
-        function (result) {
-            console.log("stories");
-            //console.log(result);
-            var list = JSON.parse(result);
-            console.log(list);
+    //global.CallSecuredApi("/PostStory", "GET", null, "",
+    //    function (result) {
+    //        console.log("stories");
+    //        //console.log(result);
+    //        var list = JSON.parse(result);
+    //        console.log(list);
 
-            var imageCount = 1;
+    //        var imageCount = 1;
 
-            for (var i = 0; i < list.length; i++) {
-                console.log("looping " + list.length);
-                var storyImages = new observableArray.ObservableArray([]);
-                //console.log("media num:" + list[i].Media.length);
-                if (list[i].MediaThumb != null || list[i].MediaThumb != undefined) {
-                    if (list[i].MediaThumb.length > 0) {
+    //        for (var i = 0; i < list.length; i++) {
+    //            console.log("looping " + list.length);
+    //            var storyImages = new observableArray.ObservableArray([]);
+    //            //console.log("media num:" + list[i].Media.length);
+    //            if (list[i].MediaThumb != null || list[i].MediaThumb != undefined) {
+    //                if (list[i].MediaThumb.length > 0) {
 
-                        var imageUrl = global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].MediaThumb[0].Path) + "&filename=" + list[i].MediaThumb[0].Filename;
-                        console.log("image:" + imageUrl);
-                        storyImages.push({ Path: imageUrl });
-                        console.log("image ok");
-                    }
-                }
+    //                    var imageUrl = global.ApiUrl + "/PostMedia" + '?api_key=' + token + "&path=" + encodeURIComponent(list[i].MediaThumb[0].Path) + "&filename=" + list[i].MediaThumb[0].Filename;
+    //                    console.log("image:" + imageUrl);
+    //                    storyImages.push({ Path: imageUrl });
+    //                    console.log("image ok");
+    //                }
+    //            }
                 
-                feed.push(new observableModule.Observable({
-                    Id: list[i].Id,
-                    Title: list[i].Title,
-                    Author: list[i].Author,
-                    Date: global.FormatDate(new Date(list[i].DatePosted)),
-                    Images: storyImages,
-                    ThumbImages: list[i].MediaThumb,
-                    Content: list[i].Content,
-                    ImageCount: 0
-                }));
-                console.log("image ok2");
-            }
-            pageData.set("Feed", feed);
-        },
-        function (error) {
-        },
-        function (apiErrorMessage) {
-        });
+    //            feed.push(new observableModule.Observable({
+    //                Id: list[i].Id,
+    //                Title: list[i].Title,
+    //                Author: list[i].Author,
+    //                Date: global.FormatDate(new Date(list[i].DatePosted)),
+    //                Images: storyImages,
+    //                ThumbImages: list[i].MediaThumb,
+    //                Content: list[i].Content,
+    //                ImageCount: 0
+    //            }));
+    //            console.log("image ok2");
+    //        }
+    //        pageData.set("Feed", feed);
+    //    },
+    //    function (error) {
+    //    },
+    //    function (apiErrorMessage) {
+    //    });
     
     
 };

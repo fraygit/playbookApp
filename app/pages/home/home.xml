@@ -16,9 +16,24 @@
           <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
         </ios>
       </action-bar.actionItems>
-      <ActionItem tap="WriteStory"
+      <!--<ActionItem tap="WriteStory"
           ios.systemIcon="9" ios.position="left"
-          android.systemIcon="ic_menu_edit" android.position="actionBar"/>
+          android.systemIcon="ic_menu_edit" android.position="actionBar"/>-->
+      <ActionItem text="Post" position="right">
+        <ActionItem.actionView>
+          <Label text="&#xf044;" cssClass="fa" tap="WriteStory" style="font-size:30pt;"/>
+        </ActionItem.actionView>
+      </ActionItem>
+      <ActionItem text=" " position="right">
+        <ActionItem.actionView>
+          <Label text=" " cssClass="action-item" tap="Post"/>
+        </ActionItem.actionView>
+      </ActionItem>
+      <ActionItem text=" " position="right">
+        <ActionItem.actionView>
+          <Label text=" " cssClass="action-item" tap="Post"/>
+        </ActionItem.actionView>
+      </ActionItem>
     </action-bar>
   </page.actionBar>
 

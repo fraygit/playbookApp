@@ -65,6 +65,12 @@ page {
     font-family: 'fontawesome-webfont';
 }
 
+.action-item{
+    font-size:20pt;
+    margin-right:10px;
+    color:white;
+}
+
 .imagecaptured {
   background-color: #666666;
   /*border-radius: 100;*/
