@@ -8,7 +8,7 @@
   <statusbar:StatusBar ios:barStyle="light" />
 
   <page.actionBar>
-    <action-bar title="{{ ActionBarTitle }}">
+    <action-bar title="Add Parent">
       <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="GoBack"/>
       <action-bar.actionItems>
         <ios>
@@ -21,25 +21,9 @@
   <drawer:rad-side-drawer id="drawer">
     <drawer:rad-side-drawer.mainContent>
 
-      <ScrollView>
-
-        <stack-layout>
-          <wrap-layout class="list-item" tap="GoEnrollment">
-            <Label text="&#xf007;" class="fa item-label"/>
-            <Label text="Enrollment" class="item-label"/>
-          </wrap-layout>
-          <wrap-layout class="list-item">
-            <Label text="&#xf02d;" class="fa item-label"/>
-            <Label text="Learning Stories" class="item-label"/>
-          </wrap-layout>
-          <wrap-layout class="list-item" tap="LinkParent">
-            <Label text="&#xf0c1;" class="fa item-label"/>
-            <Label text="Link Parent" class="item-label"/>
-          </wrap-layout>
-
-        </stack-layout>
-      </ScrollView>
-
+      <stack-layout style.backgroundColor="white" loaded="contentLoaded">
+        <WebView id="wvAddParent" style="margin:0px;padding:0px;" height="100%"></WebView>
+      </stack-layout>
 
     </drawer:rad-side-drawer.mainContent>
     <drawer:rad-side-drawer.drawerContent>

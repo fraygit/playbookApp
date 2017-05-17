@@ -52,6 +52,19 @@ MyChildMenuPage.prototype.GoBack = function () {
     });
 };
 
+MyChildMenuPage.prototype.LinkParent = function () {
+    topmost().navigate({
+        moduleName: "pages/linkparent/linkparent",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    });
+};
+
+
 MyChildMenuPage.prototype.GoEnrollment = function () {
     topmost().navigate({
         moduleName: "pages/enrollment/enrollment",

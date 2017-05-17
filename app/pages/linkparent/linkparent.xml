@@ -1,0 +1,61 @@
+﻿<page
+  xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  xmlns:widgets="shared/widgets"
+  xmlns:statusbar="nativescript-statusbar"
+  loaded="pageLoaded">
+
+  <statusbar:StatusBar ios:barStyle="light" />
+
+  <page.actionBar>
+    <action-bar title="Link Parent">
+      <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="GoBack"/>
+      <action-bar.actionItems>
+        <ios>
+          <action-item icon="res://ic_menu" ios.position="left" tap="toggleDrawer" />
+        </ios>
+      </action-bar.actionItems>
+      <ActionItem text="Add Parent Link" position="right">
+        <ActionItem.actionView>
+          <Label text="&#xf067;" cssClass="fa" tap="AddParent" style="font-size:30pt;"/>
+        </ActionItem.actionView>
+      </ActionItem>
+      <ActionItem text=" " position="right">
+        <ActionItem.actionView>
+          <Label text=" " cssClass="action-item" tap="Post"/>
+        </ActionItem.actionView>
+      </ActionItem>
+      <ActionItem text=" " position="right">
+        <ActionItem.actionView>
+          <Label text=" " cssClass="action-item" tap="Post"/>
+        </ActionItem.actionView>
+      </ActionItem>
+
+    </action-bar>
+  </page.actionBar>
+
+  <drawer:rad-side-drawer id="drawer">
+    <drawer:rad-side-drawer.mainContent>
+
+      <ScrollView>
+
+        <stack-layout height="100%">
+          <ListView items="{{ parentList }}" height="100%">
+            <ListView.itemTemplate>
+              <wrap-layout class="list-item" tap="GoToPost" class="{{ Id == '000000000000000000000000' ? 'item-label-pending' : 'item-label' }}">
+                <Label text="{{ FirstName }}" class="item-label"/>
+              </wrap-layout>
+            </ListView.itemTemplate>
+          </ListView>
+
+        </stack-layout>
+      </ScrollView>
+
+    </drawer:rad-side-drawer.mainContent>
+    <drawer:rad-side-drawer.drawerContent>
+      <widgets:drawer-content />
+    </drawer:rad-side-drawer.drawerContent>
+  </drawer:rad-side-drawer>
+
+</page>
+
