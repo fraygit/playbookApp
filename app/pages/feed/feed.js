@@ -36,6 +36,35 @@ FeedPage.prototype.Post = function () {
     });
 }
 
+
+var RetrieveFeed = function () {
+    var token = appSettings.getString("token", "");
+    global.CallSecuredApi("/PostStory", "GET", null, "",
+        function (result) {
+            var list = JSON.parse(result);
+            for (var i = 0; i < list.length; i++) {
+                console.log("looping " + list.length);
+                console.log('img:' + JSON.stringify(list[i]));
+                if (list[i].MediaThumb != undefined) {
+                    for (var t = 0; t < list[i].MediaThumb.length; t++) {
+                        console.log('thumb:' + JSON.stringify(list[i].MediaThumb[t]));
+                        var imgUrl = 'http://34.209.177.254/api' + "/PostMedia" + '?api_key=' + encodeURIComponent(token) + "&path=" + encodeURIComponent(list[i].MediaThumb[t].Path) + "&filename=" + encodeURIComponent(list[i].MediaThumb[t].Filename);
+                        list[i].MediaThumb[t].ImgUrl = encodeURIComponent(imgUrl);
+                    }
+                }
+            }
+
+            console.log('stories:' + JSON.stringify(list));
+            oWebViewInterface.emit('LoadFeed', JSON.stringify(list));
+
+        },
+        function (error) {
+        },
+        function (apiErrorMessage) {
+        });
+};
+
+
 FeedPage.prototype.contentLoaded = function (args) {
     page = args.object;
 
@@ -48,34 +77,13 @@ FeedPage.prototype.contentLoaded = function (args) {
     wvFeed.on('loadFinished', function (wbargs) {
         console.log('webiviewloaded');
         if (!args.error) {
-            var token = appSettings.getString("token", "");
-            global.CallSecuredApi("/PostStory", "GET", null, "",
-                function (result) {
-                    var list = JSON.parse(result);
-                    for (var i = 0; i < list.length; i++) {
-                        console.log("looping " + list.length);
-                        console.log('img:' + JSON.stringify(list[i]));
-                        if (list[i].MediaThumb != undefined) {
-                            for (var t = 0; t < list[i].MediaThumb.length; t++) {
-                                console.log('thumb:' + JSON.stringify(list[i].MediaThumb[t]));
-                                var imgUrl = 'http://34.209.177.254/api' + "/PostMedia" + '?api_key=' + encodeURIComponent(token) + "&path=" + encodeURIComponent(list[i].MediaThumb[t].Path) + "&filename=" + encodeURIComponent(list[i].MediaThumb[t].Filename);
-                                list[i].MediaThumb[t].ImgUrl = imgUrl;
-                            }
-                        }
-                    }
-
-                    console.log('stories:' + JSON.stringify(list));
-                    oWebViewInterface.emit('LoadFeed', JSON.stringify(list));
-
-                },
-                function (error) {
-                },
-                function (apiErrorMessage) {
-                });
-
-
-
+            RetrieveFeed();
         }
+    });
+
+    oWebViewInterface.on('Refresh', function (eventData) {
+        console.log('pull refresh');
+        RetrieveFeed();
     });
 }
 

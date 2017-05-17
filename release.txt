@@ -1,0 +1,5 @@
+keytool -genkey -v -keystore myplaybook-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias nz.co.playbook.mobile
+
+tns build android --release --key-store-path myplaybook-release-key.jks --key-store-password Guillermo1239 --key-store-alias nz.co.playbook.mobile --key-store-alias-password Guillermo1239 
+
+keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias

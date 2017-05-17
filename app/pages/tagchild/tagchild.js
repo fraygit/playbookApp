@@ -52,36 +52,69 @@ TagChild.prototype.contentLoaded = function (args) {
         console.log('webiviewloaded');
         if (!args.error) {
 
-            global.CallSecuredApi("/Child", "GET", null, "",
-                function (result) {
-                    console.log("get children");
-                    console.log(result);
-                    var list = JSON.parse(result);
-                    console.log(list);
-                    var token = appSettings.getString("token", "");
-                    var chdrn = [];
-                    for (var i = 0; i < list.length; i++) {
-                        var filename = 'img_' + new Date().getTime() + '.jpg';
+            var playcentreId = appSettings.getString("PlaycentreId", "");
 
-                        var childItem = {
-                            Name: list[i].FirstName,
-                            Id: list[i].Id,
-                            ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + encodeURIComponent(token) + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
-                        };
-                        chdrn.push(childItem);
-                    }
+            if (playcentreId != "") {
 
-                    console.log('children:', JSON.stringify(chdrn));
+                global.CallSecuredApi("/PlaycentreChild", "GET", null, "&playcentreId=" + playcentreId,
+                    function (result) {
+                        console.log("get children");
+                        console.log(result);
+                        var list = JSON.parse(result);
+                        console.log(list);
+                        var token = appSettings.getString("token", "");
+                        var chdrn = [];
+                        for (var i = 0; i < list.length; i++) {
+                            var filename = 'img_' + new Date().getTime() + '.jpg';
 
-                    oWebViewInterface.emit('LoadChildrenList', JSON.stringify(chdrn));
+                            var childItem = {
+                                Name: list[i].FirstName,
+                                Id: list[i].Id,
+                                ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + encodeURIComponent(token) + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
+                            };
+                            chdrn.push(childItem);
+                        }
 
-                },
-                function (error) {
-                },
-                function (apiErrorMessage) {
-                });
+                        console.log('children:', JSON.stringify(chdrn));
 
+                        oWebViewInterface.emit('LoadChildrenList', JSON.stringify(chdrn));
 
+                    },
+                    function (error) {
+                    },
+                    function (apiErrorMessage) {
+                    });
+            }
+            else {
+                global.CallSecuredApi("/Child", "GET", null, "",
+                    function (result) {
+                        console.log("get children");
+                        console.log(result);
+                        var list = JSON.parse(result);
+                        console.log(list);
+                        var token = appSettings.getString("token", "");
+                        var chdrn = [];
+                        for (var i = 0; i < list.length; i++) {
+                            var filename = 'img_' + new Date().getTime() + '.jpg';
+
+                            var childItem = {
+                                Name: list[i].FirstName,
+                                Id: list[i].Id,
+                                ProfileImage: global.ApiUrl + "/PostMedia" + '?api_key=' + encodeURIComponent(token) + "&path=" + encodeURIComponent(list[i].ProfilePhoto) + "&filename=" + filename,
+                            };
+                            chdrn.push(childItem);
+                        }
+
+                        console.log('children:', JSON.stringify(chdrn));
+
+                        oWebViewInterface.emit('LoadChildrenList', JSON.stringify(chdrn));
+
+                    },
+                    function (error) {
+                    },
+                    function (apiErrorMessage) {
+                    });
+            }
 
         }
     });

@@ -40,7 +40,7 @@ AddPlaycentre.prototype.pageLoaded = function (args) {
             global.CallSecuredApi("/Playcentre", "PUT", JSON.stringify(eventData), "",
                 function (result) {
                     topmost().navigate({
-                        moduleName: "pages/memberlist/memberlist",
+                        moduleName: "pages/myplaycentre/myplaycentre",
                         animated: true,
                         transition: {
                             name: "slide",

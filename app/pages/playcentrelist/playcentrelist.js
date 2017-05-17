@@ -55,7 +55,24 @@ MyPlaycentre.prototype.GoToPost = function (args) {
 
     console.log("current playcentre" + itemData.Id);
 
+
+
     appSettings.setString("PlaycentreId", itemData.Id);
+
+    topmost().navigate({
+        moduleName: "pages/tagchild/tagchild",
+        animated: true,
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    });
+};
+
+
+MyPlaycentre.prototype.Skip = function (args) {
+    appSettings.setString("PlaycentreId", "");
 
     topmost().navigate({
         moduleName: "pages/tagchild/tagchild",

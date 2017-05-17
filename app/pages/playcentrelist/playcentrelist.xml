@@ -21,9 +21,9 @@
   <drawer:rad-side-drawer id="drawer">
     <drawer:rad-side-drawer.mainContent>
 
-      
 
-        <stack-layout>
+      <stack-layout>
+        <stack-layout height="85%">
           <ListView items="{{ playcentreList }}" height="100%">
             <ListView.itemTemplate>
               <wrap-layout class="list-item" tap="GoToPost">
@@ -31,8 +31,12 @@
               </wrap-layout>
             </ListView.itemTemplate>
           </ListView>
-
         </stack-layout>
+
+        <stack-layout>
+          <Button tap="Skip" text="Skip" class="btn btn-primary btn-normal"/>
+        </stack-layout>        
+      </stack-layout>
       
 
 

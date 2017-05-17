@@ -44,7 +44,7 @@
                         <div class="media-body">
                             <h2>
                                 {{ Author }}
-                                <small>Posted on {{ DatePosted }}</small>
+                                <small>Posted on {{ DatePostedFormatted }}</small>
                             </h2>
                         </div>
                     </div>
@@ -53,8 +53,23 @@
                 <div class="card-body card-padding">
                     <b>{{ Title }}</b>
 
-                    <p>{{ StoryText }}</p>
+                    <p id="pnlSummary">{{ StoryTextCut }} <a href="javascript:ReadMore()" id="lnkReadMore">read more..</a></p>
+                    <p id="pnlStory" style="display:none;">{{ StoryText }}</p>
+                    
 
+                    <div id="pnlStoryCont" style="display:none;">
+                        <p>{{ RecognisingText }}</p>
+
+                        <p>{{ RespondingText }}</p>
+                    </div>
+
+                    <div id="pnlStrands" style="display:none;">
+                        <dl class="dl-horizontal">
+                            {{ #Strands }}
+                            <dt><i class="zmdi zmdi-check"></i> {{ Strand }}</dt>
+                            {{ /Strands }}
+                        </dl>
+                    </div>
 
                     <div id="lightgallery" class="wi-preview lightbox clearfix">
                         {{ #MediaThumb }}
@@ -76,6 +91,7 @@
     <script src="./lib/summernote-updated.min.js"></script>
     <script src="./lib/mustache.min.js"></script>
     <script src="./lib/lightgallery.min.js"></script>
+    <script src="./lib/pulltorefresh.js"></script>
 
     <script src="./js/feed.js"></script>
 </body>

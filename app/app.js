@@ -10,7 +10,6 @@ if (application.android) {
         //imageCache.initialize();
     };
 }
-
 //application.start({ moduleName: "pages/home/home" });
 
 

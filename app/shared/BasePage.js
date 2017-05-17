@@ -19,6 +19,10 @@ BasePage.prototype.navigate = function(args) {
   var pageName = args.view.text.toLowerCase().replace(" ", "");
   appViewModel.set("selectedPage", pageName);
 
+  if (pageName == "home") {
+      pageName = "feed";
+  }
+
   var navigationEntry = {
       moduleName: "pages/" + pageName + "/" + pageName,
       animated: true,
